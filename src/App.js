@@ -17,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LogIn />} />
             <Route path="/timeline" element={<Timeline />} />
+            <p>bier</p>
             <Route path="/profile" element={<Profile />} />
           </Routes>
           <Footer />
