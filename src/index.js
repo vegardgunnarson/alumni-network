@@ -14,7 +14,7 @@ initialize().then( () => {
       <App />
     </React.StrictMode>
   );
-}).catch( () => {
+
   root.render(
     <React.StrictMode>
     <h1> Critical Error! </h1>

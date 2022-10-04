@@ -11,6 +11,7 @@ import { TokenPage } from './components/TokenPage';
 import { AdminPage } from './components/AdminPage';
 import KeycloakRoute from "./routes/KeycloakRoute";
 import { ROLES } from "./const/roles";
+import keycloak from './keycloak/keycloak';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <li><Link to="/"> LogIn</Link></li>
           <li><Link to="/token"> Token</Link></li>
           <li><Link to="/admin"> Admin</Link></li>
+          <li><button onClick={() => keycloak.login() }>login to Keycloak</button></li>
         </nav>
           <Routes>
             <Route path="/" element={<LogIn />} />
