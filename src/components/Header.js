@@ -16,11 +16,6 @@ export default function Header() {
                 Profile
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                Log Out
-              </a>
-            </li>
           </ul>
         
       </nav>
