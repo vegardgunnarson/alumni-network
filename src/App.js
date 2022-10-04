@@ -17,6 +17,7 @@ function App() {
     <div>
       <Router >
         <Header />
+        <h1>TEST</h1>
         <nav>
           <li><Link to="/"> LogIn</Link></li>
           <li><Link to="/token"> Token</Link></li>

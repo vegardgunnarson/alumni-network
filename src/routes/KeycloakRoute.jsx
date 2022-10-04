@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import keycloak from "../keycloak";
+import keycloak from "../keycloak/keycloak";
 
 /**
  * Protect routes based on a given role and authenticated status of a Keycloak Session.
