@@ -4,6 +4,12 @@
     resize: none;
     height: 35px;
     width: 350px;
+    border: solid 3px white;
+    border-radius: 5px;
+}
+.name:hover{
+    cursor: pointer;
+    border: solid 3px lightgrey;
 }
 .image{
     width: 150px;
@@ -13,18 +19,36 @@
     resize: none;
     width: 500px;
     height: 30px;
+    border: solid 3px white;
+    border-radius: 5px;
+}
+.status:hover{
+    cursor: pointer;
+    border: solid 3px lightgrey;
 }
 .bio{
     width: 500px;
     height: 200px;  
     resize: none;
+    border: solid 3px white;
+    border-radius: 5px;
+}
+.bio:hover{
+    cursor: pointer;
+    border: solid 3px lightgrey;
 }
 .funfact{
     resize: none;
     width: 500px;
     height: 30px;
-
+    border: solid 3px white;
+    border-radius: 5px;
 }
+.funfact:hover{
+    cursor: pointer;
+    border: solid 3px lightgrey;
+}
+
 .profile{
     display: flex;
     justify-content: center;
