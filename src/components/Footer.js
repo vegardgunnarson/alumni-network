@@ -1,11 +1,12 @@
 import React from "react";
+import '../styles/Footer.scss';
 
 
 
 export default function Footer () {
     return (
-        <footer class="footer mt-auto py-3 text-center text-lg-start bg-light">
-            <span class="text-dark">Footer</span>
+        <footer class="footer bg-light">
+            Alumni
         </footer>
     )
 }

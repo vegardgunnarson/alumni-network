@@ -1,8 +1,42 @@
 .name{
     font-size: larger;
     font-weight: bold;
+    resize: none;
+    height: 35px;
+    width: 350px;
 }
 .image{
     width: 150px;
     height: 150px;
+}
+.status{
+    resize: none;
+    width: 500px;
+    height: 30px;
+}
+.bio{
+    width: 500px;
+    height: 200px;  
+    resize: none;
+}
+.funfact{
+    resize: none;
+    width: 500px;
+    height: 30px;
+
+}
+.profile{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.buttons{
+    display: flex;
+    justify-content: space-evenly;
 }

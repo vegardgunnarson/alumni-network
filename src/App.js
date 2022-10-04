@@ -12,15 +12,15 @@ import Timeline from './components/Timeline'
 function App() {
   return (
     <div>
+      <Header />
       <Router >
-        <Header />
           <Routes>
             <Route path="/" element={<LogIn />} />
             <Route path="/timeline" element={<Timeline />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
-          <Footer />
       </Router>
+      <Footer />
     </div>
   );
 }
