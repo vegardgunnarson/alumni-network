@@ -8,33 +8,30 @@ export default function Navbar() {
   return (
     <navbar>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        
-    
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="/timeline">
+              <a class="nav-link m-4" href="/timeline">
                 Timeline
               </a>
             </li>
            
             <li class="nav-item">
-              <a class="nav-link" href="/Token">
+              <a class="nav-link m-4" href="/Token">
                 Token
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Admin">
+              <a class="nav-link m-4" href="/Admin">
                 Admin
               </a>
             </li>
           
-          
-          <li><button onClick={() => keycloak.logout() }>logout</button></li>
           <li class="nav-item">
-              <a class="nav-link" href="/profile">
-                Profile: {keycloak.authenticated && keycloak.tokenParsed && <li><span>{ keycloak.tokenParsed.name}</span></li>}
+              <a class="nav-link m-4" href="/profile">
+                Profile: {keycloak.authenticated && keycloak.tokenParsed && <span>{ keycloak.tokenParsed.name}</span>}
               </a>
             </li>
+            <li><button class="btn btn-danger m-4" onClick={() => keycloak.logout() }>Logout</button></li>
         
           </ul>
       

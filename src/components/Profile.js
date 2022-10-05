@@ -1,8 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
-import axios from "axios";
-import { useEffect } from "react";
-import { useCallback } from "react";
+import keycloak from "../keycloak/keycloak";
 
 import "../styles/Profile.scss";
 
@@ -22,14 +19,14 @@ export default function Profile() {
         <form class="container-lg" className="form">
             <div>
             <img src={user.image} alt="could not be found" className="image" />
-            <textarea class="form-control" id="name" className="name">{user.name}</textarea><br/>
+            <textarea class="form-control" id="name" className="name">{ keycloak.tokenParsed.name}</textarea><br/>
             </div>
           <textarea class="form-control" id="status" className="status">{user.status}</textarea><br/>
           <textarea class="form-control" id="bio" className="bio" >{user.bio}</textarea><br/>
           <textarea class="form-control" id="funfact" className="funfact">{user.funfact}</textarea><br/>
-          <div className="buttons">
-          <button type="submit" class="btn btn-secondary">Save</button>
-          <button class="btn btn-danger"><a class="nav-link" href="/">Log Out</a></button>
+          <div class="nav-item" className="buttons">
+          <button type="submit" class="btn btn-secondary m-4">Save</button>
+          <button class="btn btn-danger m-4" onClick={() => keycloak.logout()}>Logout</button>
           </div>
         </form>
     </div>
