@@ -1,11 +1,13 @@
 import React from "react";
+import keycloak from "../keycloak/keycloak";
 
 
 
 export default function LogIn () {
     return (
-        <div class="mt-auto py-3 text-center text-lg-start bg-light">
-            <span class="text-dark">//TODO Log in page</span>
+        <div>
+            <h1>hi</h1>
+        <button onClick={() => keycloak.login() }>Login</button> 
         </div>
     )
 }
