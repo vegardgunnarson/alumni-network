@@ -25,8 +25,9 @@ export default function Timeline() {
         </button>
       </div>
     </div>
-    <div class="container">
-        //TODO timeline objects
+    <div class="container-sm">
+        <button class="btn btn-secondary">Reply</button>
+        TODO timeline objects
     </div>
     </div>
     
