@@ -1,8 +1,8 @@
 import './styles/App.css';
 import React from 'react';
 import './custom.scss';
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
-import Header from './components/Header';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LogIn from './components/LogIn';
 import Profile from './components/Profile'
@@ -11,23 +11,34 @@ import { TokenPage } from './components/TokenPage';
 import { AdminPage } from './components/AdminPage';
 import KeycloakRoute from "./routes/KeycloakRoute";
 import { ROLES } from "./const/roles";
-import keycloak from './keycloak/keycloak';
+
+import { LoggedInRoute } from './hoc/LoggedInRoute';
+import { RoleCheckRoute } from './hoc/RoleCheckRoute';
 
 function App() {
   return (
     <div>
+      
       <Router >
-        <Header />
-        <h1>TEST</h1>
-        <nav>
-          <li><Link to="/"> LogIn</Link></li>
-          <li><Link to="/token"> Token</Link></li>
-          <li><Link to="/admin"> Admin</Link></li>
-          <li><button onClick={() => keycloak.login() }>login to Keycloak</button></li>
-        </nav>
+        <Navbar />
+      
           <Routes>
+          <Route path='/admin' element={
+              <RoleCheckRoute role="ADMIN">
+                <AdminPage />
+              </RoleCheckRoute>
+            } />
+            <Route path='/token' element={
+              <LoggedInRoute>
+                <TokenPage />
+              </LoggedInRoute>
+            } />
             <Route path="/" element={<LogIn />} />
-            <Route path="/timeline" element={<Timeline />} />
+            <Route path="/timeline" element={
+            <KeycloakRoute role={ ROLES.User }>
+            <Timeline /> 
+            </KeycloakRoute>
+            }/>
             <Route path="/profile" element={
               <KeycloakRoute role={ ROLES.User }>
                 <Profile />
@@ -36,9 +47,7 @@ function App() {
           </Routes>
           <Footer />
       </Router>
-      <TokenPage />
-      <AdminPage />
-      <Timeline />
+
     </div>
     
   );

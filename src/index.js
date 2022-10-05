@@ -1,4 +1,4 @@
-import './custom.scss';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -14,7 +14,7 @@ initialize().then( () => {
       <App />
     </React.StrictMode>
   );
-
+}).catch( () => {
   root.render(
     <React.StrictMode>
     <h1> Critical Error! </h1>
