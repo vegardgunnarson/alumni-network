@@ -1,12 +1,11 @@
 import React from "react";
-import ReactMarkdown from 'react-markdown'
-import ReactDom from 'react-dom'
+
 
 
 import "../styles/Timeline.scss";
-import { useState } from "react";
+
 import Posts from "./Posts/Posts";
-import Navbar from "./Navbar";
+
 
 
 export const CreatePost = () => {

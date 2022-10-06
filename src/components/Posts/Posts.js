@@ -7,15 +7,12 @@ class Posts extends Component {
         const posts = [];
 
         for (let post of this.props.posts){
-            posts.push(
-            <div key={post.id}>
-                <div>{post.title}</div>
-            </div>,    
-            );
+            posts.push(<div key={post.id}>{post.title}</div>);
         }
-        return (
+        return(
         <div>
-            <h2 className=" text-lg"> Posts</h2>
+            <h2 className="bolder text-lg"> Posts</h2>
+            
             <div> {posts} </div>
         </div>
         );
@@ -28,4 +25,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect()(mapStateToProps) (Posts); 
+export default connect(mapStateToProps) (Posts); 
