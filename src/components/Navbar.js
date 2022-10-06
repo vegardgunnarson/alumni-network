@@ -25,14 +25,25 @@ export default function Navbar() {
                 Admin
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link m-4" href="/SettingsPage">
+                Settings
+              </a>
+            </li>
           
           <li class="nav-item">
               <a class="nav-link m-4" href="/profile">
                 Profile: {keycloak.authenticated && keycloak.tokenParsed && <span>{ keycloak.tokenParsed.name}</span>}
               </a>
             </li>
-            <li><button class="btn btn-danger m-4" onClick={() => keycloak.logout() }>Logout</button></li>
-        
+
+          <li><button class="btn btn-danger m-4" onClick={() => keycloak.logout() }>Logout</button></li>
+
+          <li class="nav-item">
+              <a class="nav-link m-4" href="/CreatePost">
+                Create Post
+              </a>
+            </li>
           </ul>
       
         

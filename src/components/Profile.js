@@ -1,6 +1,7 @@
 import React from "react";
 import keycloak from "../keycloak/keycloak";
 
+
 import "../styles/Profile.scss";
 
 export default function Profile() {

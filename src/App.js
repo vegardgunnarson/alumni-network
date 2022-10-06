@@ -14,8 +14,14 @@ import { ROLES } from "./const/roles";
 
 import { LoggedInRoute } from './hoc/LoggedInRoute';
 import { RoleCheckRoute } from './hoc/RoleCheckRoute';
+import { CreatePost } from './components/CreatePost';
+import { SettingsPage } from "./components/SettingsPage";
+
+import { useState } from 'react';
+
 
 function App() {
+  
   return (
     <div>
       
@@ -28,17 +34,34 @@ function App() {
                 <AdminPage />
               </RoleCheckRoute>
             } />
+
             <Route path='/token' element={
               <LoggedInRoute>
                 <TokenPage />
               </LoggedInRoute>
             } />
+
             <Route path="/" element={<LogIn />} />
             <Route path="/timeline" element={
             <KeycloakRoute role={ ROLES.User }>
             <Timeline /> 
             </KeycloakRoute>
             }/>
+
+            <Route path="/createpost" element={
+            <KeycloakRoute role={ ROLES.User }>
+            <CreatePost /> 
+            </KeycloakRoute>
+            }/>
+
+            <Route path="/settingspage" element={
+            <KeycloakRoute role={ ROLES.User }>
+            <SettingsPage /> 
+            </KeycloakRoute>
+            }/>
+
+     
+
             <Route path="/profile" element={
               <KeycloakRoute role={ ROLES.User }>
                 <Profile />
