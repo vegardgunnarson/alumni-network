@@ -11,13 +11,13 @@ import { TokenPage } from './components/TokenPage';
 import { AdminPage } from './components/AdminPage';
 import KeycloakRoute from "./routes/KeycloakRoute";
 import { ROLES } from "./const/roles";
-
+import  Posts from './components/Posts/Posts';
 import { LoggedInRoute } from './hoc/LoggedInRoute';
 import { RoleCheckRoute } from './hoc/RoleCheckRoute';
 import { CreatePost } from './components/CreatePost';
 import { SettingsPage } from "./components/SettingsPage";
 
-import { useState } from 'react';
+
 
 
 function App() {
@@ -54,6 +54,13 @@ function App() {
             </KeycloakRoute>
             }/>
 
+            <Route path="/posts" element={
+            <KeycloakRoute role={ ROLES.User }>
+            <Posts /> 
+            </KeycloakRoute>
+            }/>
+
+           
             <Route path="/settingspage" element={
             <KeycloakRoute role={ ROLES.User }>
             <SettingsPage /> 

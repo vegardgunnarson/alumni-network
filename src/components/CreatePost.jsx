@@ -1,21 +1,41 @@
+
 import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { createPostAction } from "../store/actions/PostActions";
 
 
 
 import "../styles/Timeline.scss";
 
-import Posts from "./Posts/Posts";
 
 
 
-export const CreatePost = () => {
 
-    /*
+export const CreatePost = (props) => {
+
+    
     const [title, setTitle] = useState('');
     const [showTitle, setShowTitle] = useState(false);
-    const [bodytekst, setBodyTekst] = useState ('');
-    const [showBodyTekst, setShowBodyTekst] = useState(false);
+    const [description, setdescription] = useState ('');
+    const [showDescription, setShowDescription ]= useState (false);
     
+
+    const dispatch = useDispatch();
+
+    function onCreatePost(e){
+      e.preventDefault();
+        const postData= {
+          title,
+          description,
+        };
+
+    dispatch(createPostAction(postData, props.history));
+  
+
+    }
+
     function handleSubmit(e) {
       e.preventDefault();
       setShowTitle(true);
@@ -23,31 +43,46 @@ export const CreatePost = () => {
 
     function handlePreview(e) {
         e.preventDefault();
-        setShowBodyTekst(true);
+        setShowDescription(true);
       }
-*/
-    return( 
-        <div className="container px-3 mx-auto">
-          <Posts/>
+
+    return(      
+     
+
+
+      <div className="flex align-items-center justify-between my-4">
+        <div>
+          <h2>Create Post
+          </h2>
+          <div>
+            
+          </div>
         </div>
 
-
-    /*
-       <div className="CreatePost">
-        <h1>
-  Hello, <em>world</em>!
-</h1>
-      <form>
+      <form onSubmit={onCreatePost}>
         <label>Title:</label>
-        <input name="Title" value={title} 
+        <input type="text" className="border border-gray-500" name="Title" value={title} 
           onChange={(e) => setTitle(e.target.value)} />
         <button onClick={handleSubmit} type="submit">
           Submit
         </button>
 
-        <label>your post:</label>
-        <input name="Title" value={bodytekst} 
-          onChange={(e) => setBodyTekst(e.target.value)} />
+        <label>Description</label>
+          <div>
+            <textarea className="border border-gray-500" name="Title" />
+          </div>
+          <input
+          type="submit"
+          className="px 2 py-1 bg-red-500 text-white"
+          value={description}
+          onChange={(e) => 
+            setdescription(e.target.value) } 
+            />
+ 
+        <button onClick={onCreatePost} type="submit">
+          create
+        </button>
+
         <button onClick={handlePreview} type="submit">
           preview
         </button>
@@ -56,13 +91,13 @@ export const CreatePost = () => {
       true, which will be true only if 
       we click on the submit button */
     
-    /*}
+    }
       {showTitle === true && 
       <p>You have submitted. Title: {title}</p>}
-        {showBodyTekst === true && 
-      <p>Your preview: {bodytekst}</p>}
+        {showDescription === true && 
+      <p>Your preview: {description}</p>}
      </div>
-      */
+      
     )
            
     }

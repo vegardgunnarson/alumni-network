@@ -4,7 +4,7 @@ import keycloak from "../keycloak/keycloak";
 
 
 
-export default function Navbar() {
+export default function Navbar(props) {
   return (
     <navbar>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,11 +20,13 @@ export default function Navbar() {
                 Token
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link m-4" href="/Admin">
                 Admin
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link m-4" href="/SettingsPage">
                 Settings
@@ -44,7 +46,16 @@ export default function Navbar() {
                 Create Post
               </a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link m-4" href="/Posts">
+                Posts
+              </a>
+            </li>
+            
           </ul>
+
+          
       
         
       </nav>

@@ -12,10 +12,10 @@ class Posts extends Component {
     onCreatePost(){
         this.props.createPostAction();
     }
-    
-  /*  componentDidMount() {
+
+    componentDidMount() {
         this.props.getPostsAction();
-    }*/
+    }
 
     render() {
         const posts = [];
@@ -35,11 +35,10 @@ class Posts extends Component {
         return(
         <div>
             <h2 className="bolder text-lg"> Posts</h2>
-            <button className="bg-red-300 px-3 py-2"
-                onClick={this.onCreatePost.bind(this)}
+            <Link to='createpost' className="bg-red-300 px-3 py-2"
             >
                 Create Post
-            </button>               
+            </Link>               
             <hr />
             <div className='flex'>{posts}</div>
 
