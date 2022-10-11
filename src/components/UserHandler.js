@@ -5,12 +5,12 @@ const apiUrl = process.env.REACT_APP_API_URL
 /**
  * Function responsible for updating a users information using API PATCH request.
  * @param {Object} user - A user object
- * @param {String} newStatus - An array containing the new translations
+ * @param {String} newStatus - A string containing the new status
  * @returns Patched user object or error message
  */
  export const updateStatus = async (user, newStatus) => {
     try {
-        const response = await fetch(`${apiUrl}/status/${user.id}`, {
+        const response = await fetch(`${apiUrl}/${user.id}/status`, {
             method: 'PATCH',
             headers: {
               'X-API-Key': apiKey,
@@ -36,7 +36,7 @@ const apiUrl = process.env.REACT_APP_API_URL
 /**
  * Function responsible for updating a users information using API PATCH request.
  * @param {Object} user - A user object
- * @param {String} newBio - An array containing the new translations
+ * @param {String} newBio - An string containing the new bio
  * @returns Patched user object or error message
  */
  export const updateBio = async (user, newBio) => {
@@ -67,7 +67,7 @@ const apiUrl = process.env.REACT_APP_API_URL
 /**
  * Function responsible for updating a users information using API PATCH request.
  * @param {Object} user - A user object
- * @param {String} newFunfact - An array containing the new translations
+ * @param {String} newFunfact - An string containing the new funfact
  * @returns Patched user object or error message
  */
  export const updateFunfact = async (user, newFunfact) => {
