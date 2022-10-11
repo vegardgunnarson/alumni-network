@@ -1,7 +1,14 @@
 import React from "react";
 import keycloak from "../keycloak/keycloak";
+import { useNavigate } from 'react-router-dom';
 
 
+const LogOut = () => {
+
+  const nav = useNavigate();
+
+  nav('/')
+}
 
 
 export default function Navbar() {
@@ -31,7 +38,7 @@ export default function Navbar() {
                 Profile: {keycloak.authenticated && keycloak.tokenParsed && <span>{ keycloak.tokenParsed.name}</span>}
               </a>
             </li>
-            <li><button class="btn btn-danger m-4" onClick={() => keycloak.logout() }>Logout</button></li>
+            <li><button class="btn btn-danger m-4" onClick={() => keycloak.logout() && LogOut() }>Logout</button></li>
         
           </ul>
       
