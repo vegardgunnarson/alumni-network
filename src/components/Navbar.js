@@ -24,7 +24,7 @@ export default function NavbarHeader() {
         <ul class="navbar-nav ms-auto">
           <li class="nav-item active">
             <a class="nav-link m-4" href="/timeline">
-              Timeline
+              Home
             </a>
           </li>
           <li class="nav-item active">
