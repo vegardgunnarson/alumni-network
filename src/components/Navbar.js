@@ -2,9 +2,9 @@ import React from "react";
 import keycloak from "../keycloak/keycloak";
 import avatar from "../assets/avatar.svg";
 import logo from "../assets/logo.svg";
-
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import "../styles/Navbar.scss";
+import Form from 'react-bootstrap/Form';
 
 
 
@@ -12,7 +12,7 @@ export default function NavbarHeader() {
   return (
     <navbar>
       <nav class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
-        <img src={logo} height="60px" />
+        <img src={logo} height="60px" alt="no img"/>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item active">
             <a class="nav-link m-4" href="/timeline">
@@ -40,14 +40,15 @@ export default function NavbarHeader() {
             </NavDropdown>
           </li>
           <li>
-          <div class="input-group m-4 " className="searchbar">
-          <div class="form-outline">
-            <input id="search-input" type="search" className="form-control" />
-          </div>
+          <Form className="d-flex m-4">
+            <Form.Control
+            type="Search"
+            className="me-2"
+            aria-label="Search"/>
           <button id="search-button" type="button" class="btn btn-secondary">
             <i class="fas fa-search">Search</i>
           </button>
-        </div>
+        </Form>
           </li>
           </ul>
        
