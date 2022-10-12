@@ -1,6 +1,5 @@
 import React from "react";
 import keycloak from "../keycloak/keycloak";
-import avatar from "../assets/avatar.svg";
 import logo from "../assets/logo.svg";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import "../styles/Navbar.scss";
@@ -13,7 +12,16 @@ export default function NavbarHeader() {
     <navbar>
       <nav class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
         <img src={logo} height="60px" alt="no img"/>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <Form className="d-flex m-4">
+            <Form.Control
+            type="Search"
+            className="me-2"
+            aria-label="Search"/>
+          <button id="search-button" type="button" class="btn btn-secondary">
+            <i class="fas fa-search">Search</i>
+          </button>
+        </Form>
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item active">
             <a class="nav-link m-4" href="/timeline">
               Timeline
@@ -38,17 +46,6 @@ export default function NavbarHeader() {
                 Log out
               </NavDropdown.Item>
             </NavDropdown>
-          </li>
-          <li>
-          <Form className="d-flex m-4">
-            <Form.Control
-            type="Search"
-            className="me-2"
-            aria-label="Search"/>
-          <button id="search-button" type="button" class="btn btn-secondary">
-            <i class="fas fa-search">Search</i>
-          </button>
-        </Form>
           </li>
           </ul>
        
