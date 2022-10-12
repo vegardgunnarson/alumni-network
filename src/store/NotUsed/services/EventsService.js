@@ -1,4 +1,5 @@
-/*import axios from "axios"
+/*
+import axios from "axios"
 
 
 
@@ -28,4 +29,5 @@ export function formatEvents (eventsData) {
     }
 
     return Events;
-}/*
+}
+*/

@@ -102,11 +102,11 @@ const postsSlice = createSlice({
                 action.payload.date = new Date().toISOString();
                 action.payload.reactions = {
                     thumbsup: 0,
-                        thumbsdown: 0,
-                        wow: 0,
-                        heart: 0,
-                        rocket: 0,
-                        coffee: 0
+                    thumbsdown: 0,
+                    wow: 0,
+                    heart: 0,
+                    rocket: 0,
+                    coffee: 0
                 }
                 console.log(action.payload)
                 state.posts.push(action.payload)

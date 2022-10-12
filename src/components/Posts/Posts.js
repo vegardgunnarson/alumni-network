@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { 
     createPostAction, 
     getPostsAction 
-} from '../../store/actions/PostActions';
+} from '../../store/NotUsed/actions/PostActions';
 
 class Posts extends Component {
     onCreatePost(){

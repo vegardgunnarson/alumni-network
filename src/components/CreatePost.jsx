@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { createPostAction } from "../store/actions/PostActions";
+import { createPostAction } from "../store/NotUsed/actions/PostActions";
 
 
 

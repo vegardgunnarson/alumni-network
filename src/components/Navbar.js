@@ -41,17 +41,7 @@ export default function Navbar(props) {
 
             <li><button class="btn btn-danger m-4" onClick={() => keycloak.logout() }>Logout</button></li>
 
-            <li class="nav-item">
-              <a class="nav-link m-4" href="/CreatePost">
-                Create Post
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link m-4" href="/Posts">
-                Posts
-              </a>
-            </li>
+           
 
             <li class="nav-item">
               <a class="nav-link m-4" href="/PostsList">

@@ -1,13 +1,13 @@
-import axios from "axios"
+/*import axios from "axios"
 import { getPostsAction } from "../store/actions/PostActions"
-
+*/
 
 /*export function getPostsAction(){
     return axios.get(
         'https:Link here',
     );
 }*/
-
+/*
 export function getPosts(){
     return axios.get(
         'https:Link here',
@@ -29,3 +29,5 @@ export function formatPosts (postsData) {
 
     return posts;
 }
+
+*/

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 
 import { createEventAction, 
-        getEventsAction} from '../store/actions/EventsActions' 
+        getEventsAction} from '../store/NotUsed/actions/EventsActions' 
 
 class Events extends Component {
     onCreateEvent(){
