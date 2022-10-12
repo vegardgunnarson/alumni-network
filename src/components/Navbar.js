@@ -33,15 +33,15 @@ export default function Navbar(props) {
               </a>
             </li>
           
-          <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link m-4" href="/profile">
                 Profile: {keycloak.authenticated && keycloak.tokenParsed && <span>{ keycloak.tokenParsed.name}</span>}
               </a>
             </li>
 
-          <li><button class="btn btn-danger m-4" onClick={() => keycloak.logout() }>Logout</button></li>
+            <li><button class="btn btn-danger m-4" onClick={() => keycloak.logout() }>Logout</button></li>
 
-          <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link m-4" href="/CreatePost">
                 Create Post
               </a>
@@ -52,7 +52,19 @@ export default function Navbar(props) {
                 Posts
               </a>
             </li>
-            
+
+            <li class="nav-item">
+              <a class="nav-link m-4" href="/PostsList">
+              PostsList 
+              </a>
+            </li>
+
+           
+            <li class="nav-item">
+              <a class="nav-link m-4" href="/Events">
+                Events
+              </a>
+            </li>
           </ul>
 
           

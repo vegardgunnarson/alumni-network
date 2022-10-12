@@ -7,6 +7,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { initialize } from './keycloak/keycloak';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import { fetchUsers} from './Features/users/usersSlice'
+
+/*console.log('Dispatching action')
+store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
+console.log('Dispatch complete')*/
+
+store.dispatch(fetchUsers());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,7 +22,7 @@ initialize().then( () => {
     <React.StrictMode>
       <Provider store={store}>
         <App />
-      </Provider>    
+      </Provider> 
     </React.StrictMode>
   );
 }).catch( () => {

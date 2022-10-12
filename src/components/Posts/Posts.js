@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+
 import { bindActionCreators } from 'redux';
 
 import { 
@@ -28,6 +28,7 @@ class Posts extends Component {
                 >
                     <div>{post.title}</div>
                     <div>{post.description}</div>
+                    <div>{post.username}</div>
                 </div>    
             )
         }

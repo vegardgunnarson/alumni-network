@@ -16,11 +16,19 @@ import { LoggedInRoute } from './hoc/LoggedInRoute';
 import { RoleCheckRoute } from './hoc/RoleCheckRoute';
 import { CreatePost } from './components/CreatePost';
 import { SettingsPage } from "./components/SettingsPage";
-
-
+import Events from './components/Events';
+import PostsList from './Features/posts/PostsList';
+import AddPostForm from './Features/posts/AddPostForm';
 
 
 function App() {
+  /*return(
+    <main className="App">
+      <PostsList />
+
+    </main>
+  )
+}*/
   
   return (
     <div>
@@ -57,9 +65,24 @@ function App() {
             <Route path="/posts" element={
             <KeycloakRoute role={ ROLES.User }>
             <Posts /> 
+            
             </KeycloakRoute>
             }/>
 
+            <Route path="/postslist" element={
+            <KeycloakRoute role={ ROLES.User }>
+            <AddPostForm />
+            <PostsList /> 
+            </KeycloakRoute>
+            }/>
+            
+            
+
+            <Route path="/events" element={
+            <KeycloakRoute role={ ROLES.User }>
+            <Events /> 
+            </KeycloakRoute>
+            }/>
            
             <Route path="/settingspage" element={
             <KeycloakRoute role={ ROLES.User }>

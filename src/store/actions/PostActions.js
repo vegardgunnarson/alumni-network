@@ -1,5 +1,4 @@
-
-import { 
+/*import { 
     
     formatPosts,
     getPosts,
@@ -36,3 +35,4 @@ export function confirmedGetPostsAction(posts){
        // nr. 69 Perform Async Ajax API Call using Redux at 5.10
     };
 }
+*/
