@@ -10,7 +10,7 @@ const apiUrl = process.env.REACT_APP_API_URL
  */
  export const updateStatus = async (user, newStatus) => {
     try {
-        const response = await fetch(`${apiUrl}/${user.id}/status`, {
+        const response = await fetch(`${apiUrl}/student/${user.id}/status`, {
             method: 'PATCH',
             headers: {
               'X-API-Key': apiKey,
@@ -41,7 +41,7 @@ const apiUrl = process.env.REACT_APP_API_URL
  */
  export const updateBio = async (user, newBio) => {
     try {
-        const response = await fetch(`${apiUrl}/bio/${user.id}`, {
+        const response = await fetch(`${apiUrl}/student/${user.id}/bio`, {
             method: 'PATCH', 
             headers: {
               'X-API-Key': apiKey,
@@ -72,14 +72,14 @@ const apiUrl = process.env.REACT_APP_API_URL
  */
  export const updateFunfact = async (user, newFunfact) => {
     try {
-        const response = await fetch(`${apiUrl}/funfact/${user.id}`, {
+        const response = await fetch(`${apiUrl}/student/${user.id}/fun_fact`, {
             method: 'PATCH', // 
             headers: {
               'X-API-Key': apiKey,
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                funfact: newFunfact
+                fun_fact: newFunfact
             })
         })
 
