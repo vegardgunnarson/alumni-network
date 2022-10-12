@@ -1,18 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import keycloak from "../keycloak/keycloak";
 
 
 import "../styles/Profile.scss";
 
 export default function Profile() {
-  const user = {
-    name: "Kari Nordmann",
-    image:
-      "https://media.istockphoto.com/vectors/person-gray-photo-placeholder-woman-vector-id1074273082?k=20&m=1074273082&s=612x612&w=0&h=SovjUEtBkN7NidGCPXY_Gq-RxuQB-xUhF3xOeRg6qG8=",
-    status: "Attending Experis Academy",
-    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    funfact: "Addicted to cheeze",
-  };
+
+    const [user, setUser] = useState({
+        name: "Kari Nordmann",
+        bio: "This is my bio",
+        status: 'Status example',
+        image:   "https://media.istockphoto.com/vectors/person-gray-photo-placeholder-woman-vector-id1074273082?k=20&m=1074273082&s=612x612&w=0&h=SovjUEtBkN7NidGCPXY_Gq-RxuQB-xUhF3xOeRg6qG8=",
+        funfact: "Addicted to cheeze"
+
+    });
+    function handleStatusChange(e) {
+        setUser({
+            ...user,
+            status:e.target.value
+        });
+    }
+    function handleBioChange(e) {
+        setUser({
+            ...user,
+            bio:e.target.value
+        });
+    }
+    function handleFunfactChange(e) {
+        setUser({
+            ...user,
+            funfact:e.target.value
+        });
+    }
+
+
 
 
   return (
@@ -20,13 +41,13 @@ export default function Profile() {
         <form class="container-lg" className="form">
             <div>
             <img src={user.image} alt="could not be found" className="image" />
-            <textarea class="form-control" id="name" className="name">{ keycloak.tokenParsed.name}</textarea><br/>
+            <textarea class="form-control" id="name" className="name">{keycloak.tokenParsed.name}</textarea><br/>
             </div>
-          <textarea class="form-control" id="status" className="status">{user.status}</textarea><br/>
-          <textarea class="form-control" id="bio" className="bio" >{user.bio}</textarea><br/>
-          <textarea class="form-control" id="funfact" className="funfact">{user.funfact}</textarea><br/>
+            <input placeholder="Status" value={user.status} onChange={handleStatusChange} class="form-control" id="status" className="status"/>
+            <input placeholder="Bio" value={user.bio} onChange={handleBioChange} class="form-control" id="bio" className="bio"/><br/>
+            <input placeholder="Funfact" value={user.funfact} onChange={handleFunfactChange} class="form-control" id="funfact" className="funfact"/><br/>
           <div class="nav-item" className="buttons">
-          <button type="submit" class="btn btn-secondary m-4">Save</button>
+          <button type="submit" class="btn btn-secondary m-4" onClick={''}>Save</button>
           <button class="btn btn-danger m-4" onClick={() => keycloak.logout()}>Logout</button>
           </div>
         </form>
