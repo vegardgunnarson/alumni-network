@@ -2,7 +2,7 @@ import './styles/App.css';
 import React from 'react';
 import './custom.scss';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from './components/Navbar';
+import NavbarHeader from './components/Navbar';
 import Footer from './components/Footer';
 import LogIn from './components/LogIn';
 import Profile from './components/Profile'
@@ -34,7 +34,7 @@ function App() {
     <div>
       
       <Router >
-        <Navbar />
+        <NavbarHeader />
       
           <Routes>
           <Route path='/admin' element={

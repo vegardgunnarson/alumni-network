@@ -1,53 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import keycloak from "../keycloak/keycloak";
 
 
 import "../styles/Profile.scss";
+import { updateBio, updateStatus , updateFunfact} from "./UserHandler";
 
 export default function Profile() {
 
-    const [user, setUser] = useState({
-        name: "Kari Nordmann",
-        bio: "This is my bio",
-        status: 'Status example',
-        image:   "https://media.istockphoto.com/vectors/person-gray-photo-placeholder-woman-vector-id1074273082?k=20&m=1074273082&s=612x612&w=0&h=SovjUEtBkN7NidGCPXY_Gq-RxuQB-xUhF3xOeRg6qG8=",
-        funfact: "Addicted to cheeze"
 
-    });
-    function handleStatusChange(e) {
-        setUser({
-            ...user,
-            status:e.target.value
-        });
-    }
-    function handleBioChange(e) {
-        setUser({
-            ...user,
-            bio:e.target.value
-        });
-    }
-    function handleFunfactChange(e) {
-        setUser({
-            ...user,
-            funfact:e.target.value
-        });
+    const [user, setUser] = useState([]);
+
+    const fetchData = () => {
+        return fetch("https://alumni-case-database.herokuapp.com/api/v1/student/1")
+            .then((response) => response.json())
+            .then((data => setUser(data)))
     }
 
+    useEffect(() => {
+        fetchData();
+    })
 
+
+    const saveChanges = async () => {
+        console.log("he");
+        console.log(document.getElementById('bio'));
+        await updateBio(user, document.getElementById('bio'));
+
+        await updateStatus(user, document.getElementById('status'));
+
+        await updateFunfact(user, document.getElementById('funfact'));
+    }
 
 
   return (
     <div class="mt-auto py-3 text-center text-lg-start" className="profile">
         <form class="container-lg" className="form">
-            <div>
-            <img src={user.image} alt="could not be found" className="image" />
-            <textarea class="form-control" id="name" className="name">{keycloak.tokenParsed.name}</textarea><br/>
+            <div className="nameAndPicture">
+            <img src={user.picture} alt="could not be found" className="image" />
+            <div class="form-control" id="name" className="name">{user.name}</div>
             </div>
-            <input placeholder="Status" value={user.status} onChange={handleStatusChange} class="form-control" id="status" className="status"/>
-            <input placeholder="Bio" value={user.bio} onChange={handleBioChange} class="form-control" id="bio" className="bio"/><br/>
-            <input placeholder="Funfact" value={user.funfact} onChange={handleFunfactChange} class="form-control" id="funfact" className="funfact"/><br/>
+            <p  placeholder="Status" id="status" className="status">{user.status}</p>
+            <p  placeholder="Bio" id="bio" className="bio">{user.bio}</p><br/>
+            <p  placeholder="Funfact"  id="funfact" className="funfact">{user.fun_fact}</p><br/>
           <div class="nav-item" className="buttons">
-          <button type="submit" class="btn btn-secondary m-4" onClick={''}>Save</button>
+          <button type="submit" class="btn btn-secondary m-4" onClick={saveChanges}>Save</button>
           <button class="btn btn-danger m-4" onClick={() => keycloak.logout()}>Logout</button>
           </div>
         </form>

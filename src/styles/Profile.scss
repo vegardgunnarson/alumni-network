@@ -1,3 +1,11 @@
+[contentEditable=true]:empty {
+    content: attr(data-text)
+  }
+
+.nameAndPicture{
+    display: flex;
+    justify-content: space-around;
+}
 .name{
     font-size: larger;
     font-weight: bold;
@@ -6,10 +14,7 @@
     width: 350px;
     border: solid 3px white;
     border-radius: 5px;
-}
-.name:hover{
-    cursor: pointer;
-    border: solid 3px lightgrey;
+    margin:30px;
 }
 .image{
     width: 150px;
@@ -21,6 +26,9 @@
     height: 30px;
     border: solid 3px white;
     border-radius: 5px;
+}
+.status:empty::before {
+    content: attr(data-placeholder);
 }
 .status:hover{
     cursor: pointer;
