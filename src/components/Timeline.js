@@ -3,6 +3,7 @@ import "../styles/Timeline.scss";
 import { useEffect, useState } from "react";
 import { getGroups } from "./GroupHandler";
 import { getTopics } from "./TopicHandler";
+import { getEvents } from "./EventHandler";
 
 export default function Timeline() {
   const [user, setUser] = useState([]);
@@ -35,8 +36,15 @@ export default function Timeline() {
     const array = await getTopics();
     setTopics(array[1]);
   };
+  const [events, setEvents] = useState([]);
 
-  
+  useEffect(() => {
+    loadEvents();
+  }, []);
+  const loadEvents = async () => {
+    const array = await getEvents();
+    setEvents(array[1]);
+  };
 
   return (
     <div className="dashboard">
@@ -55,7 +63,18 @@ export default function Timeline() {
         <div className="post">
 
         </div>
-        <div className="event">event</div>
+        <div className="event">
+        <h5 className="eventtitle">Upcoming events</h5>
+            {events.map((event) => {
+        return(
+            <div className="eventsection">
+            <p className="eventtime">{event.start_time.slice(0,10)} &nbsp; {event.start_time.slice(11,16)}</p>
+            <p className="eventname">{event.name}</p><br/>
+            <p className="eventdesc">{event.description}</p>
+            </div>
+            )
+        })}
+            </div>
       </div>
       <div className="bottomdashboard">
         <div className="sidenav">
@@ -76,7 +95,9 @@ export default function Timeline() {
             )
         })}
         </div>
-        <div className="timeline"> timeline</div>
+        <div className="timeline">
+
+        </div>
         <div className="underevent"></div>
       </div>
     </div>

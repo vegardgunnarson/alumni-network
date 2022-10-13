@@ -28,6 +28,7 @@
     align-items: center;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+    
 }
 .profileimage{
     
@@ -38,9 +39,12 @@
 }
 .profilestatus{
     margin-top: -30px;
+    color: rgb(149, 153, 149);
+    font-size: smaller;
 }
 .profilelink{
     text-decoration: none;
+    font-size: smaller;
 }
 .post{
     background-color: white;
@@ -55,7 +59,30 @@
     width: 250px;
     margin-top: 50px;
     border-radius: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 25px;
+    height: 300px;
+    overflow: scroll;
+}
+.eventsection{
+    margin-top: -7px;
+    margin-bottom: 30px;
+}
+.eventtime{
+    font-style: italic;
+}
+.eventdesc{
+    margin-top: -40px;
 
+}
+.eventname{
+    margin-top: -15px;
+    font-family: bold;
+}
+.eventtitle{
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 .sidenav{
     background-color: white;
@@ -66,6 +93,7 @@
     padding-left: 25px;
     padding-right: 25px;
     margin-top: -50px;
+    overflow: scroll;
 
 }
 .timeline{
