@@ -1,5 +1,7 @@
 import React from "react";
 import keycloak from "../keycloak/keycloak";
+import { useNavigate } from 'react-router-dom';
+
 import logo from "../assets/logo.svg";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
@@ -8,6 +10,12 @@ import "../styles/Navbar.scss";
 import Form from 'react-bootstrap/Form';
 
 
+const LogOut = () => {
+
+  const nav = useNavigate();
+
+  nav('/')
+}
 
 
 export default function NavbarHeader(props) {
@@ -47,13 +55,11 @@ export default function NavbarHeader(props) {
               <NavDropdown.Item href="/Admin">Admin</NavDropdown.Item>
               <NavDropdown.Item href="/Token">Token</NavDropdown.Item>
               <NavDropdown.Item href="/PostsList">Postslist</NavDropdown.Item>
-              <NavDropdown.Item onClick={() => keycloak.logout()}>
+              <NavDropdown.Item onClick={() => keycloak.logout() && LogOut()}>
                 Log out
               </NavDropdown.Item>
             </NavDropdown>
           </li>
-
-         
           </ul>
        
       </nav>
