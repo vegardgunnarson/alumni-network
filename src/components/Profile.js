@@ -17,7 +17,7 @@ export default function Profile() {
 
     useEffect(() => {
         fetchData();
-    })
+    },[])
 
 
     const saveChanges = async () => {
