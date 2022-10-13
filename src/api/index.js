@@ -1,14 +1,26 @@
 import axios from "axios";
-import keycloak from "../keycloak";
+import keycloak from "../keycloak/keycloak";
 
+
+const apiKey = process.env.REACT_APP_API_KEY;
+
+
+export const createHeaders = () => {
+  return {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey
+  }
+}
 /**
  * Set the Authorization header to be they keycloak Token
  * @param { AxiosRequestHeaders } headers
  * @param { Keycloak } keycloak
  * @returns { import("axios").AxiosRequestHeaders } header
  */
+
 const setAuthorizationHeader = (headers, keycloak) => {
   const { token } = keycloak;
+ 
   return {
     ...headers,
     "Content-Type": "application/json",
