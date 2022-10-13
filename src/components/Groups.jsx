@@ -8,7 +8,6 @@ import event from '../assets/calendar-event.svg';
 import envelope from '../assets/envelope.svg';
 import envelopeempty from '../assets/envelope-empty.svg';
 
-
 export default function Groups() {
   const [groups, setGroups] = useState([]);
 
@@ -87,7 +86,6 @@ export default function Groups() {
             </div>
             <button class="btn btn-secondary btn-sml">Join</button>
             </div>
-             
         )
      })}
 
