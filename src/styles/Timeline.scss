@@ -1,10 +1,99 @@
-.search{
+
+.dashboard{
+    background-color: #f8f9fa;
+}
+.topdashboard{
     display: flex;
     justify-content: space-evenly;
+    width: 100%;
+    min-width: 1440px;
+    
 }
-.searchbar {
+.bottomdashboard{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    min-width: 1440px;
+    height:2000px //fit-content;
+}
+.profileview{
+    background-color: white;
+    width: 250px;
+    height: 300px;
     margin-top: 50px;
     display: flex;
-    justify-content: space-evenly;
-    gap: 10px;
+    padding-top: 20px;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.profileimage{
+    
+    width: 100px;
+    height: 100px;
+    border-radius: 75px;
+
+}
+.profilestatus{
+    margin-top: -30px;
+}
+.profilelink{
+    text-decoration: none;
+}
+.post{
+    background-color: white;
+    width: 800px;
+    height: 200px;
+    margin-top: 50px;
+    border-radius: 15px;
+
+}
+.event{
+    background-color: white;
+    width: 250px;
+    margin-top: 50px;
+    border-radius: 15px;
+
+}
+.sidenav{
+    background-color: white;
+    width: 250px;
+    height: 400px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-top: -50px;
+
+}
+.timeline{
+    background-color:white;
+    width: 800px;
+    margin-top: -50px;
+    border-radius: 15px;
+}
+.underevent{
+    margin-top: 25px;
+    width: 250px;
+    border-radius: 15px;
+}
+.groupsection{
+    display: flex;
+    justify-content: space-between;
+    margin-top: -7px;
+}
+.grouptitle{
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.topicsection{
+    display: flex;
+    justify-content: space-between;
+    margin-top: -7px;
+}
+.topictitle{
+    margin-bottom: 15px;
+    font-weight: bold;
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import keycloak from "../keycloak/keycloak";
 
+
 import "../styles/Profile.scss";
 import { updateBio, updateStatus , updateFunfact} from "./UserHandler";
 
@@ -17,7 +18,7 @@ export default function Profile() {
 
     useEffect(() => {
         fetchData();
-    })
+    },[])
 
 
     const saveChanges = async () => {

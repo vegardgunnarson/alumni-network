@@ -5,13 +5,24 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
 import { initialize } from './keycloak/keycloak';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import { fetchUsers} from './Features/users/usersSlice'
+
+/*console.log('Dispatching action')
+store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
+console.log('Dispatch complete')*/
+
+store.dispatch(fetchUsers());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 initialize().then( () => {
   root.render(
     <React.StrictMode>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider> 
     </React.StrictMode>
   );
 }).catch( () => {
@@ -21,4 +32,4 @@ initialize().then( () => {
     <p>Keycloak has failed to start! please contact admin</p>
     </React.StrictMode>
   );
-})
+}) 
