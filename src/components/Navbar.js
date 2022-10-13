@@ -2,11 +2,19 @@ import React from "react";
 import keycloak from "../keycloak/keycloak";
 import logo from "../assets/logo.svg";
 import NavDropdown from 'react-bootstrap/NavDropdown';
+
+import avatar from '../assets/avatar.svg'
 import "../styles/Navbar.scss";
 import Form from 'react-bootstrap/Form';
 
 
+
+
+export default function NavbarHeader() {
+ 
+
 export default function NavbarHeader(props) {
+
   return (
     <navbar>
       <nav class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
@@ -27,12 +35,12 @@ export default function NavbarHeader(props) {
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link m-4" href="/timeline">
+            <a class="nav-link m-4" href="/timeline" >
               Events
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link m-4" href="/timeline">
+            <a class="nav-link m-4" href="/groups">
               Groups
             </a>
           </li>
