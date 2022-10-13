@@ -46,17 +46,14 @@ export default function NavbarHeader(props) {
               <NavDropdown.Item href="/Profile">Profile</NavDropdown.Item>
               <NavDropdown.Item href="/Admin">Admin</NavDropdown.Item>
               <NavDropdown.Item href="/Token">Token</NavDropdown.Item>
+              <NavDropdown.Item href="/PostsList">Postslist</NavDropdown.Item>
               <NavDropdown.Item onClick={() => keycloak.logout()}>
                 Log out
               </NavDropdown.Item>
             </NavDropdown>
           </li>
 
-          <li class="nav-item">
-              <a class="nav-link m-4" href="/PostsList">
-              PostsList 
-              </a>
-            </li>
+         
           </ul>
        
       </nav>
