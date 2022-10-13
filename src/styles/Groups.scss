@@ -1,0 +1,46 @@
+.groups{
+    display: flex;
+    margin-top: 40px;
+    overflow: scroll;
+    right: 0;
+    left: 0;
+
+}
+
+.group{
+    border-radius: 15px;
+    background-color: #f8f9fa;
+    height: 400px;
+    min-width: 350px;
+    display: flex;
+    padding: 1%;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 40px;
+
+}
+.joinSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+}
+.btn-sml{
+    width: 60px;
+}
+.members{
+    display: flex;
+    gap: 5px;
+    margin-top: -50px;
+}
+.posts{
+    display: flex;
+    gap: 5px;
+    margin-top: -30px;
+}
+.events{
+    display: flex;
+    gap: 5px;
+    margin-top: -60px;
+}
+
