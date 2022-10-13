@@ -9,8 +9,12 @@ import Form from 'react-bootstrap/Form';
 
 
 
+
 export default function NavbarHeader() {
-  /*const navigate = useNavigate();*/
+ 
+
+export default function NavbarHeader(props) {
+
   return (
     <navbar>
       <nav class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
@@ -50,6 +54,12 @@ export default function NavbarHeader() {
               </NavDropdown.Item>
             </NavDropdown>
           </li>
+
+          <li class="nav-item">
+              <a class="nav-link m-4" href="/PostsList">
+              PostsList 
+              </a>
+            </li>
           </ul>
        
       </nav>
