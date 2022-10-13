@@ -63,7 +63,7 @@ export default function Timeline() {
         <div className="post">
 
         </div>
-        <div className="event">
+        <div className="dashevent">
         <h5 className="eventtitle">Upcoming events</h5>
             {events.map((event) => {
         return(
