@@ -22,7 +22,7 @@ export default function NavbarHeader(props) {
 
   return (
     <navbar>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
+      <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
         <img src={logo} height="60px" alt="no img"/>
         <Form className="d-flex m-4">
             <Form.Control
@@ -40,7 +40,7 @@ export default function NavbarHeader(props) {
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link m-4" href="/timeline" >
+            <a class="nav-link m-4" href="/events" >
               Events
             </a>
           </li>

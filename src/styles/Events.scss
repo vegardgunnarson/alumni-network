@@ -1,4 +1,4 @@
-.groups{
+.eventspage{
     display: flex;
     overflow: scroll;
     right: 0;
@@ -10,40 +10,37 @@
 
 }
 
-.addgroup{
-    margin-left: 150px;
-    margin-top: 40px;
-    position: fixed;
-}
-.group{
-    margin-top: 40px;
+.event{
+    margin-top: 100px;
     border-radius: 15px;
     background-color: white;
     height: 400px;
     min-width: 700px;
+    padding-left: 40px;
     display: flex;
     padding: 1%;
     flex-direction: column;
     justify-content: space-around;
     margin-left: 40px;
-    padding-left: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 
+}
+.eventdescription{
+    height: 100px;
 }
 .joinSection{
     display: flex;
     flex-direction: column;
-    
     justify-content: flex-start;
     
 }
 .btn-sml{
     width: 60px;
 }
-.members{
+.eventmembers{
     display: flex;
     gap: 5px;
-    margin-top: -50px;
+    margin-top: -25px;
 }
 .posts{
     display: flex;

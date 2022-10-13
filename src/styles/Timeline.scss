@@ -1,20 +1,27 @@
 
 .dashboard{
     background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    min-width: 1440px;
+
 }
 .topdashboard{
+    
     display: flex;
     justify-content: space-evenly;
     width: 100%;
     min-width: 1440px;
-    
+    max-width: 1640px;
 }
 .bottomdashboard{
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+    height:2000px;
     min-width: 1440px;
-    height:2000px //fit-content;
+    max-width: 1640px;
 }
 .profileview{
     background-color: white;
@@ -54,7 +61,7 @@
     border-radius: 15px;
 
 }
-.event{
+.dashevent{
     background-color: white;
     width: 250px;
     margin-top: 50px;
