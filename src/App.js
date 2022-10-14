@@ -1,7 +1,7 @@
 import './styles/App.css';
 import React from 'react';
 import './custom.scss';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import NavbarHeader from './components/Navbar';
 import Footer from './components/Footer';
@@ -21,6 +21,9 @@ import { SettingsPage } from "./components/SettingsPage";
 import Events from './components/Events';
 import PostsList from './Features/posts/PostsList';
 import AddPostForm from './Features/posts/AddPostForm';
+import SinglePostPage from './Features/posts/SinglePostPage';
+import Layout from './components/Layout';
+import EditPostForm from './Features/posts/EditPostForm';
 
 
 function App() {
@@ -31,14 +34,48 @@ function App() {
     </main>
   )
 }*/
-  
+/*
+    <Routes>
+         <Route path="/" element={<Layout />}> 
+
+          <Route index element={<PostsList />} />
+
+          <Route path="post">
+            <Route index element={<AddPostForm />} />
+            <Route Path="postId" element={<SinglePostPage />} />
+          </Route>
+              
+          
+         </Route>
+        </Routes>
+*/
+
   return (
     <div>
       <NavbarHeader />
-      <Router >
-      
-          <Routes>
-          <Route path='/admin' element={
+      <Routes>
+<Route path="/postslist" element={<KeycloakRoute role={ ROLES.User }> <Layout /> </KeycloakRoute> }>
+
+  <Route index element={<PostsList />} />
+
+  <Route path="post">
+    <Route index element={<AddPostForm />} />
+    <Route path=":postId" element={<SinglePostPage />} />
+    <Route path="edit/:postId" element={<EditPostForm />} />
+  </Route>
+
+  
+
+</Route>
+
+<Route path="/post" element={
+            <KeycloakRoute role={ ROLES.User }>
+            <AddPostForm />
+            <PostsList />
+            </KeycloakRoute>
+            }/>
+
+<Route path='/admin' element={
               <RoleCheckRoute role="ADMIN">
                 <AdminPage />
               </RoleCheckRoute>
@@ -51,6 +88,7 @@ function App() {
             } />
 
             <Route path="/" element={<LogIn />} />
+            
             <Route path="/timeline" element={
             <KeycloakRoute role={ ROLES.User }>
             <Timeline /> 
@@ -73,16 +111,14 @@ function App() {
             <Route path="/posts" element={
             <KeycloakRoute role={ ROLES.User }>
             <Posts /> 
-            
             </KeycloakRoute>
             }/>
 
-            <Route path="/postslist" element={
-            <KeycloakRoute role={ ROLES.User }>
-            <AddPostForm />
-            <PostsList /> 
-            </KeycloakRoute>
-            }/>
+
+          
+           
+           
+          
             
             
 
@@ -104,9 +140,10 @@ function App() {
                 <Profile />
               </KeycloakRoute>
             }/>
-          </Routes>
-          <Footer />
-      </Router>
+</Routes>
+        
+      <Footer />
+      
 
     </div>
     
@@ -114,3 +151,16 @@ function App() {
 }
 
 export default App;
+/*
+<Route path="/postslist" element={
+  <KeycloakRoute role={ ROLES.User }>
+  <AddPostForm />
+  <PostsList /> 
+  </KeycloakRoute>
+  }/>
+
+  <Route path="post">
+    <Route index element={<AddPostForm />} />
+    <Route path=":postId" element={<SinglePostPage />} />
+  </Route>*/
+

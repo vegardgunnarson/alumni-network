@@ -1,35 +1,46 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import keycloak from "../../keycloak/keycloak";
 import { addNewPost } from "./postsSlice";
-import { selectAllUsers } from "../users/usersSlice";
+import { selectAllUsers } from "../users/usersGroupSlice";
+import { useNavigate } from "react-router-dom";
 
 const AddPostForm = () => {
     const dispatch = useDispatch()
 
+    const navigate = useNavigate()
+
     const [title, setTitle] = useState('')
+    const [subTitle, setSubTitle] = useState('')
     const [content, setContent] = useState('')
     const [userId, setUserId] = useState('')
+    const [username, setUsername] = useState('')
     const [addRequestStatus, setAddRequestStatus] = useState('idle')
 
     const users = useSelector(selectAllUsers)
 
     const onTitleChanged = e => setTitle(e.target.value)
+    const onSubTitleChanged = e => setSubTitle(e.target.value)
     const onContentChanged = e => setContent(e.target.value)
     const onAuthorChanged = e => setUserId(e.target.value)
+    const onUsernameChanged = e => setUsername(e.target.value)
 
 
-    const canSave = [title, content, userId].every(Boolean) && addRequestStatus === 'idle';
+    const canSave = [title, content].every(Boolean) && addRequestStatus === 'idle';
 
     const onSavePostClicked = () => {
         if (canSave) {
             try {
                 setAddRequestStatus('pending')
-                dispatch(addNewPost({ title, body: content, userId })).unwrap()
+                dispatch(addNewPost({ title, subTitle, body: content, username, userId })).unwrap()
 
                 setTitle('')
+                setSubTitle('')
                 setContent('')
+                setUsername('')
                 setUserId('')
+                navigate('')
             } catch (err) {
                 console.error('Failed to save the post', err)
             } finally {
@@ -57,12 +68,24 @@ const AddPostForm = () => {
                     value={title}
                     onChange={onTitleChanged}
                 />
-                <label htmlFor="postAuthor">Author:</label>
+                 <label htmlFor="postSubTitle">Post SubTitle:</label>
+                <input
+                    type="text"
+                    id="postSubTitle"
+                    name="postSubTitle"
+                    value={subTitle}
+                    onChange={onSubTitleChanged}
+                />
+                <label htmlFor="PostAuthor">Aluminigroup:</label>
                 <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
                     <option value=""></option>
                     {usersOptions}
                 </select>
-                <label htmlFor="postContent">Content:</label>
+                <label><h4>name:</h4>{keycloak.tokenParsed.name}</label>
+                <textarea
+                    type="text" id="postUsername" name="postUsername" value={username} onChange={onUsernameChanged}
+                    />
+                     <label htmlFor="postContent">Content:</label>
                 <textarea
                     id="postContent"
                     name="postContent"

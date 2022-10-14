@@ -57,6 +57,12 @@ export default function NavbarHeader(props) {
               PostsList 
               </a>
             </li>
+
+          <li class="nav-item">
+              <a class="nav-link m-4" href="/post">
+              post 
+              </a>
+            </li>
           </ul>
        
       </nav>

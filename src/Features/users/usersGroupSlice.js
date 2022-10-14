@@ -1,9 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios
+import axios from "axios";
 
-from "axios";
 
-const USERS_URL= 'https://alumni-case-database.herokuapp.com/api/v1/student';
+const USERS_URL = 'https://alumni-case-database.herokuapp.com/api/v1/alumnigroup';
 
 const initialState = []
 
@@ -26,4 +25,3 @@ const usersSlice = createSlice({
 export const selectAllUsers = (state) => state.users;
 
 export default usersSlice.reducer
-

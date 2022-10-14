@@ -7,12 +7,15 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { initialize } from './keycloak/keycloak';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-import { fetchUsers} from './Features/users/usersSlice'
+import { fetchUsers} from './Features/users/usersGroupSlice'
+import { fetchPosts } from './Features/posts/postsSlice';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 /*console.log('Dispatching action')
 store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
 console.log('Dispatch complete')*/
 
+store.dispatch(fetchPosts());
 store.dispatch(fetchUsers());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -20,9 +23,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 initialize().then( () => {
   root.render(
     <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider> 
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path="/*" element={<App />} />
+        </Routes>
+      </Router>
+    </Provider>
     </React.StrictMode>
   );
 }).catch( () => {

@@ -13,18 +13,22 @@ import EventReducer from './reducers/EventsReducer';
 import PostReducer from './reducers/PostsSlice';
 */
 
-import { configureStore } from '@reduxjs/toolkit'
-import postsReducer from '../Features/posts/postsSlice'
-import usersReducer from '../Features/users/usersSlice'
+
+
+import targetReducer from '../Features/targetsgroup/targetSlice'
+
+
+import { configureStore } from "@reduxjs/toolkit";
+import postsReducer from '../Features/posts/postsSlice';
+import usersReducer from '../Features/users/usersGroupSlice';
+
 
 export const store = configureStore({
     reducer: {
-         // Define a top-level state field named `todos`, handled by `todosReducer`
-    posts: postsReducer,
-    users: usersReducer
+        posts: postsReducer,
+        users: usersReducer
     }
 })
-
 // The store now has the ability to accept thunk funtions in 'dispatch'
 //const store = createStore(rootReducer, composedEnhancer)
 //export default store
