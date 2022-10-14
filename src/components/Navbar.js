@@ -8,6 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import avatar from '../assets/avatar.svg'
 import "../styles/Navbar.scss";
 import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom'
 
 
 const LogOut = () => {
@@ -17,10 +18,15 @@ const LogOut = () => {
   nav('/')
 }
 
+const Groups = () => {
+  const nav = useNavigate();
+  nav('/groups')
+}
 
 export default function NavbarHeader(props) {
 
   return (
+    <div className="stickynavbar">
     <navbar>
       <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
         <img src={logo} height="60px" alt="no img"/>
@@ -65,5 +71,6 @@ export default function NavbarHeader(props) {
       </nav>
 
     </navbar>
+    </div>
   );
 }

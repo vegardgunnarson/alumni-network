@@ -24,19 +24,11 @@ import AddPostForm from './Features/posts/AddPostForm';
 
 
 function App() {
-  /*return(
-    <main className="App">
-      <PostsList />
-
-    </main>
-  )
-}*/
   
   return (
     <div>
       <NavbarHeader />
       <Router >
-      
           <Routes>
           <Route path='/admin' element={
               <RoleCheckRoute role="ADMIN">
@@ -107,9 +99,7 @@ function App() {
           </Routes>
           <Footer />
       </Router>
-
     </div>
-    
   );
 }
 
