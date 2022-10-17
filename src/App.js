@@ -18,22 +18,16 @@ import { LoggedInRoute } from './hoc/LoggedInRoute';
 import { RoleCheckRoute } from './hoc/RoleCheckRoute';
 import { CreatePost } from './components/CreatePost';
 import { SettingsPage } from "./components/SettingsPage";
-import Events from './components/Events';
+import Events from './components/Events.jsx';
 import PostsList from './Features/posts/PostsList';
 import AddPostForm from './Features/posts/AddPostForm';
 import SinglePostPage from './Features/posts/SinglePostPage';
 import Layout from './components/Layout';
 import EditPostForm from './Features/posts/EditPostForm';
+import PostPage from './PostHttpRequest/PostsRequests';
 
 
 function App() {
-  /*return(
-    <main className="App">
-      <PostsList />
-
-    </main>
-  )
-}*/
 /*
     <Routes>
          <Route path="/" element={<Layout />}> 
@@ -53,6 +47,7 @@ function App() {
   return (
     <div>
       <NavbarHeader />
+      
       <Routes>
 <Route path="/postslist" element={<KeycloakRoute role={ ROLES.User }> <Layout /> </KeycloakRoute> }>
 
@@ -68,10 +63,17 @@ function App() {
 
 </Route>
 
-<Route path="/post" element={
+<Route path="/post" element={<KeycloakRoute role={ ROLES.User }> <Layout /> </KeycloakRoute> }>
+
+    <Route index element={<AddPostForm />} />
+    <Route path=":postId" element={<SinglePostPage />} />
+    <Route path="edit/:postId" element={<EditPostForm />} />
+  </Route>
+
+<Route path="/PostPage" element={
             <KeycloakRoute role={ ROLES.User }>
-            <AddPostForm />
-            <PostsList />
+            
+            <PostPage />
             </KeycloakRoute>
             }/>
 
@@ -140,13 +142,10 @@ function App() {
                 <Profile />
               </KeycloakRoute>
             }/>
-</Routes>
-        
-      <Footer />
-      
-
+          </Routes>
+          <Footer />
+     
     </div>
-    
   );
 }
 

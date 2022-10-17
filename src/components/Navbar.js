@@ -1,20 +1,34 @@
 import React from "react";
 import keycloak from "../keycloak/keycloak";
+import { useNavigate } from 'react-router-dom';
+
 import logo from "../assets/logo.svg";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import avatar from '../assets/avatar.svg'
 import "../styles/Navbar.scss";
 import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom'
 
 
+const LogOut = () => {
 
+  const nav = useNavigate();
+
+  nav('/')
+}
+
+const Groups = () => {
+  const nav = useNavigate();
+  nav('/groups')
+}
 
 export default function NavbarHeader(props) {
 
   return (
+    <div className="stickynavbar">
     <navbar>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
+      <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
         <img src={logo} height="60px" alt="no img"/>
         <Form className="d-flex m-4">
             <Form.Control
@@ -32,7 +46,7 @@ export default function NavbarHeader(props) {
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link m-4" href="/timeline" >
+            <a class="nav-link m-4" href="/events" >
               Events
             </a>
           </li>
@@ -46,27 +60,33 @@ export default function NavbarHeader(props) {
               <NavDropdown.Item href="/Profile">Profile</NavDropdown.Item>
               <NavDropdown.Item href="/Admin">Admin</NavDropdown.Item>
               <NavDropdown.Item href="/Token">Token</NavDropdown.Item>
-              <NavDropdown.Item onClick={() => keycloak.logout()}>
+              <NavDropdown.Item href="/PostsList">Postslist</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => keycloak.logout() && LogOut()}>
                 Log out
               </NavDropdown.Item>
             </NavDropdown>
           </li>
 
           <li class="nav-item">
-              <a class="nav-link m-4" href="/PostsList">
-              PostsList 
+              <a class="nav-link m-4" href="/post">
+              New Post 
               </a>
             </li>
 
-          <li class="nav-item">
-              <a class="nav-link m-4" href="/post">
-              post 
+            <li class="nav-item">
+              <a class="nav-link m-4" href="/postpage">
+              postpage 
               </a>
             </li>
+
           </ul>
        
+       
+       
+
       </nav>
 
     </navbar>
+    </div>
   );
 }

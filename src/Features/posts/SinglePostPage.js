@@ -4,9 +4,12 @@ import { selectPostById } from './postsSlice'
 import PostAuthor from "./PostAuthor";
 import TimeAgo from "./TimeAgo";
 import ReactionButtons from "./ReactionButtons";
+import Username from './Username';
 
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import keycloak from '../../keycloak/keycloak';
+
 
 const SinglePostPage = () => {
     const { postId } = useParams()
@@ -22,16 +25,26 @@ const SinglePostPage = () => {
     }
 
     return (
+       
         <article>
             <h2>{post.title}</h2>
             <p>{post.body}</p>
             <p className="postCredit">
-                <Link to={`/post/edit/${post.id}`}>Edit Post</Link>
+                <Link to={`/post/edit/${post.id}`}>Edit Post </Link>
                 <PostAuthor userId={post.userId} />
                 <TimeAgo timestamp={post.date} />
+                <p>Username: {keycloak.authenticated &&keycloak.tokenParsed && <span>{keycloak.tokenParsed.name}</span>}</p>
             </p>
             <ReactionButtons post={post} />
+            
+           
+            <li class="btn" >
+        <a class="color: blue" href="/PostsList">
+        Back to Posts List 
+        </a>
+      </li>
         </article>
+        
     )
 }
 

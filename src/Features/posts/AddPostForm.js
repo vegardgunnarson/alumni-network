@@ -11,8 +11,7 @@ const AddPostForm = () => {
 
     const navigate = useNavigate()
 
-    const [title, setTitle] = useState('')
-    const [subTitle, setSubTitle] = useState('')
+   const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [userId, setUserId] = useState('')
     const [username, setUsername] = useState('')
@@ -20,27 +19,25 @@ const AddPostForm = () => {
 
     const users = useSelector(selectAllUsers)
 
-    const onTitleChanged = e => setTitle(e.target.value)
-    const onSubTitleChanged = e => setSubTitle(e.target.value)
+   const onTitleChanged = e => setTitle(e.target.value)
     const onContentChanged = e => setContent(e.target.value)
     const onAuthorChanged = e => setUserId(e.target.value)
-    const onUsernameChanged = e => setUsername(e.target.value)
+    const onUsernameChanged = e => setUsername(e.keycloak.tokenParsed.name)
 
 
-    const canSave = [title, content].every(Boolean) && addRequestStatus === 'idle';
+    const canSave = [content].every(Boolean) && addRequestStatus === 'idle';
 
     const onSavePostClicked = () => {
         if (canSave) {
             try {
                 setAddRequestStatus('pending')
-                dispatch(addNewPost({ title, subTitle, body: content, username, userId })).unwrap()
+                dispatch(addNewPost({title, body: content, username, userId })).unwrap()
 
-                setTitle('')
-                setSubTitle('')
+               setTitle('')
                 setContent('')
                 setUsername('')
                 setUserId('')
-                navigate('')
+                navigate('/PostsList')
             } catch (err) {
                 console.error('Failed to save the post', err)
             } finally {
@@ -55,36 +52,32 @@ const AddPostForm = () => {
             {user.name}
         </option>
     ))
-
+  /*  
+                />*/
     return (
         <section>
             <h2>Add a New Post</h2>
             <form>
-                <label htmlFor="postTitle">Post Title:</label>
+            
+            <label htmlFor="postTitle">Post Title:</label>
                 <input
                     type="text"
                     id="postTitle"
                     name="postTitle"
                     value={title}
-                    onChange={onTitleChanged}
-                />
-                 <label htmlFor="postSubTitle">Post SubTitle:</label>
-                <input
-                    type="text"
-                    id="postSubTitle"
-                    name="postSubTitle"
-                    value={subTitle}
-                    onChange={onSubTitleChanged}
-                />
+                    onChange={onTitleChanged}/>
                 <label htmlFor="PostAuthor">Aluminigroup:</label>
                 <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
                     <option value=""></option>
                     {usersOptions}
                 </select>
-                <label><h4>name:</h4>{keycloak.tokenParsed.name}</label>
-                <textarea
-                    type="text" id="postUsername" name="postUsername" value={username} onChange={onUsernameChanged}
-                    />
+                
+                <label type="text" 
+                id="postUsername" 
+                name="postUsername" 
+                value={username} 
+                onChange={onUsernameChanged}><h4>name:</h4>{keycloak.tokenParsed.name}</label>
+                
                      <label htmlFor="postContent">Content:</label>
                 <textarea
                     id="postContent"
@@ -102,3 +95,6 @@ const AddPostForm = () => {
     )
 }
 export default AddPostForm
+
+/*<label type="text" id="postUsername" name="postUsername" value={username} 
+                onChange={onUsernameChanged}><h4>name:</h4>{keycloak.tokenParsed.name}</label>*/

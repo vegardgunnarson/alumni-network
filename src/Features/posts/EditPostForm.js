@@ -66,7 +66,7 @@ const EditPostForm = () => {
             setTitle('')
             setContent('')
             setUserId('')
-            navigate('/')
+            navigate('/PostsList')
         } catch (err) {
             console.error('Failed to delete the post', err)
         } finally {
@@ -86,7 +86,7 @@ const EditPostForm = () => {
                     value={title}
                     onChange={onTitleChanged}
                 />
-                <label htmlFor="postAuthor">Author:</label>
+                <label htmlFor="postAuthor">Aluminigroup:</label>
                 <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
                     <option value=""></option>
                     {usersOptions}

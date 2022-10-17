@@ -8,7 +8,6 @@ import event from '../assets/calendar-event.svg';
 import envelope from '../assets/envelope.svg';
 import envelopeempty from '../assets/envelope-empty.svg';
 
-
 export default function Groups() {
   const [groups, setGroups] = useState([]);
 
@@ -19,7 +18,7 @@ export default function Groups() {
     const array = await getGroups();
     setGroups(array[1]);
   };
-  console.log(groups);
+  
 
   function members(n){
     if (n===1){
@@ -43,7 +42,7 @@ export default function Groups() {
     }
   }
   function visibility(n){
-    if (n==="false"){
+    if (n===true){
         return lock;
     }else{
         return globe;
@@ -56,9 +55,17 @@ export default function Groups() {
         return envelope;
     }
   }
+  function createGroup(){
+    return null;
+  }
 
   return (
+    <div>
+    <div className="addgroup">
+        <button class="btn btn-secondary" onClick={createGroup()}>Create new group</button>
+        </div>
     <div className="groups">
+        
      {groups.map((group) => {
         return(
             <div className="group">
@@ -78,10 +85,10 @@ export default function Groups() {
             
             </div>
             <button class="btn btn-secondary btn-sml">Join</button>
-            </div> 
+            </div>
         )
      })}
 
-    </div>
+    </div></div>
   );
 }

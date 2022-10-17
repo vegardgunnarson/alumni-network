@@ -1,10 +1,134 @@
-.search{
+
+.dashboard{
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    min-width: 1440px;
+
+}
+.topdashboard{
+    
     display: flex;
     justify-content: space-evenly;
+    width: 100%;
+    min-width: 1440px;
+    max-width: 1640px;
 }
-.searchbar {
+.bottomdashboard{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height:2000px;
+    min-width: 1440px;
+    max-width: 1640px;
+}
+.profileview{
+    background-color: white;
+    width: 250px;
+    height: 300px;
     margin-top: 50px;
     display: flex;
-    justify-content: space-evenly;
-    gap: 10px;
+    padding-top: 20px;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    
+}
+.profileimage{
+    
+    width: 100px;
+    height: 100px;
+    border-radius: 75px;
+
+}
+.profilestatus{
+    margin-top: -30px;
+    color: rgb(149, 153, 149);
+    font-size: smaller;
+}
+.profilelink{
+    text-decoration: none;
+    font-size: smaller;
+}
+.post{
+    background-color: white;
+    width: 800px;
+    height: 200px;
+    margin-top: 50px;
+    border-radius: 15px;
+
+}
+.dashevent{
+    background-color: white;
+    width: 250px;
+    margin-top: 50px;
+    border-radius: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 25px;
+    height: 300px;
+    overflow: scroll;
+}
+.eventsection{
+    margin-top: -7px;
+    margin-bottom: 30px;
+}
+.eventtime{
+    font-style: italic;
+}
+.eventdesc{
+    margin-top: -40px;
+
+}
+.eventname{
+    margin-top: -15px;
+    font-family: bold;
+}
+.eventtitle{
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.sidenav{
+    background-color: white;
+    width: 250px;
+    height: 400px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-top: -50px;
+    overflow: scroll;
+
+}
+.timeline{
+    background-color:white;
+    width: 800px;
+    margin-top: -50px;
+    border-radius: 15px;
+}
+.underevent{
+    margin-top: 25px;
+    width: 250px;
+    border-radius: 15px;
+}
+.groupsection{
+    display: flex;
+    justify-content: space-between;
+    margin-top: -7px;
+}
+.grouptitle{
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.topicsection{
+    display: flex;
+    justify-content: space-between;
+    margin-top: -7px;
+}
+.topictitle{
+    margin-bottom: 15px;
+    font-weight: bold;
 }
