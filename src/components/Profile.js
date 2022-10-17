@@ -11,7 +11,7 @@ export default function Profile() {
     const [user, setUser] = useState([]);
 
     const fetchData = () => {
-        return fetch("https://alumni-case-database.herokuapp.com/api/v1/student/1")
+        return fetch("https://alumni-case-database.herokuapp.com/api/v1/student/5")
             .then((response) => response.json())
             .then((data => setUser(data)))
     }

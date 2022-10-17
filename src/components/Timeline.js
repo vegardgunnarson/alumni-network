@@ -1,15 +1,18 @@
 import React from "react";
 import "../styles/Timeline.scss";
 import { useEffect, useState } from "react";
-import { getGroups } from "./GroupHandler";
-import { getTopics } from "./TopicHandler";
-import { getEvents } from "./EventHandler";
+import { getGroups } from "./Group/GroupHandler";
+import { getTopics } from "./Topic/TopicHandler";
+import { getEvents } from "./Event/EventHandler";
+import Creategroup from "./Group/CreateGroup";
+import Createevent from "./Event/CreateEvent";
+import Createtopic from "./Topic/CreateTopic";
 
 export default function Timeline() {
   const [user, setUser] = useState([]);
 
   const fetchData = () => {
-    return fetch("https://alumni-case-database.herokuapp.com/api/v1/student/1")
+    return fetch("https://alumni-case-database.herokuapp.com/api/v1/student/5")
       .then((response) => response.json())
       .then((data) => setUser(data));
   };
@@ -64,7 +67,9 @@ export default function Timeline() {
 
         </div>
         <div className="dashevent">
-        <h5 className="eventtitle">Upcoming events</h5>
+        <div className="creategroupetimeline">
+        <h5 className="eventtitle">Upcoming events</h5><Createevent />
+        </div>
             {events.map((event) => {
         return(
             <div className="eventsection">
@@ -78,7 +83,9 @@ export default function Timeline() {
       </div>
       <div className="bottomdashboard">
         <div className="sidenav">
-            <h5 className="grouptitle">Groups</h5>
+            <div className="creategroupetimeline">
+            <h5 className="grouptitle">Groups</h5><Creategroup />
+            </div>
             {groups.map((group) => {
         return(
             <div className="groupsection">
@@ -86,7 +93,10 @@ export default function Timeline() {
             </div>
             )
         })}
-        <h5 className="topictitle">Topics</h5>
+        <div className="creategroupetimeline">
+        <h5 className="topictitle">Topics</h5><Createtopic />
+            </div>
+        
             {topics.map((topic) => {
         return(
             <div className="topicsection">

@@ -1,25 +1,23 @@
 .groups{
-    display: flex;
-    overflow: scroll;
-    right: 0;
-    left: 0;
-    flex-direction: column;
-    align-items: center;
-    height: fit-content;
+    display: grid;
+    grid-template-columns: 40% 40%;
+    gap: 15px;
+    justify-content: center;
     background-color: #f8f9fa;
 }
 
 .addgroup{
-    margin-left: 150px;
+    margin-left: 40px;
     margin-top: 40px;
     position: fixed;
 }
 .group{
     margin-top: 40px;
-    border-radius: 15px;
+    border-radius: 10px;
     background-color: white;
     height: 400px;
-    min-width: 700px;
+    min-width: 350px;
+    max-width: 550px;
     display: flex;
     padding: 1%;
     flex-direction: column;
@@ -55,3 +53,29 @@
     margin-top: -60px;
 }
 
+.btn-secondary{
+    background-color:rgb(110, 156, 110) !important;
+}
+.btn-secondary:hover{
+    background-color:rgb(92, 131, 92) !important;
+}
+.plusbutton{
+    background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    font-size: large;
+    margin-top: -5px;
+    padding: 0px;
+}
+.addbuttoncustom{
+    border-radius: 5px;
+    color: white;
+    padding: 5%;
+    width:30px;
+    padding-left: 9px;
+    
+    background-color: rgb(110, 156, 110) !important;
+}

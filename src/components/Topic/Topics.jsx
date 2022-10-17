@@ -1,22 +1,23 @@
 import React from "react";
-import "../styles/Groups.scss";
+import "../../styles/Groups.scss";
 import { useState, useEffect } from "react";
-import { getGroups } from "./GroupHandler";
-import lock from '../assets/lock-fill.svg';
-import globe from '../assets/globe.svg';
-import event from '../assets/calendar-event.svg';
-import envelope from '../assets/envelope.svg';
-import envelopeempty from '../assets/envelope-empty.svg';
+import { getTopics } from './TopicHandler';
+import lock from '../../assets/lock-fill.svg';
+import globe from '../../assets/globe.svg';
+import event from '../../assets/calendar-event.svg';
+import envelope from '../../assets/envelope.svg';
+import envelopeempty from '../../assets/envelope-empty.svg';
+import Createtopic from "./CreateTopic";
 
-export default function Groups() {
-  const [groups, setGroups] = useState([]);
+export default function Topics() {
+  const [topics, setTopics] = useState([]);
 
   useEffect(() => {
-    loadGroups();
+    loadTopics();
   }, []);
-  const loadGroups = async () => {
-    const array = await getGroups();
-    setGroups(array[1]);
+  const loadTopics = async () => {
+    const array = await getTopics();
+    setTopics(array[1]);
   };
   
 
@@ -55,33 +56,34 @@ export default function Groups() {
         return envelope;
     }
   }
-  function createGroup(){
-    return null;
-  }
+  
+
 
   return (
     <div>
     <div className="addgroup">
-        <button class="btn btn-secondary" onClick={createGroup()}>Create new group</button>
-        </div>
+        <h3>Topics</h3>
+        <div className="addbuttoncustom">
+    <Createtopic />
+    </div>
+    </div>
     <div className="groups">
-        
-     {groups.map((group) => {
+     {topics.map((topic) => {
         return(
             <div className="group">
-            <h3>{group.name}</h3>
+            <h3>{topic.name}</h3>
             <div className="members">
-            <img class="mt-1" src={visibility(group._private)} height="15px" alt="no logo"/>
-            <p>{members(group.students.length)}</p>
+            <img class="mt-1" src={visibility(topic._private)} height="15px" alt="no logo"/>
+            <p>{members(topic.students.length)}</p>
             </div>
-            <p>{group.description}</p>
+            <p>{topic.description}</p>
             <div className="posts">
-            <img src={getEnvelope(group.posts.length)} class="mt-1" height="15px" alt="no logo"/>
-            <p>{posts(group.posts.length)}</p>
+            <img src={getEnvelope(topic.posts.length)} class="mt-1" height="15px" alt="no logo"/>
+            <p>{posts(topic.posts.length)}</p>
             </div>
             <div className="events">
             <img src={event} class="mt-1" height="15px" alt="no logo"/>
-            <p>{events(group.alumniEvents.length)}</p>
+            <p>{events(topic.alumniEvents.length)}</p>
             
             </div>
             <button class="btn btn-secondary btn-sml">Join</button>

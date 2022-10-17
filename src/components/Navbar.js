@@ -18,10 +18,6 @@ const LogOut = () => {
   nav('/')
 }
 
-const Groups = () => {
-  const nav = useNavigate();
-  nav('/groups')
-}
 
 export default function NavbarHeader(props) {
 
@@ -29,15 +25,13 @@ export default function NavbarHeader(props) {
     <div className="stickynavbar">
     <navbar>
       <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
-        <img src={logo} height="60px" alt="no img"/>
+        <img src={logo} height="90px" alt="no img"/>
         <Form className="d-flex m-4">
             <Form.Control
             type="Search"
             className="me-2"
+            placeholder="Search..."
             aria-label="Search"/>
-          <button id="search-button" type="button" class="btn btn-secondary">
-            <i class="fas fa-search">Search</i>
-          </button>
         </Form>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item active">
@@ -53,6 +47,11 @@ export default function NavbarHeader(props) {
           <li class="nav-item active">
             <a class="nav-link m-4" href="/groups">
               Groups
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link m-4" href="/topics">
+              Topics
             </a>
           </li>
           <li class="m-4">

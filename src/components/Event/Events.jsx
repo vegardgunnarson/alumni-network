@@ -1,12 +1,12 @@
 import React from "react";
-import "../styles/Events.scss";
+import "../../styles/Events.scss";
 import { useState, useEffect } from "react";
 import { getEvents } from "./EventHandler";
-import lock from '../assets/lock-fill.svg';
-import globe from '../assets/globe.svg';
-import event from '../assets/calendar-event.svg';
-import envelope from '../assets/envelope.svg';
-import envelopeempty from '../assets/envelope-empty.svg';
+import lock from '../../assets/lock-fill.svg';
+import globe from '../../assets/globe.svg';
+import envelope from '../../assets/envelope.svg';
+import envelopeempty from '../../assets/envelope-empty.svg';
+import Createevent from "./CreateEvent";
 
 
 export default function Events() {
@@ -52,8 +52,17 @@ export default function Events() {
     }
   }
 
+    
   return (
+    <div className="eventcontent">
+    <div className="addgroup">
+        <h3>Events</h3>
+        <div className="addbuttoncustom">
+    <Createevent />
+    </div>
+    </div>
     <div className="eventspage">
+
      {events.map((event) => {
         return(
             <div className="event">
@@ -71,10 +80,13 @@ export default function Events() {
             <div className="events">
             <p></p>
             </div>
-            <button class="btn btn-secondary btn-sml">+</button>
+            <div>
+            <button class="btn btn-secondary">Accept</button>
+            </div>
             </div> 
         )
      })}
+    </div>
     </div>
   );
 }

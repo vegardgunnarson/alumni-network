@@ -2,11 +2,10 @@ import './styles/App.css';
 import React from 'react';
 import './custom.scss';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import NavbarHeader from './components/Navbar';
 import Footer from './components/Footer';
 import LogIn from './components/LogIn';
-import Groups from './components/Groups';
+import Groups from './components/Group/Groups';
 import Profile from './components/Profile'
 import Timeline from './components/Timeline'
 import { TokenPage } from './components/TokenPage';
@@ -18,9 +17,11 @@ import { LoggedInRoute } from './hoc/LoggedInRoute';
 import { RoleCheckRoute } from './hoc/RoleCheckRoute';
 import { CreatePost } from './components/CreatePost';
 import { SettingsPage } from "./components/SettingsPage";
-import Events from './components/Events.jsx';
+import Events from './components/Event/Events.jsx';
 import PostsList from './Features/posts/PostsList';
 import AddPostForm from './Features/posts/AddPostForm';
+import Topics from './components/Topic/Topics';
+
 
 
 function App() {
@@ -76,11 +77,15 @@ function App() {
             </KeycloakRoute>
             }/>
             
-            
-
             <Route path="/events" element={
             <KeycloakRoute role={ ROLES.User }>
             <Events /> 
+            </KeycloakRoute>
+            }/>
+
+            <Route path="/topics" element={
+            <KeycloakRoute role={ ROLES.User }>
+            <Topics /> 
             </KeycloakRoute>
             }/>
            
@@ -89,17 +94,16 @@ function App() {
             <SettingsPage /> 
             </KeycloakRoute>
             }/>
-
-    
             <Route path="/profile" element={
               <KeycloakRoute role={ ROLES.User }>
                 <Profile />
               </KeycloakRoute>
             }/>
           </Routes>
-          <Footer />
-      </Router>
-    </div>
+          </Router>
+      <Footer />
+      </div>
+
   );
 }
 
