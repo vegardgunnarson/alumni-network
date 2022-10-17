@@ -44,6 +44,7 @@ function App() {
             } />
 
             <Route path="/" element={<LogIn />} />
+            
             <Route path="/timeline" element={
             <KeycloakRoute role={ ROLES.User }>
             <Timeline /> 

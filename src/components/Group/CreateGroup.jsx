@@ -10,14 +10,10 @@ const apiUrl = 'https://alumni-case-database.herokuapp.com/api/v1/alumnigroup'
 
 export default function Creategroup() {
 
-  const [privateMode, setPrivate] = useState(false);
-    const handlePrivate = () => {
-      setPrivate(current => !current);
-    }
     const [createGroup, setCreateGroup] = useState({
       title: "",
       description: "",
-      get_private: privateMode
+      _private: false
     });
     
 
@@ -32,7 +28,7 @@ export default function Creategroup() {
               body: JSON.stringify({
                 name: createGroup.title,
                 description: createGroup.description,
-                get_private: privateMode
+                _private: createGroup._private
               })
           });
     
@@ -55,7 +51,7 @@ export default function Creategroup() {
       setCreateGroup({
       title: "",
       description: "",
-      get_private:privateMode
+      _private: false
       })
       console.log(createGroup);
       CreateGroupInDB();
@@ -100,10 +96,7 @@ export default function Creategroup() {
         name="private"
         id="checkbox"
         label="Private"
-        value={privateMode}
-        onChange={handlePrivate}
-        
-      />
+        onChange={(e) => {setCreateGroup((state) => ({...state, _private: e.target.checked}))}} />
           </Form>
         </Modal.Body>
         <Modal.Footer>
