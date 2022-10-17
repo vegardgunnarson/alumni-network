@@ -17,7 +17,7 @@ export const getGroups = async () => {
 }
 export const getGroupsOfStudent = async () => {
     try{
-        const response = await fetch(`${apiUrl}/alumnigroup/displayJoinedGroups?accessing_student_id=5`);
+        const response = await fetch(`${apiUrl}/alumnigroup/displayJoinedGroups?accessing_student_id=8`);
         if(!response.ok){
             throw new Error("No groups found");
         }
@@ -30,7 +30,7 @@ export const getGroupsOfStudent = async () => {
 }
 export const getAvailableGroupsOfStudent = async () => {
     try{
-        const response = await fetch(`${apiUrl}/alumnigroup/displayAvailableGroups?accessing_student_id=5`);
+        const response = await fetch(`${apiUrl}/alumnigroup/displayAvailableGroups?accessing_student_id=8`);
         if(!response.ok){
             throw new Error("No groups found");
         }

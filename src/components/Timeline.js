@@ -12,7 +12,7 @@ export default function Timeline() {
   const [user, setUser] = useState([]);
 
   const fetchData = () => {
-    return fetch("https://alumni-case-database.herokuapp.com/api/v1/student/5")
+    return fetch("https://alumni-case-database.herokuapp.com/api/v1/student/8")
       .then((response) => response.json())
       .then((data) => setUser(data));
   };
