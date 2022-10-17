@@ -10,21 +10,29 @@ const apiUrl = 'https://alumni-case-database.herokuapp.com/api/v1/alumnigroup'
 
 export default function Creategroup() {
 
-    const [createGroupTitle, setCreateGroupTitle] = useState([]);
-    const [createGroupDesc, setCreateGroupDesc] = useState([]);
-    const [createGroupPrivate, setCreateGroupPrivate] = useState(false);
+  const [privateMode, setPrivate] = useState(false);
+    const handlePrivate = () => {
+      setPrivate(current => !current);
+    }
+    const [createGroup, setCreateGroup] = useState({
+      title: "",
+      description: "",
+      get_private: privateMode
+    });
+    
 
   const CreateGroupInDB = async () => {
 
 
+    /**const response = await fetch(`${apiUrl}?token=${keycloak.token}`, { */
     try {
-          const response = await fetch(apiUrl, {
+          const response = await fetch(`${apiUrl}?token=abcdefghijklmnopqrstuvwxyz`, {
               method: 'POST',
               headers: createHeaders(),
               body: JSON.stringify({
-                name: "Experisgruppen",
-                description: "Manpower",
-                get_private: false
+                name: createGroup.title,
+                description: createGroup.description,
+                get_private: privateMode
               })
           });
     
@@ -36,12 +44,23 @@ export default function Creategroup() {
       } catch (error) {
           return error.message;
       }
-      
-
-      
     } 
-      
 
+    const handleChange = (event) => {
+      setCreateGroup({ ...createGroup, [event.target.name]:event.target.value});
+    };
+
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      setCreateGroup({
+      title: "",
+      description: "",
+      get_private:privateMode
+      })
+      console.log(createGroup);
+      CreateGroupInDB();
+      handleClose();
+    };
 
   
   const [show, setShow] = useState(false);
@@ -63,7 +82,10 @@ export default function Creategroup() {
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="text"
+                name="title"
+                value={createGroup.title}
                 autoFocus
+                onChange={handleChange}
               />
             </Form.Group>
             <Form.Group
@@ -71,12 +93,16 @@ export default function Creategroup() {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Description</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <Form.Control as="textarea" value={createGroup.description} onChange={handleChange} name="description" rows={3} />
             </Form.Group>
             <Form.Check 
         type="switch"
-        id="custom-switch"
+        name="private"
+        id="checkbox"
         label="Private"
+        value={privateMode}
+        onChange={handlePrivate}
+        
       />
           </Form>
         </Modal.Body>
@@ -84,7 +110,7 @@ export default function Creategroup() {
           <Button variant="danger" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="secondary" onClick={CreateGroupInDB}>
+          <Button variant="secondary" onClick={handleSubmit}>
             Create group
           </Button>
         </Modal.Footer>
