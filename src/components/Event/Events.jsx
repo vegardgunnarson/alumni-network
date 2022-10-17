@@ -8,7 +8,6 @@ import envelope from '../../assets/envelope.svg';
 import envelopeempty from '../../assets/envelope-empty.svg';
 import Createevent from "./CreateEvent";
 
-
 export default function Events() {
   const [events, setEvents] = useState([]);
 
@@ -19,7 +18,6 @@ export default function Events() {
     const array = await getEvents();
     setEvents(array[1]);
   };
-  
 
   function people(n){
     if (n===1){
@@ -64,6 +62,7 @@ export default function Events() {
     <div className="eventspage">
 
      {events.map((event) => {
+      
         return(
             <div className="event">
             <h3>{event.name}</h3>
@@ -71,8 +70,10 @@ export default function Events() {
             <img class="mt-1" src={visibility(event.allow_guests)} height="15px" alt="no logo"/>
             <p>{people(event.students.length)}</p>
             </div>
+            <div>
             <p className="eventtime">{event.start_time.slice(0,10)} &nbsp; {event.start_time.slice(11,16)} - {event.end_time.slice(11,16)}</p>
             <p className="eventdescription">{event.description}</p>
+            </div>
             <div className="posts">
             <img src={getEnvelope(event.posts.length)} class="mt-1" height="15px" alt="no logo"/>
             <p>{posts(event.posts.length)}</p>

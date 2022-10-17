@@ -1,18 +1,53 @@
 import React from "react";
+import keycloak from "../../keycloak/keycloak";
+import { useEffect, useState } from 'react';
+import axios, { createHeaders } from "../../api/index";
 import "../../styles/Groups.scss";
-import { useState } from "react";
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+const apiUrl = 'https://alumni-case-database.herokuapp.com/api/v1/alumnigroup'
 
 export default function Creategroup() {
+
+    const [createGroupTitle, setCreateGroupTitle] = useState([]);
+    const [createGroupDesc, setCreateGroupDesc] = useState([]);
+    const [createGroupPrivate, setCreateGroupPrivate] = useState(false);
+
+  const CreateGroupInDB = async () => {
+
+
+    try {
+          const response = await fetch(apiUrl, {
+              method: 'POST',
+              headers: createHeaders(),
+              body: JSON.stringify({
+                name: "Experisgruppen",
+                description: "Manpower",
+                get_private: false
+              })
+          });
+    
+          const data = await response.json();
+          //return user object
+          handleClose();
+          return data;
+    
+      } catch (error) {
+          return error.message;
+      }
+      
+
+      
+    } 
+      
+
 
   
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
 
   return (
   
@@ -49,7 +84,7 @@ export default function Creategroup() {
           <Button variant="danger" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={CreateGroupInDB}>
             Create group
           </Button>
         </Modal.Footer>

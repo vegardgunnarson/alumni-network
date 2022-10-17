@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/Groups.scss";
 import { useState, useEffect } from "react";
-import { getGroups } from "./GroupHandler";
+import { getGroups , getAvailableGroupsOfStudent, getGroupsOfStudent } from "./GroupHandler";
 import lock from '../../assets/lock-fill.svg';
 import globe from '../../assets/globe.svg';
 import event from '../../assets/calendar-event.svg';
@@ -16,7 +16,7 @@ export default function Groups() {
     loadGroups();
   }, []);
   const loadGroups = async () => {
-    const array = await getGroups();
+    const array = await getAvailableGroupsOfStudent();
     setGroups(array[1]);
   };
   

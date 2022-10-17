@@ -2,8 +2,10 @@
     display: grid;
     grid-template-columns: 40% 40%;
     gap: 15px;
+    min-height: fit-content;
     justify-content: center;
     background-color: #f8f9fa;
+    padding-bottom: 400px;
 }
 
 .addgroup{

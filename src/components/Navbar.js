@@ -1,14 +1,11 @@
 import React from "react";
 import keycloak from "../keycloak/keycloak";
 import { useNavigate } from 'react-router-dom';
-
 import logo from "../assets/logo.svg";
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
-import avatar from '../assets/avatar.svg'
 import "../styles/Navbar.scss";
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom'
+
 
 
 const LogOut = () => {
@@ -17,6 +14,7 @@ const LogOut = () => {
 
   nav('/')
 }
+
 
 
 export default function NavbarHeader(props) {

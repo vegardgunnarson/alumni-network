@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Timeline.scss";
 import { useEffect, useState } from "react";
-import { getGroups } from "./Group/GroupHandler";
+import { getGroups , getAvailableGroupsOfStudent, getGroupsOfStudent } from "./Group/GroupHandler";
 import { getTopics } from "./Topic/TopicHandler";
 import { getEvents } from "./Event/EventHandler";
 import Creategroup from "./Group/CreateGroup";
@@ -27,7 +27,7 @@ export default function Timeline() {
     loadGroups();
   }, []);
   const loadGroups = async () => {
-    const array = await getGroups();
+    const array = await getGroupsOfStudent();
     setGroups(array[1]);
   };
   const [topics, setTopics] = useState([]);
