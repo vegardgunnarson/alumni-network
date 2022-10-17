@@ -3,7 +3,7 @@ import keycloak from "../keycloak/keycloak";
 
 
 import "../styles/Profile.scss";
-import { updateBio, updateStatus , updateFunfact} from "./UserHandler";
+import { updateBio, updateStatus , updateFunfact, currentuser} from "./UserHandler";
 
 export default function Profile() {
 
@@ -11,7 +11,7 @@ export default function Profile() {
     const [user, setUser] = useState([]);
 
     const fetchData = () => {
-        return fetch("https://alumni-case-database.herokuapp.com/api/v1/student/5")
+        return fetch(`https://alumni-case-database.herokuapp.com/api/v1/student/${currentuser.id}`)
             .then((response) => response.json())
             .then((data => setUser(data)))
     }

@@ -1,4 +1,5 @@
 
+import { currentuser } from '../../components/UserHandler';
 const apiUrl = "https://alumni-case-database.herokuapp.com/api/v1"
 
 export const getGroups = async () => {
@@ -17,7 +18,7 @@ export const getGroups = async () => {
 }
 export const getGroupsOfStudent = async () => {
     try{
-        const response = await fetch(`${apiUrl}/alumnigroup/displayJoinedGroups?accessing_student_id=8`);
+        const response = await fetch(`${apiUrl}/alumnigroup/displayJoinedGroups?accessing_student_id=${currentuser.id}`);
         if(!response.ok){
             throw new Error("No groups found");
         }
@@ -30,7 +31,7 @@ export const getGroupsOfStudent = async () => {
 }
 export const getAvailableGroupsOfStudent = async () => {
     try{
-        const response = await fetch(`${apiUrl}/alumnigroup/displayAvailableGroups?accessing_student_id=8`);
+        const response = await fetch(`${apiUrl}/alumnigroup/displayAvailableGroups?accessing_student_id=${currentuser.id}`);
         if(!response.ok){
             throw new Error("No groups found");
         }

@@ -7,12 +7,13 @@ import { getEvents } from "./Event/EventHandler";
 import Creategroup from "./Group/CreateGroup";
 import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
+import { currentuser } from '../components/UserHandler';
 
 export default function Timeline() {
   const [user, setUser] = useState([]);
 
   const fetchData = () => {
-    return fetch("https://alumni-case-database.herokuapp.com/api/v1/student/8")
+    return fetch(`https://alumni-case-database.herokuapp.com/api/v1/student/${currentuser.id}`)
       .then((response) => response.json())
       .then((data) => setUser(data));
   };
