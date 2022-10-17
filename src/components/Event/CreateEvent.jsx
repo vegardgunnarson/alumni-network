@@ -38,9 +38,9 @@ const [endDate, setEndDate] = useState(new Date());
             </Form.Group>
             <Form.Label>Start time</Form.Label>
             <Form.Group className="mb-3">
-            <DatePicker selected={startDate} onChange={(date:Date) => setStartDate(date)} showTimeSelect dateFormat="Pp" />
+            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} showTimeSelect dateFormat="Pp" />
             <Form.Label>End time</Form.Label>
-            <DatePicker selected={endDate} onChange={(date:Date) => setEndDate(date)} showTimeSelect dateFormat="Pp" />
+            <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} showTimeSelect dateFormat="Pp" />
             </Form.Group>
             <Form.Group
               className="mb-3"

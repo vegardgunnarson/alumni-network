@@ -3,7 +3,7 @@ import keycloak from "../keycloak/keycloak";
 
 
 import "../styles/Profile.scss";
-import { updateBio, updateStatus , updateFunfact, currentuser} from "./UserHandler";
+import { currentuser} from "./UserHandler";
 
 export default function Profile() {
 
@@ -21,15 +21,20 @@ export default function Profile() {
     },[])
 
 
-    const saveChanges = async () => {
-        console.log("he");
-        console.log(document.getElementById('bio'));
-        await updateBio(user, document.getElementById('bio'));
-
-        await updateStatus(user, document.getElementById('status'));
-
-        await updateFunfact(user, document.getElementById('funfact'));
+    const [updateuser, setUpdateuser] = useState({
+        bio: user.bio,
+        status: user.status,
+        fun_fact: user.fun_fact
+    });
+    const handleChange = (event) => {
+        setUpdateuser({...updateuser, [event.target.name]:event.target.value})
     }
+    const handlesubmit = (event) => {
+        event.preventDefault();
+        console.log(updateuser);
+        setUpdateuser({status:user.status, bio:user.bio, fun_fact:user.fun_fact})
+    }
+    
 
 
   return (
@@ -39,11 +44,11 @@ export default function Profile() {
             <img src={user.picture} alt="could not be found" className="image" />
             <div class="form-control" id="name" className="name">{user.name}</div>
             </div>
-            <p  placeholder="Status" id="status" className="status">{user.status}</p>
-            <p  placeholder="Bio" id="bio" className="bio">{user.bio}</p><br/>
-            <p  placeholder="Funfact"  id="funfact" className="funfact">{user.fun_fact}</p><br/>
+            <input  name="status" placeholder="Status" onChange={handleChange} value={updateuser.status} id="status" className="status"/>
+            <input  name="bio" placeholder="Bio" id="bio" onChange={handleChange} className="bio" value={updateuser.bio}></input><br/>
+            <input  name="funfact" placeholder="Funfact" onChange={handleChange} id="funfact" value={updateuser.fun_fact} className="funfact"></input><br/>
           <div class="nav-item" className="buttons">
-          <button type="submit" class="btn btn-secondary m-4" onClick={saveChanges}>Save</button>
+          <button type="submit" class="btn btn-secondary m-4" onSubmit={handlesubmit}>Save</button>
           <button class="btn btn-danger m-4" onClick={() => keycloak.logout()}>Logout</button>
           </div>
         </form>

@@ -6,7 +6,7 @@ export const getTopics = async () => {
     try{
         const response = await fetch(`${apiUrl}/topics`);
         if(!response.ok){
-            throw new Error("No projects found");
+            throw new Error("No topics found");
         }
         const data = await response.json();
         return [null,data]
@@ -16,11 +16,11 @@ export const getTopics = async () => {
     }
 }
 
-export const getGroupsOfStudent = async () => {
+export const getTopicsOfStudent = async () => {
     try{
-        const response = await fetch(`${apiUrl}/alumnigroup/displayJoinedGroups?accessing_student_id=${currentuser.id}`);
+        const response = await fetch(`${apiUrl}/topics/displayJoinedTopics?accessing_student_id=${currentuser.id}`);
         if(!response.ok){
-            throw new Error("No groups found");
+            throw new Error("No topics found");
         }
         const data = await response.json();
         return [null,data]
@@ -29,11 +29,11 @@ export const getGroupsOfStudent = async () => {
         return[error.message, []];
     }
 }
-export const getAvailableGroupsOfStudent = async () => {
+export const getAvailableTopicsOfStudent = async () => {
     try{
-        const response = await fetch(`${apiUrl}/alumnigroup/displayAvailableGroups?accessing_student_id=8`);
+        const response = await fetch(`${apiUrl}/topics/displayAvailableTopics?accessing_student_id=8`);
         if(!response.ok){
-            throw new Error("No groups found");
+            throw new Error("No topic found");
         }
         const data = await response.json();
         return [null,data]

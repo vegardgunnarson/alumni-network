@@ -8,6 +8,7 @@ import event from '../../assets/calendar-event.svg';
 import envelope from '../../assets/envelope.svg';
 import envelopeempty from '../../assets/envelope-empty.svg';
 import Createtopic from "./CreateTopic";
+import people from '../../assets/people-fill.svg';
 
 export default function Topics() {
   const [topics, setTopics] = useState([]);
@@ -42,13 +43,6 @@ export default function Topics() {
         return n+" events";
     }
   }
-  function visibility(n){
-    if (n===true){
-        return lock;
-    }else{
-        return globe;
-    }
-  }
   function getEnvelope(n){
     if (n===0){
         return envelopeempty;
@@ -73,7 +67,7 @@ export default function Topics() {
             <div className="group">
             <h3>{topic.name}</h3>
             <div className="members">
-            <img class="mt-1" src={visibility(topic._private)} height="15px" alt="no logo"/>
+            <img class="mt-1" src={people} height="15px" alt="no logo"/>
             <p>{members(topic.students.length)}</p>
             </div>
             <p>{topic.description}</p>
