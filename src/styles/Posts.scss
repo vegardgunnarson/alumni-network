@@ -1,0 +1,73 @@
+.addpost{
+    margin-left: 40px;
+    margin-top: 40px;
+    position: fixed;
+}
+.post{
+    margin-top: 40px;
+    border-radius: 10px;
+    background-color: white;
+    height: 400px;
+    min-width: 350px;
+    max-width: 550px;
+    display: flex;
+    padding: 1%;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 40px;
+    padding-left: 40px;
+    margin-bottom: 20px;
+
+}
+.joinSection{
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: flex-start;
+    
+}
+.btn-sml{
+    width: 60px;
+}
+.members{
+    display: flex;
+    gap: 5px;
+    margin-top: -50px;
+}
+.posts{
+    display: flex;
+    gap: 5px;
+    margin-top: -30px;
+}
+.events{
+    display: flex;
+    gap: 5px;
+    margin-top: -60px;
+}
+
+.btn-secondary{
+    background-color:rgb(110, 156, 110) !important;
+}
+.btn-secondary:hover{
+    background-color:rgb(92, 131, 92) !important;
+}
+.plusbutton{
+    background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    font-size: large;
+    margin-top: -5px;
+    padding: 0px;
+}
+.addbuttoncustom{
+    border-radius: 5px;
+    color: white;
+    padding: 5%;
+    width:30px;
+    padding-left: 9px;
+    
+    background-color: rgb(110, 156, 110) !important;
+}
