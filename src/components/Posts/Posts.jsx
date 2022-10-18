@@ -7,7 +7,7 @@ import globe from '../../assets/globe.svg';
 import envelope from '../../assets/envelope.svg';
 import envelopeempty from '../../assets/envelope-empty.svg';
 import Createpost from "./CreatePost";
-import Groups from "../Group/Groups";
+
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
@@ -20,7 +20,6 @@ export default function Posts() {
     setPosts(array[1]);
   };
 
- 
   function members(n){
     if (n===1){
         return n+" member";
@@ -62,7 +61,7 @@ export default function Posts() {
     </div>
     </div>
     <div className="groups">
-     {posts.map((post) => {
+    {posts.map((post) => {
         return(
             <div className="group">
             <h3>sender_student: {post.sender_student}</h3>

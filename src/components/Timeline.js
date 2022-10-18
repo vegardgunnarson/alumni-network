@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 import { getGroups , getAvailableGroupsOfStudent, getGroupsOfStudent } from "./Group/GroupHandler";
 import { getTopics } from "./Topic/TopicHandler";
 import { getEvents } from "./Event/EventHandler";
+import { getPosts } from "./Posts/PostHandler";
 import Creategroup from "./Group/CreateGroup";
 import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
+import Createpost from "./Posts/CreatePost";
 import { currentuser } from '../components/UserHandler';
+
 
 export default function Timeline() {
   const [user, setUser] = useState([]);
@@ -17,6 +20,23 @@ export default function Timeline() {
       .then((response) => response.json())
       .then((data) => setUser(data));
   };
+
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    loadPosts();
+  }, []);
+  const loadPosts = async () => {
+    const array = await getPosts();
+    setPosts(array[1]);
+  };
+ 
+
 
   useEffect(() => {
     fetchData();
@@ -64,7 +84,28 @@ export default function Timeline() {
           <p className="profilestatus">{user.status}</p>
           <a className="profilelink" href="/Profile">Show profile</a>
         </div>
+        
         <div className="post">
+        <div className="creategroupetimeline">
+        <h5 className="Posttitle">Posts</h5>
+            </div>
+        
+            {posts.map((post) => {
+        return(
+            <div className="postsection">
+            <h4>target_student: {post.target_student}</h4>
+             <p>content: {post.content}</p>
+             <p>target_alumniEvent: {post.target_alumniEvent}</p>
+             <p>target_alumniGroup: {post.target_alumniGroup}</p>
+             <p>target_topic: {post.target_topic}</p>
+             <p>reply_post: {post.reply_post}</p>
+             <p>replies: {post.replies}</p>
+             <p>private: {post._private}</p>
+             <p>date: {post.timestamp}</p>
+            </div>
+            )
+        })}
+        
 
         </div>
         <div className="dashevent">
@@ -87,6 +128,7 @@ export default function Timeline() {
             <div className="creategroupetimeline">
             <h5 className="grouptitle">Groups</h5><Creategroup />
             </div>
+
             {groups.map((group) => {
         return(
             <div className="groupsection">
