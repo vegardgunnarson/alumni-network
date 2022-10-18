@@ -50,6 +50,11 @@ export default function Navbar() {
               Topics
             </a>
           </li>
+          <li class="nav-item active">
+            <a class="nav-link m-4" href="/posts">
+              Posts
+            </a>
+          </li>
           <li class="m-4">
             <NavDropdown title={keycloak.authenticated &&keycloak.tokenParsed && <span>{keycloak.tokenParsed.name}</span>}>
               <NavDropdown.Item href="/Profile">Profile</NavDropdown.Item>

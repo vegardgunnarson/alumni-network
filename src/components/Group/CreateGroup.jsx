@@ -6,6 +6,7 @@ import "../../styles/Groups.scss";
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+
 const apiUrl = 'https://alumni-case-database.herokuapp.com/api/v1/alumnigroup'
 
 export default function Creategroup() {

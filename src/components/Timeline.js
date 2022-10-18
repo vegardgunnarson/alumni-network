@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 import {  getGroupsOfStudent } from "./Group/GroupHandler";
 import {  getTopicsOfStudent} from "./Topic/TopicHandler";
 import { getEvents } from "./Event/EventHandler";
+import { getPosts } from "./Posts/PostHandler";
 import Creategroup from "./Group/CreateGroup";
 import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
+import Createpost from "./Posts/CreatePost";
 import { currentuser } from '../components/UserHandler';
 import Button from 'react-bootstrap/Button';
+
 
 export default function Timeline() {
     const home={
@@ -29,6 +32,23 @@ export default function Timeline() {
       .then((response) => response.json())
       .then((data) => setUser(data));
   };
+
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    loadPosts();
+  }, []);
+  const loadPosts = async () => {
+    const array = await getPosts();
+    setPosts(array[1]);
+  };
+ 
+
 
   useEffect(() => {
     fetchData();
@@ -77,12 +97,14 @@ export default function Timeline() {
           <p className="profilestatus">{user.status}</p>
           <a className="profilelink" href="/Profile">Show profile</a>
         </div>
+        
         <div className="post">
             <h3>{display.name}</h3>
             {display.description}
             <div>
             <button class="btn btn-secondary mt-4">Create post... </button>
             </div>
+
 
 
         </div>
@@ -106,6 +128,7 @@ export default function Timeline() {
             <div className="creategroupetimeline">
             <h5 className="grouptitle">Groups</h5><Creategroup />
             </div>
+
             {groups.map((group) => {
         return(
             <div className="groupsection" key={group.id}>
