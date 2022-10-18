@@ -31,7 +31,7 @@ export const getTopicsOfStudent = async () => {
 }
 export const getAvailableTopicsOfStudent = async () => {
     try{
-        const response = await fetch(`${apiUrl}/topics/displayAvailableTopics?accessing_student_id=8`);
+        const response = await fetch(`${apiUrl}/topics/displayAvailableTopics?accessing_student_id=${currentuser.id}`);
         if(!response.ok){
             throw new Error("No topic found");
         }

@@ -64,7 +64,7 @@ export default function Events() {
      {events.map((event) => {
       
         return(
-            <div className="event">
+            <div className="event" key={event.id}>
             <h3>{event.name}</h3>
             <div className="eventmembers">
             <img class="mt-1" src={visibility(event.allow_guests)} height="15px" alt="no logo"/>

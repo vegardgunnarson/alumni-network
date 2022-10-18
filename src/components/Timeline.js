@@ -1,18 +1,30 @@
 import React from "react";
 import "../styles/Timeline.scss";
 import { useEffect, useState } from "react";
-import { getGroups , getAvailableGroupsOfStudent, getGroupsOfStudent } from "./Group/GroupHandler";
-import { getTopics } from "./Topic/TopicHandler";
+import {  getGroupsOfStudent } from "./Group/GroupHandler";
+import {  getTopicsOfStudent} from "./Topic/TopicHandler";
 import { getEvents } from "./Event/EventHandler";
 import Creategroup from "./Group/CreateGroup";
 import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
 import { currentuser } from '../components/UserHandler';
+import Button from 'react-bootstrap/Button';
 
 export default function Timeline() {
+    const home={
+        name: "Dashboard",
+        description: "Personal dashboard"
+    }
+
+    const [display, setDisplay] = useState(home);
+
+    function handleDisplay(newDisplay){
+        setDisplay(newDisplay);
+    }
+  
   const [user, setUser] = useState([]);
 
-  const fetchData = () => {
+  const fetchData = async () => {
     return fetch(`https://alumni-case-database.herokuapp.com/api/v1/student/${currentuser.id}`)
       .then((response) => response.json())
       .then((data) => setUser(data));
@@ -37,7 +49,7 @@ export default function Timeline() {
     loadTopics();
   }, []);
   const loadTopics = async () => {
-    const array = await getTopics();
+    const array = await getTopicsOfStudent();
     setTopics(array[1]);
   };
   const [events, setEvents] = useState([]);
@@ -53,18 +65,25 @@ export default function Timeline() {
   return (
     <div className="dashboard">
       <div className="topdashboard">
-        <div className="profileview">
+        <div className="profileview" >
           <img
             src={user.picture}
             alt="could not be found"
             className="profileimage"
+            onClick={() => handleDisplay(home)}
           />
-          <h3 class="mt-1">{user.name}</h3>
+          <h3 class="mt-1" onClick={() => handleDisplay(home)}>{user.name}</h3>
           <br />
           <p className="profilestatus">{user.status}</p>
           <a className="profilelink" href="/Profile">Show profile</a>
         </div>
         <div className="post">
+            <h3>{display.name}</h3>
+            {display.description}
+            <div>
+            <button class="btn btn-secondary mt-4">Create post... </button>
+            </div>
+
 
         </div>
         <div className="dashevent">
@@ -73,7 +92,7 @@ export default function Timeline() {
         </div>
             {events.map((event) => {
         return(
-            <div className="eventsection">
+            <div className="eventsection" key={event.id}>
             <p className="eventtime">{event.start_time.slice(0,10)} &nbsp; {event.start_time.slice(11,16)}</p>
             <p className="eventname">{event.name}</p><br/>
             <p className="eventdesc">{event.description}</p>
@@ -89,8 +108,8 @@ export default function Timeline() {
             </div>
             {groups.map((group) => {
         return(
-            <div className="groupsection">
-            <p>{group.name}</p><p>{group.posts.length}</p>
+            <div className="groupsection" key={group.id}>
+            <p onClick={() => handleDisplay(group)}>{group.name}</p><p>{group.posts.length}</p>
             </div>
             )
         })}
@@ -100,8 +119,8 @@ export default function Timeline() {
         
             {topics.map((topic) => {
         return(
-            <div className="topicsection">
-            <p>{topic.name}</p>
+            <div className="topicsection" key={topic.id}>
+            <p onClick={() => handleDisplay(topic)}>{topic.name}</p>
             </div>
             )
         })}

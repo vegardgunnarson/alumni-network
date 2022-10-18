@@ -1,9 +1,7 @@
 import React from "react";
 import "../../styles/Groups.scss";
 import { useState, useEffect } from "react";
-import { getTopics } from './TopicHandler';
-import lock from '../../assets/lock-fill.svg';
-import globe from '../../assets/globe.svg';
+import {  getAvailableTopicsOfStudent } from './TopicHandler';
 import event from '../../assets/calendar-event.svg';
 import envelope from '../../assets/envelope.svg';
 import envelopeempty from '../../assets/envelope-empty.svg';
@@ -17,7 +15,7 @@ export default function Topics() {
     loadTopics();
   }, []);
   const loadTopics = async () => {
-    const array = await getTopics();
+    const array = await getAvailableTopicsOfStudent();
     setTopics(array[1]);
   };
   
@@ -64,7 +62,7 @@ export default function Topics() {
     <div className="groups">
      {topics.map((topic) => {
         return(
-            <div className="group">
+            <div className="group" key={topic.id}>
             <h3>{topic.name}</h3>
             <div className="members">
             <img class="mt-1" src={people} height="15px" alt="no logo"/>
