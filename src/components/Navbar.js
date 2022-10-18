@@ -1,14 +1,10 @@
 import React from "react";
 import keycloak from "../keycloak/keycloak";
 import { useNavigate } from 'react-router-dom';
-
-import logo from "../assets/logo.svg";
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
-import avatar from '../assets/avatar.svg'
 import "../styles/Navbar.scss";
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom'
+
 
 
 const LogOut = () => {
@@ -18,26 +14,20 @@ const LogOut = () => {
   nav('/')
 }
 
-const Groups = () => {
-  const nav = useNavigate();
-  nav('/groups')
-}
 
-export default function NavbarHeader(props) {
+
+export default function Navbar() {
 
   return (
     <div className="stickynavbar">
-    <navbar>
       <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
-        <img src={logo} height="60px" alt="no img"/>
+        <a class="nav-link m-4" href="/timeline"><h2>Alumni Network</h2></a>
         <Form className="d-flex m-4">
             <Form.Control
             type="Search"
             className="me-2"
+            placeholder="Search..."
             aria-label="Search"/>
-          <button id="search-button" type="button" class="btn btn-secondary">
-            <i class="fas fa-search">Search</i>
-          </button>
         </Form>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item active">
@@ -53,6 +43,16 @@ export default function NavbarHeader(props) {
           <li class="nav-item active">
             <a class="nav-link m-4" href="/groups">
               Groups
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link m-4" href="/topics">
+              Topics
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link m-4" href="/posts">
+              Posts
             </a>
           </li>
           <li class="m-4">
@@ -86,7 +86,7 @@ export default function NavbarHeader(props) {
 
       </nav>
 
-    </navbar>
+  
     </div>
   );
 }

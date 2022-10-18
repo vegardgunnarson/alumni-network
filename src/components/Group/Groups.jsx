@@ -1,25 +1,25 @@
 import React from "react";
-import "../styles/Groups.scss";
+import "../../styles/Groups.scss";
 import { useState, useEffect } from "react";
-import { getGroups } from "./GroupHandler";
-import lock from '../assets/lock-fill.svg';
-import globe from '../assets/globe.svg';
-import event from '../assets/calendar-event.svg';
-import envelope from '../assets/envelope.svg';
-import envelopeempty from '../assets/envelope-empty.svg';
+import {  getAvailableGroupsOfStudent } from "./GroupHandler";
+import lock from '../../assets/lock-fill.svg';
+import globe from '../../assets/globe.svg';
+import event from '../../assets/calendar-event.svg';
+import envelope from '../../assets/envelope.svg';
+import envelopeempty from '../../assets/envelope-empty.svg';
+import Creategroup from "./CreateGroup";
 
 export default function Groups() {
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
     loadGroups();
-  }, []);
+  },[]);
   const loadGroups = async () => {
-    const array = await getGroups();
+    const array = await getAvailableGroupsOfStudent();
     setGroups(array[1]);
   };
   
-
   function members(n){
     if (n===1){
         return n+" member";
@@ -55,20 +55,21 @@ export default function Groups() {
         return envelope;
     }
   }
-  function createGroup(){
-    return null;
-  }
+  
+
 
   return (
     <div>
     <div className="addgroup">
-        <button class="btn btn-secondary" onClick={createGroup()}>Create new group</button>
-        </div>
+        <h3>Groups</h3>
+        <div className="addbuttoncustom">
+    <Creategroup />
+    </div>
+    </div>
     <div className="groups">
-        
      {groups.map((group) => {
         return(
-            <div className="group">
+            <div className="group" key={group.id}>
             <h3>{group.name}</h3>
             <div className="members">
             <img class="mt-1" src={visibility(group._private)} height="15px" alt="no logo"/>
@@ -88,7 +89,6 @@ export default function Groups() {
             </div>
         )
      })}
-
     </div></div>
   );
 }

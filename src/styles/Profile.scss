@@ -1,6 +1,4 @@
-[contentEditable=true]:empty {
-    content: attr(data-text)
-  }
+
 
 .nameAndPicture{
     display: flex;
@@ -12,57 +10,61 @@
     resize: none;
     height: 35px;
     width: 350px;
-    border: solid 3px white;
+    border: solid 3px #f8f9fa;
     border-radius: 5px;
-    margin:30px;
+    margin:50px;
 }
 .image{
     width: 150px;
     height: 150px;
+    border-radius: 75px;
 }
 .status{
     resize: none;
     width: 500px;
     height: 30px;
-    border: solid 3px white;
+    border: solid 3px #f8f9fa;
     border-radius: 5px;
+    margin-top: 20px;
 }
-.status:empty::before {
-    content: attr(data-placeholder);
-}
+
 .status:hover{
     cursor: pointer;
-    border: solid 3px lightgrey;
+    border: solid 3px white;
+    background-color: white;
 }
 .bio{
     margin-top: 30px;
     width: 500px;
     height: 200px;  
     resize: none;
-    border: solid 3px white;
+    border: solid 3px #f8f9fa;
     border-radius: 5px;
 }
 .bio:hover{
     cursor: pointer;
-    border: solid 3px lightgrey;
+    border: solid 3px white;
+    background-color: white;
 }
 .funfact{
     resize: none;
     width: 500px;
     height: 30px;
-    border: solid 3px white;
+    border: solid 3px #f8f9fa;
     border-radius: 5px;
 }
 .funfact:hover{
     cursor: pointer;
-    border: solid 3px lightgrey;
+    border: solid 3px white;
+    background-color: white;
 }
 
 .profile{
     display: flex;
     justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    padding-top: 50px;
+    padding-bottom: 500px;
+    background-color:#f8f9fa;
 }
 .form {
     display: flex;

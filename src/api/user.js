@@ -13,7 +13,7 @@ export const createUser = async () => {
           headers: createHeaders(),
           body: JSON.stringify({
             token: keycloak.token,
-            name: keycloak.tokenParsed.name,
+            name: keycloak.tokenParsed.preffered_username,
           })
       });
 
