@@ -1,7 +1,6 @@
 import React from "react";
 import keycloak from "../keycloak/keycloak";
 import { useNavigate } from 'react-router-dom';
-import logo from "../assets/logo.svg";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import "../styles/Navbar.scss";
 import Form from 'react-bootstrap/Form';
@@ -17,13 +16,12 @@ const LogOut = () => {
 
 
 
-export default function NavbarHeader(props) {
+export default function Navbar() {
 
   return (
     <div className="stickynavbar">
-    <navbar>
       <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
-        <img src={logo} height="90px" alt="no img"/>
+        <a class="nav-link m-4" href="/timeline"><h2>Alumni Network</h2></a>
         <Form className="d-flex m-4">
             <Form.Control
             type="Search"
@@ -72,7 +70,7 @@ export default function NavbarHeader(props) {
        
       </nav>
 
-    </navbar>
+  
     </div>
   );
 }

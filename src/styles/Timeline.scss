@@ -44,6 +44,9 @@
     border-radius: 75px;
 
 }
+.profileimage:hover{
+    cursor: pointer;
+}
 .profilestatus{
     margin-top: -30px;
     color: rgb(149, 153, 149);
@@ -54,6 +57,8 @@
     font-size: smaller;
 }
 .post{
+    padding-top:25px;
+    padding-left:25px;
     background-color: white;
     width: 50% ;
     height: 500px;
@@ -131,6 +136,12 @@
     display: flex;
     justify-content: space-between;
     margin-top: -7px;
+}
+.topicsection:hover{
+    cursor: pointer;
+}
+.groupsection:hover{
+    cursor: pointer;
 }
 .topictitle{
     margin-bottom: 15px;

@@ -1,8 +1,9 @@
 import './styles/App.css';
 import React from 'react';
 import './custom.scss';
+import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import NavbarHeader from './components/Navbar';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LogIn from './components/LogIn';
 import Groups from './components/Group/Groups';
@@ -28,7 +29,7 @@ function App() {
   
   return (
     <div>
-      <NavbarHeader />
+      <Navbar />
       <Router >
           <Routes>
           <Route path='/admin' element={
@@ -44,7 +45,7 @@ function App() {
             } />
 
             <Route path="/" element={<LogIn />} />
-            
+
             <Route path="/timeline" element={
             <KeycloakRoute role={ ROLES.User }>
             <Timeline /> 
