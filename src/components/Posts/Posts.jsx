@@ -61,22 +61,28 @@ export default function Posts() {
     <Createpost />
     </div>
     </div>
-    <div className="posts">
+    <div className="groups">
      {posts.map((post) => {
         return(
-            <div className="post">
-            <h3>{post.sender_student}</h3>
-            <p>{post.timestamp}</p>
-             <p>{post.target_student}</p>
-             <p>{post.target_alumniEvent}</p>
-             <p>{post.target_alumniGroup}</p>
-             <p>{post.target_topic}</p>
-             <p>{post.reply_post}</p>
-             <p>{post.replies}</p>
-             <p>{post._private}</p>
+            <div className="group">
+            <h3>sender_student: {post.sender_student}</h3>
+          
+            
+          
+            <p>content: {post.content}</p>
+            
+            
+             
+             <h4>target_student: {post.target_student}</h4>
+             <p>target_alumniEvent: {post.target_alumniEvent}</p>
+             <p>target_alumniGroup: {post.target_alumniGroup}</p>
+             <p>target_topic: {post.target_topic}</p>
+             <p>reply_post: {post.reply_post}</p>
+             <p>replies: {post.replies}</p>
+             <p>private: {post._private}</p>
                 
-                
-            <p>{post.content}</p>
+             <p>date: {post.timestamp}</p>
+            
             <div className="posts">
             </div>
 
