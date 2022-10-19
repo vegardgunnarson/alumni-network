@@ -9,7 +9,6 @@ import Creategroup from "./Group/CreateGroup";
 import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
 import { currentuser } from '../components/UserHandler';
-import Button from 'react-bootstrap/Button';
 
 
 export default function Timeline() {
