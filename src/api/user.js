@@ -1,9 +1,10 @@
 import axios, { createHeaders } from ".";
+import { currentuser, setCurrentUser } from "../components/UserHandler";
 import keycloak from "../keycloak/keycloak";
 
 const apiUrl = process.env.REACT_APP_API_URL+"student";
 
-export const createUser = async () => {
+export const createUser = async (userId) => {
   //post new user with username
   //alert("hei")
   try {
@@ -12,8 +13,8 @@ export const createUser = async () => {
           method: 'POST',
           headers: createHeaders(),
           body: JSON.stringify({
-            token: keycloak.token,
-            name: keycloak.tokenParsed.preffered_username,
+            token: keycloak.tokenParsed.preferred_username,
+            name: keycloak.tokenParsed.name
           })
       });
 
@@ -22,9 +23,27 @@ export const createUser = async () => {
       }
       const data = await response.json();
       //return user object
-      return data;
+      return [null, data];
 
   } catch (error) {
-      return error.message;
+      return [error, null];
   }
+}
+
+
+export const checkDbForUser = async ()  => {
+  try {
+    const userId = await fetch(`${apiUrl}`).then((response) => response.json()).then((user) => {
+      return user.length+1
+    })
+    console.log(userId)
+    createUser(userId)
+
+
+}
+
+catch (error) {
+    console.log(error);
+return [error, null]
+}
 }
