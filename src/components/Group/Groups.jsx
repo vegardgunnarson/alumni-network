@@ -8,18 +8,48 @@ import event from '../../assets/calendar-event.svg';
 import envelope from '../../assets/envelope.svg';
 import envelopeempty from '../../assets/envelope-empty.svg';
 import Creategroup from "./CreateGroup";
+import { currentuser } from "../UserHandler";
+import axios, { createHeaders } from "../../api/index";
 
 export default function Groups() {
   const [groups, setGroups] = useState([]);
+  const [update, setUpdate] = useState(0);
+  
 
   useEffect(() => {
     loadGroups();
-  },[]);
+  },[update]);
+
+  const reload = (input) => {
+    setUpdate(update+input)
+  };
   const loadGroups = async () => {
     const array = await getAvailableGroupsOfStudent();
     setGroups(array[1]);
   };
-  
+
+
+  const joinGroup = async (n) => {
+    
+    try {
+      console.log(n)
+      console.log(currentuser.id)
+      const response = await fetch(`https://alumni-case-database.herokuapp.com/api/v1/student/${currentuser.id}/addGroupToStudent`, {
+          method: 'PUT',
+          headers: createHeaders(),
+          body: n
+      });
+      setUpdate(update+1);
+      const data = await response.json();
+      //return user object
+      
+      return data;
+
+  } catch (error) {
+      return error.message;
+  }
+} 
+
   function members(n){
     if (n===1){
         return n+" member";
@@ -63,7 +93,7 @@ export default function Groups() {
     <div className="addgroup">
         <h3>Groups</h3>
         <div className="addbuttoncustom">
-    <Creategroup />
+    <Creategroup setUpdate={reload}/>
     </div>
     </div>
     <div className="groups">
@@ -85,7 +115,7 @@ export default function Groups() {
             <p>{events(group.alumniEvents.length)}</p>
             
             </div>
-            <button class="btn btn-secondary btn-sml">Join</button>
+            <button class="btn btn-secondary btn-sml" onClick={() => joinGroup(group.id)}>Join</button>
             </div>
         )
      })}

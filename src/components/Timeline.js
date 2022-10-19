@@ -8,7 +8,6 @@ import { getPosts } from "./Posts/PostHandler";
 import Creategroup from "./Group/CreateGroup";
 import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
-import Createpost from "./Posts/CreatePost";
 import { currentuser } from '../components/UserHandler';
 import Button from 'react-bootstrap/Button';
 
@@ -102,10 +101,8 @@ export default function Timeline() {
             <h3>{display.name}</h3>
             {display.description}
             <div>
-            <button class="btn btn-secondary mt-4">Create post... </button>
+            <button type="button" class="btn btn-light mt-4">Create post... </button>
             </div>
-
-
 
         </div>
         <div className="dashevent">
@@ -149,6 +146,16 @@ export default function Timeline() {
         })}
         </div>
         <div className="timeline">
+        {posts.map((post) => {
+        return(
+            <div className="timelineposts">
+                <p>{post.content}</p>
+            <p className="postsinfo">By {post.sender_student} &nbsp; {post.timestamp.slice(0,10)} &nbsp;{post.timestamp.slice(11,16)}</p>
+             <p>{post.target_alumniEvent}{post.target_topic}{post.target_alumniGroup}</p>
+            </div>
+        )
+     })}
+            
 
         </div>
         <div className="underevent"></div>
