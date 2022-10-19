@@ -143,7 +143,7 @@ export default function Timeline() {
             {topics.map((topic) => {
         return(
             <div className="topicsection" key={topic.id}>
-            <p onClick={() => handleDisplay(topic)}>{topic.name}</p>
+            <p onClick={() => handleDisplay(topic)}>{topic.name}</p><p>{topic.posts.length}</p>
             </div>
             )
         })}

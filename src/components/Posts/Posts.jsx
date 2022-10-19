@@ -10,8 +10,20 @@ import Createpost from "./CreatePost";
 import TimeAgo from "../../Features/posts/TimeAgo";
 import PostAuthor from "../../Features/posts/PostAuthor";
 
+import { getAvailablePostsOfGroup } from "./PostHandler";
+import { getTopicsOfStudent } from "../Topic/TopicHandler";
+import { getAvailablePostsOfTopic } from "./PostHandler";
+import { getAvailablePostsOfEvent } from "./PostHandler";
+
 export default function Posts() {
+
+  const [display, setDisplay] = useState();
+
+  function handleDisplay(newDisplay){
+    setDisplay(newDisplay);
+}
   const [posts, setPosts] = useState([]);
+  
 
   useEffect(() => {
     loadPosts();
@@ -20,6 +32,46 @@ export default function Posts() {
     const array = await getPosts();
     setPosts(array[1]);
   };
+/*
+  const [getPostsOfgroup, setPostsofgroup] = useState([]);
+
+  useEffect(() => {
+    loadPostsOfgroup();
+  }, []);
+  const loadPostsOfgroup  = async () => {
+    const array = await getAvailablePostsOfGroup();
+    setPostsofgroup(array[1]);
+  };
+
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    loadTopics();
+  }, []);
+  const loadTopics = async () => {
+    const array = await getTopicsOfStudent();
+    setTopics(array[1]);
+  };
+
+  const [PostsOfTopics, setPostsOfTopics] = useState([]);
+
+  useEffect(() => {
+    loadPostsOfTopics();
+  }, []);
+  const loadPostsOfTopics = async () => {
+    const array = await getAvailablePostsOfTopic();
+    setPostsOfTopics(array[1]);
+  };
+
+  const [PostsofEvent, setPostsofEvent] = useState([]);
+
+  useEffect(() => {
+    loadPostsofEvent();
+  }, []);
+  const loadPostsofEvent = async () => {
+    const array = await getAvailablePostsOfEvent();
+    setPostsofEvent(array[1]);
+  };*/
 
   function members(n){
     if (n===1){
@@ -80,6 +132,8 @@ export default function Posts() {
              <p>reply_post: {post.reply_post}</p>
              <p>replies: {post.replies}</p>
              <p>private: {post._private}</p>
+
+            
                 
             
              <TimeAgo timestamp={post.timestamp} />
@@ -89,8 +143,39 @@ export default function Posts() {
 
             </div>
         )
-     })}
+      })}
 
     </div></div>
   );
 }
+
+ /*  })}
+      {topics.map((topic) => {
+            return(
+            <div className="topicsection" key={topic.id}>
+            <p onClick={() => handleDisplay(topic)}>{topic.name}</p>
+            </div>
+            )
+            })}
+      {getPostsOfgroup.map((group) => {
+            return(
+            <div className="topicsection" key={group.id}>
+            <p onClick={() => handleDisplay(group)}>{group.name}</p>
+            </div>
+            )
+            })}
+      {PostsOfTopics.map((topic) => {
+            return(
+            <div className="topicsection" key={topic.id}>
+            <p onClick={() => handleDisplay(topic)}>{topic.name}</p>
+            </div>
+            )
+            })}
+      {PostsofEvent.map((event) => {
+            return(
+            <div className="topicsection" key={event.id}>
+            <p onClick={() => handleDisplay(event)}>{event.name}</p>
+            </div>
+            )
+            })}
+      */

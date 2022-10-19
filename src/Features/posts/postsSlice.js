@@ -2,7 +2,10 @@ import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
 import { sub } from 'date-fns';
 import axios from "axios";
 
-const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts';
+//fake API
+/*const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts';*/
+// DB
+const POSTS_URL = 'https://alumni-case-database.herokuapp.com/api/v1/post';
 
 const initialState = {
     posts: [],
