@@ -1,6 +1,7 @@
 import axios, { createHeaders } from ".";
 import { currentuser, setCurrentUser } from "../components/UserHandler";
 import keycloak from "../keycloak/keycloak";
+import { setUserId } from "../components/LogIn"
 
 const apiUrl = process.env.REACT_APP_API_URL+"student";
 
@@ -31,19 +32,9 @@ export const createUser = async (userId) => {
 }
 
 
-export const checkDbForUser = async ()  => {
-  try {
-    const userId = await fetch(`${apiUrl}`).then((response) => response.json()).then((user) => {
-      return user.length+1
+export const getId = async ()  => {
+  const userId = await fetch(`${apiUrl}`).then((response) => response.json()).then((user) => {
+    return user.length+1
     })
-    console.log(userId)
-    createUser(userId)
-
-
-}
-
-catch (error) {
-    console.log(error);
-return [error, null]
-}
+    return(userId)
 }

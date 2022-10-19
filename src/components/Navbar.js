@@ -10,7 +10,7 @@ import Form from 'react-bootstrap/Form';
 const LogOut = () => {
 
   const nav = useNavigate();
-
+  localStorage.clear();
   nav('/')
 }
 
