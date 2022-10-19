@@ -6,10 +6,14 @@ import "../../styles/Groups.scss";
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { currentuser } from "../UserHandler";
+
 
 const apiUrl = 'https://alumni-case-database.herokuapp.com/api/v1/alumnigroup'
 
-export default function Creategroup() {
+export default function Creategroup({setUpdate}) {
+
+//  const up = setUpdate;
 
     const [createGroup, setCreateGroup] = useState({
       title: "",
@@ -23,7 +27,7 @@ export default function Creategroup() {
 
     /**const response = await fetch(`${apiUrl}?token=${keycloak.token}`, { */
     try {
-          const response = await fetch(`${apiUrl}?token=abcdefghijklmnopqrstuvwxyz`, {
+          const response = await fetch(`${apiUrl}/${currentuser.id}/addAlumniGroup`, {
               method: 'POST',
               headers: createHeaders(),
               body: JSON.stringify({
@@ -47,7 +51,7 @@ export default function Creategroup() {
       setCreateGroup({ ...createGroup, [event.target.name]:event.target.value});
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       event.preventDefault();
       setCreateGroup({
       title: "",
@@ -55,8 +59,9 @@ export default function Creategroup() {
       _private: false
       })
       console.log(createGroup);
-      CreateGroupInDB();
+      await CreateGroupInDB();
       handleClose();
+      setUpdate(1);
     };
 
   

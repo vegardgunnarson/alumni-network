@@ -5,7 +5,9 @@ import axios, { createHeaders } from "../../api/index";
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { currentuser } from "../UserHandler";
 const apiUrl = 'https://alumni-case-database.herokuapp.com/api/v1/topics';
+
 
 export default function Createtopic() {
 
@@ -20,7 +22,7 @@ const CreateTopicInDB = async () => {
 
   /**const response = await fetch(`${apiUrl}?token=${keycloak.token}`, { */
   try {
-        const response = await fetch(`${apiUrl}?token=abcdefghijklmnopqrstuvwxyz`, {
+        const response = await fetch(`${apiUrl}/${currentuser.id}/addAlumniTopic`, {
             method: 'POST',
             headers: createHeaders(),
             body: JSON.stringify({
