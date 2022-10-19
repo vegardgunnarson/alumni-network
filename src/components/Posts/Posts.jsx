@@ -7,7 +7,8 @@ import globe from '../../assets/globe.svg';
 import envelope from '../../assets/envelope.svg';
 import envelopeempty from '../../assets/envelope-empty.svg';
 import Createpost from "./CreatePost";
-
+import TimeAgo from "../../Features/posts/TimeAgo";
+import PostAuthor from "../../Features/posts/PostAuthor";
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
@@ -80,8 +81,9 @@ export default function Posts() {
              <p>replies: {post.replies}</p>
              <p>private: {post._private}</p>
                 
-             <p>date: {post.timestamp}</p>
             
+             <TimeAgo timestamp={post.timestamp} />
+             <PostAuthor userId={post.userId} />
             <div className="posts">
             </div>
 
