@@ -15,12 +15,13 @@ export const TokenPage = () => {
         <>
         <h2>Token Page</h2>
         <pre>{ TokenString }</pre>
-        <p>{keycloak.tokenParsed.preferred_username}</p>
-        <p>{username}</p>
+        <p>{id}</p>
+        <p>{funfact}</p>
         <p>{picture}</p>
+        <p>{username}</p>
         <p>{bio}</p>
         <p>{name}</p>
-        <p>{id}</p>
+        <p>{status}</p>
         
 
 
