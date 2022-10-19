@@ -99,7 +99,7 @@ export default function Timeline() {
         
         <div className="post">
             <h3>{display.name}</h3>
-            {display.description}
+            <p className="groupdescription">{display.description}</p>
             <div>
             <button type="button" class="btn btn-light mt-4">Create post... </button>
             </div>
@@ -140,7 +140,7 @@ export default function Timeline() {
             {topics.map((topic) => {
         return(
             <div className="topicsection" key={topic.id}>
-            <p onClick={() => handleDisplay(topic)}>{topic.name}</p><p>{topic.posts.length}</p>
+            <p onClick={() => handleDisplay(topic)}>{topic.name}</p>
             </div>
             )
         })}
