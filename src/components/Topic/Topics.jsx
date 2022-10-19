@@ -1,24 +1,52 @@
 import React from "react";
 import "../../styles/Groups.scss";
 import { useState, useEffect } from "react";
-import {  getAvailableTopicsOfStudent } from './TopicHandler';
+import {  getAvailableTopicsOfStudent } from "./TopicHandler";
+import people from '../../assets/people-fill.svg';
 import event from '../../assets/calendar-event.svg';
 import envelope from '../../assets/envelope.svg';
 import envelopeempty from '../../assets/envelope-empty.svg';
 import Createtopic from "./CreateTopic";
-import people from '../../assets/people-fill.svg';
+import { currentuser } from "../UserHandler";
+import { createHeaders } from "../../api/index";
 
 export default function Topics() {
-  const [topics, setTopics] = useState([]);
+  const [groups, setGroups] = useState([]);
+  const [update, setUpdate] = useState(0);
+  
 
   useEffect(() => {
-    loadTopics();
-  }, []);
-  const loadTopics = async () => {
-    const array = await getAvailableTopicsOfStudent();
-    setTopics(array[1]);
+    loadGroups();
+  },[update]);
+
+  const reload = (input) => {
+    setUpdate(update+input)
   };
-  
+  const loadGroups = async () => {
+    const array = await getAvailableTopicsOfStudent();
+    setGroups(array[1]);
+  };
+
+  const joinTopic = async (n) => {
+    
+    try {
+      console.log(n)
+      console.log(currentuser.id)
+      const response = await fetch(`https://alumni-case-database.herokuapp.com/api/v1/student/${currentuser.id}/addTopicToStudent`, {
+          method: 'PUT',
+          headers: createHeaders(),
+          body: n
+      });
+      setUpdate(update+1);
+      const data = await response.json();
+      //return user object
+      
+      return data;
+
+  } catch (error) {
+      return error.message;
+  }
+} 
 
   function members(n){
     if (n===1){
@@ -56,33 +84,32 @@ export default function Topics() {
     <div className="addgroup">
         <h3>Topics</h3>
         <div className="addbuttoncustom">
-    <Createtopic />
+    <Createtopic setUpdate={reload}/>
     </div>
     </div>
     <div className="groups">
-     {topics.map((topic) => {
+     {groups.map((group) => {
         return(
-            <div className="group" key={topic.id}>
-            <h3>{topic.name}</h3>
+            <div className="group" key={group.id}>
+            <h3>{group.name}</h3>
             <div className="members">
             <img class="mt-1" src={people} height="15px" alt="no logo"/>
-            <p>{members(topic.students.length)}</p>
+            <p>{members(group.students.length)}</p>
             </div>
-            <p>{topic.description}</p>
+            <p>{group.description}</p>
             <div className="posts">
-            <img src={getEnvelope(topic.posts.length)} class="mt-1" height="15px" alt="no logo"/>
-            <p>{posts(topic.posts.length)}</p>
+            <img src={getEnvelope(group.posts.length)} class="mt-1" height="15px" alt="no logo"/>
+            <p>{posts(group.posts.length)}</p>
             </div>
             <div className="events">
             <img src={event} class="mt-1" height="15px" alt="no logo"/>
-            <p>{events(topic.alumniEvents.length)}</p>
+            <p>{events(group.alumniEvents.length)}</p>
             
             </div>
-            <button class="btn btn-secondary btn-sml">Join</button>
+            <button class="btn btn-secondary btn-sml" onClick={() => joinTopic(group.id)}>Join</button>
             </div>
         )
      })}
-
     </div></div>
   );
 }

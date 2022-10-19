@@ -32,7 +32,7 @@ export const CreatePost = (props) => {
         };
 
     dispatch(createPostAction(postData, props.history));
-  
+
 
     }
 

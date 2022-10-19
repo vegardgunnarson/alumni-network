@@ -96,5 +96,5 @@ const apiUrl = process.env.REACT_APP_API_URL
 }
 
 export const currentuser = {
-    id:localStorage.getItem("user_id")
+    id:5
 };

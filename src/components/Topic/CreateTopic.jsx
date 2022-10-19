@@ -9,7 +9,7 @@ import { currentuser } from "../UserHandler";
 const apiUrl = 'https://alumni-case-database.herokuapp.com/api/v1/topics';
 
 
-export default function Createtopic() {
+export default function Createtopic({setUpdate}) {
 
   
   const [createTopic, setCreateTopic] = useState({
@@ -22,7 +22,7 @@ const CreateTopicInDB = async () => {
 
   /**const response = await fetch(`${apiUrl}?token=${keycloak.token}`, { */
   try {
-        const response = await fetch(`${apiUrl}/${currentuser.id}/addAlumniTopic`, {
+        const response = await fetch(`${apiUrl}/${currentuser.id}/addTopic`, {
             method: 'POST',
             headers: createHeaders(),
             body: JSON.stringify({
@@ -45,16 +45,16 @@ const CreateTopicInDB = async () => {
     setCreateTopic({ ...createTopic, [event.target.name]:event.target.value});
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setCreateTopic({
     title: "",
     description: "",
     _private: false
     })
-    console.log(createTopic);
-    CreateTopicInDB();
+    await CreateTopicInDB();
     handleClose();
+    setUpdate(1);
   };
 
 
