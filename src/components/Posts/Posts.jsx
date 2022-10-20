@@ -6,14 +6,10 @@ import lock from '../../assets/lock-fill.svg';
 import globe from '../../assets/globe.svg';
 import envelope from '../../assets/envelope.svg';
 import envelopeempty from '../../assets/envelope-empty.svg';
-import Createpost from "./CreatePost";
 import TimeAgo from "../../Features/posts/TimeAgo";
 import PostAuthor from "../../Features/posts/PostAuthor";
 
-import { getAvailablePostsOfGroup } from "./PostHandler";
-import { getTopicsOfStudent } from "../Topic/TopicHandler";
-import { getAvailablePostsOfTopic } from "./PostHandler";
-import { getAvailablePostsOfEvent } from "./PostHandler";
+
 
 export default function Posts() {
 
@@ -110,7 +106,6 @@ export default function Posts() {
     <div className="addgroup">
         <h3>Posts</h3>
         <div className="addbuttoncustom">
-    <Createpost />
     </div>
     </div>
     <div className="groups">

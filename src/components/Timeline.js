@@ -9,6 +9,7 @@ import Creategroup from "./Group/CreateGroup";
 import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
 import { currentuser } from '../components/UserHandler';
+import Createpost from "./CreatePost";
 
 
 export default function Timeline() {
@@ -21,15 +22,13 @@ export default function Timeline() {
 
     const [display, setDisplay] = useState(home);
     const [type, setType] = useState([]);
+    const [update, setUpdate] = useState(0);
 
-    function addPost(id) {
-        console.log("type: "+type+" id: "+id)
 
-    }
 
     function handleDisplay(newDisplay,type){
         setDisplay(newDisplay);
-        setType(type)
+        setType(type);
     }
   
   const [user, setUser] = useState([]);
@@ -49,23 +48,21 @@ export default function Timeline() {
 
   useEffect(() => {
     loadPosts();
-  }, []);
+  }, [update]);
   const loadPosts = async () => {
     const array = await getPosts();
     setPosts(array[1]);
   };
  
-
-
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [update]);
 
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
     loadGroups();
-  }, []);
+  }, [update]);
   const loadGroups = async () => {
     const array = await getGroupsOfStudent();
     setGroups(array[1]);
@@ -93,6 +90,9 @@ export default function Timeline() {
     console.log("leaving group")
 
   }
+  const reload = (input) => {
+    setUpdate(update+input)
+  };
 
   return (
     <div className="dashboard">
@@ -102,9 +102,9 @@ export default function Timeline() {
             src={user.picture}
             alt="could not be found"
             className="profileimage"
-            onClick={() => handleDisplay(home)}
+            onClick={() => handleDisplay(home,"addDMPost")}
           />
-          <h4 class="mt-1" onClick={() => handleDisplay(home)}>{user.name}</h4>
+          <h4 class="mt-1" onClick={() => handleDisplay(home,"addDMPost")}>{user.name}</h4>
           <br />
           <p className="profilestatus">{user.status}</p>
           <a className="profilelink" href="/Profile">Show profile</a>
@@ -114,7 +114,7 @@ export default function Timeline() {
             <h3>{display.name}</h3>
             <p className="groupdescription">{display.description}</p>
             <div>
-            <button onClick={() => addPost(display.id)} type="button" class="btn btn-light mt-4">Create post... </button>
+            <Createpost setUpdate={reload} type={type} id={currentuser.id}/>
             </div>
 
         </div>
@@ -142,7 +142,7 @@ export default function Timeline() {
             {groups.map((group) => {
         return(
             <div className="groupsection" key={group.id}>
-            <p onClick={() => handleDisplay(group,"group")}>{group.name}</p><p onClick={() => handleLeaveGroup(group.id)}>x</p>
+            <p onClick={() => handleDisplay(group,"addGroupPost")}>{group.name}</p><p onClick={() => handleLeaveGroup(group.id)}>x</p>
             </div>
             )
         })}
@@ -153,7 +153,7 @@ export default function Timeline() {
             {topics.map((topic) => {
         return(
             <div className="topicsection" key={topic.id}>
-            <p onClick={() => handleDisplay(topic,"topic")}>{topic.name}</p>
+            <p onClick={() => handleDisplay(topic,"addTopicPost")}>{topic.name}</p>
             </div>
             )
         })}

@@ -16,7 +16,7 @@ import { ROLES } from "./const/roles";
 import  Posts from './components/Posts/Posts';
 import { LoggedInRoute } from './hoc/LoggedInRoute';
 import { RoleCheckRoute } from './hoc/RoleCheckRoute';
-import { CreatePost } from './components/CreatePost';
+import CreatePost from './components/CreatePost';
 import { SettingsPage } from "./components/SettingsPage";
 import Events from './components/Event/Events.jsx';
 import PostsList from './Features/posts/PostsList';

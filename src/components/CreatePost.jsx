@@ -1,104 +1,101 @@
-
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import createHeaders from "../api/index";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+const url = "https://alumni-case-database.herokuapp.com/api/v1/";
 
-import { createPostAction } from "../store/NotUsed/actions/PostActions";
+export default function Createpost({ setUpdate, type, id }) {
+  const [createPost, setCreatePost] = useState({
+    title: "",
+    content: "",
+  });
 
+  const CreatePostInDB = async () => {
+    try {
+      const response = await fetch(`${url}/post/${id}/${type}`, {
+        method: "POST",
+        headers: createHeaders(),
+        body: JSON.stringify({
+          title: createPost.title,
+          content: createPost.content,
+        }),
+      });
 
-
-import "../styles/Timeline.scss";
-
-
-
-
-
-export const CreatePost = (props) => {
-
-    
-    const [title, setTitle] = useState('');
-    const [showTitle, setShowTitle] = useState(false);
-    const [description, setdescription] = useState ('');
-    const [showDescription, setShowDescription ]= useState (false);
-    
-
-    const dispatch = useDispatch();
-
-    function onCreatePost(e){
-      e.preventDefault();
-        const postData= {
-          title,
-          description,
-        };
-
-    dispatch(createPostAction(postData, props.history));
-
-
+      const data = await response.json();
+      handleClose();
+      return data;
+    } catch (error) {
+      return error.message;
     }
+  };
 
-    function handleSubmit(e) {
-      e.preventDefault();
-      setShowTitle(true);
-    }
+  const handleChange = (event) => {
+    setCreatePost({ ...createPost, [event.target.name]: event.target.value });
+  };
 
-    function handlePreview(e) {
-        e.preventDefault();
-        setShowDescription(true);
-      }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setCreatePost({
+      title: "",
+      content: "",
+    });
+    await CreatePostInDB();
+    handleClose();
+    setUpdate(1);
+  };
 
-    return(      
-     
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-      <div className="flex align-items-center justify-between my-4">
-        <div>
-          <h2>Create Post
-          </h2>
-          <div>
-            
-          </div>
-        </div>
-
-      <form onSubmit={onCreatePost}>
-        <label>Title:</label>
-        <input type="text" className="border border-gray-500" name="Title" value={title} 
-          onChange={(e) => setTitle(e.target.value)} />
-        <button onClick={handleSubmit} type="submit">
-          Submit
-        </button>
-
-        <label>Description</label>
-          <div>
-            <textarea className="border border-gray-500" name="Title" />
-          </div>
-          <input
-          type="submit"
-          className="px 2 py-1 bg-red-500 text-white"
-          value={description}
-          onChange={(e) => 
-            setdescription(e.target.value) } 
-            />
- 
-        <button onClick={onCreatePost} type="submit">
-          create
-        </button>
-
-        <button onClick={handlePreview} type="submit">
-          preview
-        </button>
-      </form>
-      {/* Checks the condition if showName is 
-      true, which will be true only if 
-      we click on the submit button */
-    
-    }
-      {showTitle === true && 
-      <p>You have submitted. Title: {title}</p>}
-        {showDescription === true && 
-      <p>Your preview: {description}</p>}
-     </div>
-      
-    )
-           
-    }
-   
+  return (
+    <div>
+      <button onClick={handleShow} type="button" class="btn btn-light mt-4">
+        Create post...
+      </button>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Create new post</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                name="title"
+                value={createPost.title}
+                autoFocus
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Content</Form.Label>
+              <Form.Control
+                as="textarea"
+                value={createPost.content}
+                onChange={handleChange}
+                name="content"
+                rows={3}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="secondary" onClick={handleSubmit}>
+            Create post
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
+}
