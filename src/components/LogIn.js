@@ -10,7 +10,7 @@ const GetLoggedIn = () => {
     const nav = useNavigate();
 
     useEffect( () => {
-
+        loggIn();
     }, []);
 
     const loggIn = async () => {
