@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { checkDbForUser } from "../api/user";
 import { useUser } from "../Context/UserContext";
-const runs = 0;
 
 const GetLoggedIn = () => {
     const { user, setUser } = useUser();

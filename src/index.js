@@ -8,6 +8,7 @@ import { initialize } from './keycloak/keycloak';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { fetchUsers} from './Features/users/usersSlice'
+import AppContext from './Context/AppContext';
 
 /*console.log('Dispatching action')
 store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
@@ -20,9 +21,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 initialize().then( () => {
   root.render(
     <React.StrictMode>
-      <Provider store={store}>
+      <AppContext>
         <App />
-      </Provider> 
+      </AppContext> 
     </React.StrictMode>
   );
 }).catch( () => {
