@@ -180,7 +180,7 @@ useEffect(() => {
         return(
             <div className="timelineposts">
                 <p>{post.content}</p>
-            <p className="postsinfo">By {post.sender_student} &nbsp; {post.timestamp.slice(0,10)} &nbsp;{post.timestamp.slice(11,16)}</p>
+            <p className="postsinfo">By {post.sender_student} &nbsp; {post.timestamp} &nbsp;{post.timestamp}</p>
              <p>{post.target_alumniEvent}{post.target_topic}{post.target_alumniGroup}</p>
             </div>
         )
