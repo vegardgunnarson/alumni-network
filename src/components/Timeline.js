@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import {  getGroupsOfStudent } from "./Group/GroupHandler";
 import {  getTopicsOfStudent} from "./Topic/TopicHandler";
 import { getEvents } from "./Event/EventHandler";
-import { getPosts } from "./Posts/PostHandler";
 import Creategroup from "./Group/CreateGroup";
 import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
@@ -18,7 +17,6 @@ export default function Timeline() {
         description: "Personal dashboard",
         id: currentuser.id
     }
-
 
     const [display, setDisplay] = useState(home);
     const [type, setType] = useState("addDMPost");
@@ -40,9 +38,22 @@ export default function Timeline() {
       .then((response) => response.json())
       .then((data) => setUser(data));
   };
+
+  const [posts, setPosts] = useState([]);
+
+
+  useEffect(() => {
+    loadPosts();
+  }, [update, display]);
+
+  const loadPosts = async () => {
+    const array = await getPosts();
+    setPosts(array[1]);
+  };
+  
   const getPosts = async () => {
     try{
-        const response = await fetch(`https://alumni-case-database.herokuapp.com/api/v1/${display.id}/${whichPosts}`);
+        const response = await fetch(`https://alumni-case-database.herokuapp.com/api/v1/post/${display.id}/${whichPosts}`);
         if(!response.ok){
             throw new Error("No posts found");
         }
@@ -53,15 +64,7 @@ export default function Timeline() {
         return[error.message, []];
     }
 }
-const [posts, setPosts] = useState([]);
 
-useEffect(() => {
-    loadPosts();
-  },[display]);
-  const loadPosts = async () => {
-    const array = await getPosts();
-    setPosts(array[1]);
-  };
  
   useEffect(() => {
     fetchData();
@@ -118,7 +121,7 @@ useEffect(() => {
             src={user.picture}
             alt="could not be found"
             className="profileimage"
-            onClick={() => handleDisplay(home,"addDMPost")}
+            onClick={() => handleDisplay(home,"addDMPost","viewAllPosts")}
           />
           <h4 class="mt-1" onClick={() => handleDisplay(home,"addDMPost","viewAllPosts")}>{user.name}</h4>
           <br />
@@ -130,7 +133,7 @@ useEffect(() => {
             <h3>{display.name}</h3>
             <p className="groupdescription">{display.description}</p>
             <div>
-            <Createpost setUpdate={reload} type={type} id={currentuser.id}/>
+            <Createpost setUpdate={reload} type={type} id={display.id}/>
             </div>
 
         </div>
@@ -159,7 +162,7 @@ useEffect(() => {
             {groups.map((group) => {
         return(
             <div className="groupsection" key={group.id}>
-            <p onClick={() => handleDisplay(group,"addGroupPost","viewTopicPosts")}>{group.name}</p><p onClick={() => handleLeaveGroup(group.id)}>x</p>
+            <p onClick={() => handleDisplay(group,"addGroupPost","viewGroupPosts")}>{group.name}</p><p onClick={() => handleLeaveGroup(group.id)}>x</p>
             </div>
             )
         })}
@@ -170,7 +173,7 @@ useEffect(() => {
             {topics.map((topic) => {
         return(
             <div className="topicsection" key={topic.id}>
-            <p onClick={() => handleDisplay(topic,"addTopicPost","viewGroupPosts")}>{topic.name}</p><p onClick={() => handleLeaveTopic(topic.id)}>x</p>
+            <p onClick={() => handleDisplay(topic,"addTopicPost","viewTopicPosts")}>{topic.name}</p><p onClick={() => handleLeaveTopic(topic.id)}>x</p>
             </div>
             )
         })}
@@ -180,13 +183,11 @@ useEffect(() => {
         return(
             <div className="timelineposts">
                 <p>{post.content}</p>
-            <p className="postsinfo">By {post.sender_student} &nbsp; {post.timestamp} &nbsp;{post.timestamp}</p>
-             <p>{post.target_alumniEvent}{post.target_topic}{post.target_alumniGroup}</p>
+            <p className="postsinfo">By {post.creator_student}</p>
+
             </div>
         )
      })}
-            
-
         </div>
         <div className="underevent"></div>
       </div>
