@@ -10,8 +10,6 @@ const GetLoggedIn = () => {
     const nav = useNavigate();
 
     useEffect( () => {
-    
-        loggIn();
 
     }, []);
 
@@ -25,6 +23,7 @@ const GetLoggedIn = () => {
                 setUser(loggedInUser[1])
                 console.log("loggedInUser")
                 nav('/timeline')
+
             }
 
     }

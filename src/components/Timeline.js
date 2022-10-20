@@ -16,19 +16,21 @@ export default function Timeline() {
     const home={
         name: "Dashboard",
         description: "Personal dashboard",
-        id: 0
+        id: currentuser.id
     }
 
 
     const [display, setDisplay] = useState(home);
-    const [type, setType] = useState([]);
+    const [type, setType] = useState("addDMPost");
+    const [whichPosts, setWhichPosts] = useState("viewAllPosts");
     const [update, setUpdate] = useState(0);
 
 
 
-    function handleDisplay(newDisplay,type){
+    function handleDisplay(newDisplay,type,posts){
         setDisplay(newDisplay);
         setType(type);
+        setWhichPosts(posts);
     }
   
   const [user, setUser] = useState([]);
@@ -38,17 +40,24 @@ export default function Timeline() {
       .then((response) => response.json())
       .then((data) => setUser(data));
   };
+  const getPosts = async () => {
+    try{
+        const response = await fetch(`https://alumni-case-database.herokuapp.com/api/v1/${display.id}/${whichPosts}`);
+        if(!response.ok){
+            throw new Error("No posts found");
+        }
+        const data = await response.json();
+        return [null,data]
 
+    }catch(error){
+        return[error.message, []];
+    }
+}
+const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
+useEffect(() => {
     loadPosts();
-  }, [update]);
+  },[display]);
   const loadPosts = async () => {
     const array = await getPosts();
     setPosts(array[1]);
@@ -71,7 +80,7 @@ export default function Timeline() {
 
   useEffect(() => {
     loadTopics();
-  }, []);
+  }, [update]);
   const loadTopics = async () => {
     const array = await getTopicsOfStudent();
     setTopics(array[1]);
@@ -80,13 +89,20 @@ export default function Timeline() {
 
   useEffect(() => {
     loadEvents();
-  }, []);
+  }, [update]);
   const loadEvents = async () => {
     const array = await getEvents();
     setEvents(array[1]);
   };
 
   function handleLeaveGroup(id) {
+    console.log("leaving group")
+  }
+  function handleLeaveTopic(id) {
+    console.log("leaving group")
+
+  }
+  function handleLeaveEvent(id) {
     console.log("leaving group")
 
   }
@@ -104,7 +120,7 @@ export default function Timeline() {
             className="profileimage"
             onClick={() => handleDisplay(home,"addDMPost")}
           />
-          <h4 class="mt-1" onClick={() => handleDisplay(home,"addDMPost")}>{user.name}</h4>
+          <h4 class="mt-1" onClick={() => handleDisplay(home,"addDMPost","viewAllPosts")}>{user.name}</h4>
           <br />
           <p className="profilestatus">{user.status}</p>
           <a className="profilelink" href="/Profile">Show profile</a>
@@ -126,7 +142,8 @@ export default function Timeline() {
         return(
             <div className="eventsection" key={event.id}>
             <p className="eventtime">{event.start_time.slice(0,10)} &nbsp; {event.start_time.slice(11,16)}</p>
-            <p className="eventname">{event.name}</p><br/>
+            <div className="eventnameandx">
+            <p className="eventname" onClick={() => handleDisplay(event,"addEventPost","viewEventPosts")}>{event.name}</p><p className="xevent" onClick={() => handleLeaveEvent(event.id)}>x</p></div><br/>
             <p className="eventdesc">{event.description}</p>
             </div>
             )
@@ -142,7 +159,7 @@ export default function Timeline() {
             {groups.map((group) => {
         return(
             <div className="groupsection" key={group.id}>
-            <p onClick={() => handleDisplay(group,"addGroupPost")}>{group.name}</p><p onClick={() => handleLeaveGroup(group.id)}>x</p>
+            <p onClick={() => handleDisplay(group,"addGroupPost","viewTopicPosts")}>{group.name}</p><p onClick={() => handleLeaveGroup(group.id)}>x</p>
             </div>
             )
         })}
@@ -153,7 +170,7 @@ export default function Timeline() {
             {topics.map((topic) => {
         return(
             <div className="topicsection" key={topic.id}>
-            <p onClick={() => handleDisplay(topic,"addTopicPost")}>{topic.name}</p>
+            <p onClick={() => handleDisplay(topic,"addTopicPost","viewGroupPosts")}>{topic.name}</p><p onClick={() => handleLeaveTopic(topic.id)}>x</p>
             </div>
             )
         })}

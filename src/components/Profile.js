@@ -34,6 +34,7 @@ export default function Profile() {
         setUpdateuser({status:user.status, bio:user.bio, fun_fact:user.fun_fact})
     }
     
+    
 
   return (
     <div class="mt-auto py-3 text-center text-lg-start" className="profile">

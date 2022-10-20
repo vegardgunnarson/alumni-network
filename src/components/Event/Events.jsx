@@ -7,9 +7,12 @@ import globe from '../../assets/globe.svg';
 import envelope from '../../assets/envelope.svg';
 import envelopeempty from '../../assets/envelope-empty.svg';
 import Createevent from "./CreateEvent";
+import { currentuser } from "../UserHandler";
+import { createHeaders } from "../../api";
 
 export default function Events() {
   const [events, setEvents] = useState([]);
+  const [update, setUpdate] = useState(0);
 
   useEffect(() => {
     loadEvents();
@@ -17,6 +20,9 @@ export default function Events() {
   const loadEvents = async () => {
     const array = await getEvents();
     setEvents(array[1]);
+  };
+  const reload = (input) => {
+    setUpdate(update+input)
   };
 
   function people(n){
@@ -50,13 +56,34 @@ export default function Events() {
     }
   }
 
+  const joinEvent = async (n) => {
+    
+    try {
+      console.log(n)
+      console.log(currentuser.id)
+      const response = await fetch(`https://alumni-case-database.herokuapp.com/api/v1/student/${currentuser.id}/addEventToStudent`, {
+          method: 'PUT',
+          headers: createHeaders(),
+          body: n
+      });
+      setUpdate(update+1);
+      const data = await response.json();
+      //return user object
+      
+      return data;
+
+  } catch (error) {
+      return error.message;
+  }
+} 
+
     
   return (
     <div className="eventcontent">
     <div className="addgroup">
         <h3>Events</h3>
         <div className="addbuttoncustom">
-    <Createevent />
+    <Createevent setUpdate={reload}/>
     </div>
     </div>
     <div className="eventspage">
@@ -82,7 +109,7 @@ export default function Events() {
             <p></p>
             </div>
             <div>
-            <button class="btn btn-secondary">Accept</button>
+            <button class="btn btn-secondary"  onClick={() => joinEvent(event.id)}>Accept</button>
             </div>
             </div> 
         )
