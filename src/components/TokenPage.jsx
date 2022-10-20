@@ -2,7 +2,7 @@ import keycloak from "../keycloak/keycloak"
 
 export const TokenPage = () => {
     const TokenString = keycloak.token
-    const id = localStorage.getItem("userObject")
+    const id = localStorage.getItem("user_id")
     const username = localStorage.getItem("user_username")
     const name = localStorage.getItem("name")
     const funfact = localStorage.getItem("user_funfact")

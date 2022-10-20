@@ -1,7 +1,7 @@
 import React from "react";
 import keycloak from "../../keycloak/keycloak";
 import { useEffect, useState } from 'react';
-import axios, { createHeaders } from "../../api/index";
+import { createHeaders } from "../../api/index";
 import "../../styles/Groups.scss";
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -13,7 +13,7 @@ const apiUrl = 'https://alumni-case-database.herokuapp.com/api/v1/alumnigroup'
 
 export default function Creategroup({setUpdate}) {
 
-//  const up = setUpdate;
+
 
     const [createGroup, setCreateGroup] = useState({
       title: "",
@@ -25,7 +25,7 @@ export default function Creategroup({setUpdate}) {
   const CreateGroupInDB = async () => {
 
 
-    /**const response = await fetch(`${apiUrl}?token=${keycloak.token}`, { */
+  
     try {
           const response = await fetch(`${apiUrl}/${currentuser.id}/addAlumniGroup`, {
               method: 'POST',
@@ -58,7 +58,7 @@ export default function Creategroup({setUpdate}) {
       description: "",
       _private: false
       })
-      console.log(createGroup);
+  
       await CreateGroupInDB();
       handleClose();
       setUpdate(1);

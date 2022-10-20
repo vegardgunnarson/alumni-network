@@ -9,19 +9,27 @@ import Creategroup from "./Group/CreateGroup";
 import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
 import { currentuser } from '../components/UserHandler';
-import Button from 'react-bootstrap/Button';
 
 
 export default function Timeline() {
     const home={
         name: "Dashboard",
-        description: "Personal dashboard"
+        description: "Personal dashboard",
+        id: 0
     }
 
-    const [display, setDisplay] = useState(home);
 
-    function handleDisplay(newDisplay){
+    const [display, setDisplay] = useState(home);
+    const [type, setType] = useState([]);
+
+    function addPost(id) {
+        console.log("type: "+type+" id: "+id)
+
+    }
+
+    function handleDisplay(newDisplay,type){
         setDisplay(newDisplay);
+        setType(type)
     }
   
   const [user, setUser] = useState([]);
@@ -81,6 +89,11 @@ export default function Timeline() {
     setEvents(array[1]);
   };
 
+  function handleLeaveGroup(id) {
+    console.log("leaving group")
+
+  }
+
   return (
     <div className="dashboard">
       <div className="topdashboard">
@@ -91,7 +104,7 @@ export default function Timeline() {
             className="profileimage"
             onClick={() => handleDisplay(home)}
           />
-          <h3 class="mt-1" onClick={() => handleDisplay(home)}>{user.name}</h3>
+          <h4 class="mt-1" onClick={() => handleDisplay(home)}>{user.name}</h4>
           <br />
           <p className="profilestatus">{user.status}</p>
           <a className="profilelink" href="/Profile">Show profile</a>
@@ -101,7 +114,7 @@ export default function Timeline() {
             <h3>{display.name}</h3>
             <p className="groupdescription">{display.description}</p>
             <div>
-            <button type="button" class="btn btn-light mt-4">Create post... </button>
+            <button onClick={() => addPost(display.id)} type="button" class="btn btn-light mt-4">Create post... </button>
             </div>
 
         </div>
@@ -129,7 +142,7 @@ export default function Timeline() {
             {groups.map((group) => {
         return(
             <div className="groupsection" key={group.id}>
-            <p onClick={() => handleDisplay(group)}>{group.name}</p><p>{group.posts.length}</p>
+            <p onClick={() => handleDisplay(group,"group")}>{group.name}</p><p onClick={() => handleLeaveGroup(group.id)}>x</p>
             </div>
             )
         })}
@@ -140,7 +153,7 @@ export default function Timeline() {
             {topics.map((topic) => {
         return(
             <div className="topicsection" key={topic.id}>
-            <p onClick={() => handleDisplay(topic)}>{topic.name}</p>
+            <p onClick={() => handleDisplay(topic,"topic")}>{topic.name}</p>
             </div>
             )
         })}
