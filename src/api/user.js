@@ -33,8 +33,14 @@ export const checkDbForUser = async () => {
   try {
       const username = keycloak.tokenParsed.preferred_username;
       const response = await fetch(`${apiUrl}/${username}`)
+      console.log(response)
       if (!response.ok){
-        return await createUser(username)
+        await createUser(username);
+        const response = await fetch(`${apiUrl}/${username}`)
+        const data = await response.json();
+        console.log(data)
+        return [null, data]
+
 
       } else {
         const data = await response.json();
