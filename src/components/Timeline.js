@@ -184,7 +184,7 @@ export default function Timeline() {
             <div className="timelineposts">
                 <p>{post.content}</p>
             <p className="postsinfo">By {post.creator_student}</p>
-             
+
             </div>
         )
      })}
