@@ -56,6 +56,7 @@ export default function Navbar() {
               <NavDropdown.Item href="/Admin">Admin</NavDropdown.Item>
               <NavDropdown.Item href="/Token">Token</NavDropdown.Item>
               <NavDropdown.Item href="/PostsList">Postslist</NavDropdown.Item>
+              <NavDropdown.Item href="/Calendar">Calendar</NavDropdown.Item>
               <NavDropdown.Item onClick={() => keycloak.logout() && LogOut()}>
                 Log out
               </NavDropdown.Item>

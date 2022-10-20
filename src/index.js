@@ -8,6 +8,7 @@ import { initialize } from './keycloak/keycloak';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { fetchUsers} from './Features/users/usersSlice'
+import ReactCalendar from './components/calendar/Calendar';
 
 /*console.log('Dispatching action')
 store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
