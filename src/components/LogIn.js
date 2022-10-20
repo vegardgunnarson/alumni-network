@@ -18,7 +18,6 @@ const GetLoggedIn = () => {
 
     useEffect( () => {
         logginmukk();
-
     }, []);
 
     useEffect(() => {
@@ -35,12 +34,12 @@ const GetLoggedIn = () => {
             const user = await fetchData(userUrl);
 
             if (user.id !== 0){
-                localStorage.setItem("user_id", user.id)
+                localStorage.setItem("user_id",id)
                 localStorage.setItem("user_username", user.token)
                 localStorage.setItem("user_name", user.name)
                 localStorage.setItem("user_bio", user.bio)
                 localStorage.setItem("user_status", user.status)
-                localStorage.setItem("user_funfact", user.funfact)
+                localStorage.setItem("user_funfact", user.fun_fact)
                 localStorage.setItem("user_picture", user.picture)
             }
 

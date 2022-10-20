@@ -6,20 +6,23 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 const url = "https://alumni-case-database.herokuapp.com/api/v1/";
 
-export default function Createpost({ setUpdate, type, id }) {
+
+export default function Createpost({setUpdate, type, id}) {
+
+
   const [createPost, setCreatePost] = useState({
     title: "",
-    content: "",
+    content: ""
   });
 
   const CreatePostInDB = async () => {
     try {
-      const response = await fetch(`${url}/post/${id}/${type}`, {
+      const response = await fetch(`${url}"/post/"${id}"/"${type}`, {
         method: "POST",
         headers: createHeaders(),
         body: JSON.stringify({
           title: createPost.title,
-          content: createPost.content,
+          content: createPost.content
         }),
       });
 
@@ -39,7 +42,7 @@ export default function Createpost({ setUpdate, type, id }) {
     event.preventDefault();
     setCreatePost({
       title: "",
-      content: "",
+      content: ""
     });
     await CreatePostInDB();
     handleClose();
@@ -97,5 +100,4 @@ export default function Createpost({ setUpdate, type, id }) {
         </Modal.Footer>
       </Modal>
     </div>
-  );
-}
+  );}
