@@ -22,7 +22,7 @@ import Events from './components/Event/Events.jsx';
 import PostsList from './Features/posts/PostsList';
 import AddPostForm from './Features/posts/AddPostForm';
 import Topics from './components/Topic/Topics';
-
+import Calendar from './components/Calander/Calander';
 
 
 function App() {
@@ -88,6 +88,12 @@ function App() {
             <Route path="/topics" element={
             <KeycloakRoute role={ ROLES.User }>
             <Topics /> 
+            </KeycloakRoute>
+            }/>
+
+            <Route path="/calendar" element={
+            <KeycloakRoute role={ ROLES.User }>
+            <Calendar /> 
             </KeycloakRoute>
             }/>
            
