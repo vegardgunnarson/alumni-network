@@ -1,5 +1,6 @@
 
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer, dateFnsLocalizer } from "react-big-calendar";
+import moment from "moment";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import format from "date-fns/format";
 import parse from "date-fns/parse";
@@ -25,15 +26,12 @@ const locales = {
     "en-US": require("date-fns/locale/en-US")
 }
 
-const localizer = dateFnsLocalizer ({
-    format,
-    parse,
-    startOfWeek,
-    
-    getWeek,
-    getDay,
-    locales
-})
+const localizer = momentLocalizer(moment);
+
+const myEventList = [
+    {start_time: new Date(), end_time:new Date(), name:"special event" }
+];
+
 /*
 const events = [
     {
@@ -61,7 +59,51 @@ const events = [
 
 
 function ReactCalendar () {
-    const [events, setEvents] = useState([]);
+    const[date, setDate] = useState(new Date());
+
+    const onChange = date => {
+        setDate(date)
+    }
+    
+    
+
+    
+
+    const [newEvent, setNewEvent] = useState({title:"", start:"", end: ""})
+    const [allEvents, setAllEvents] = useState()
+
+    function handleAddEvent() {
+        setAllEvents({...allEvents, newEvent})
+    }
+
+    return (
+    <div>
+        <div className='reactCalendar'>
+            <h1>calendar</h1> 
+            
+          <Calendar 
+            localizer={localizer} 
+            events={myEventList}
+            startAccessor="start_time"
+            endAccessor="end_time"
+            style={{height:500, margin: "50px"}} 
+          />
+        </div>
+        
+       
+
+   
+    </div>
+    
+    );
+    
+}
+
+
+export default ReactCalendar
+
+/*
+const [events, setEvents] = useState([]);
     function people(n){
         if (n===1){
             return n+" attendee";
@@ -101,38 +143,9 @@ function ReactCalendar () {
       const array = await getEvents();
       setEvents(array[1]);
     };
-
-    const [newEvent, setNewEvent] = useState({title:"", start:"", end: ""})
-    const [allEvents, setAllEvents] = useState(events)
-
-    function handleAddEvent() {
-        setAllEvents({...allEvents, newEvent})
-    }
-
-    return (
-    <div>
-        <div className='reactCalendar'>
-            <h1>calendar</h1> 
-            
-          <Calendar 
-            localizer={localizer} 
-            events={allEvents} 
-            startAccessor="start"
-            endAccessor="end"
-            style={{height:500, margin: "50px"}} 
-          />
-        </div>
-        
-        <div className="eventcontent">
-    <div className="addgroup">
-        <h3>Events</h3>
-        <div className="addbuttoncustom">
-    <Createevent />
-    </div>
-    </div>
-    <div className="eventspage">
-
-     {events.map((event) => {
+    /*
+    /*
+  {events.map((event) => {
       
         return(
             <div className="event" key={event.id}>
@@ -158,15 +171,19 @@ function ReactCalendar () {
             </div> 
         )
      })}
-    </div>
-    </div>
-    </div>
-    );
-    
-}
+     /*
 
 
-export default ReactCalendar
+/*
+<div className="eventcontent">
+<div className="addgroup">
+    <h3>Events</h3>
+    <div className="addbuttoncustom">
+<Createevent />
+</div>
+</div>
+<div className="eventspage">
+*/
 
 /*
 const ReactCalendar = () => {
