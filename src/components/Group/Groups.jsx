@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/Groups.scss";
 import { useState, useEffect } from "react";
-import {  getAvailableGroupsOfStudent } from "./GroupHandler";
+import {  getAvailableGroupsOfStudent, getGroupsOfStudent } from "./GroupHandler";
 import lock from '../../assets/lock-fill.svg';
 import globe from '../../assets/globe.svg';
 import event from '../../assets/calendar-event.svg';
@@ -15,6 +15,7 @@ import axios, { createHeaders } from "../../api/index";
 export default function Groups() {
   const currentuser = useSelector(selectUser);
   const [groups, setGroups] = useState([]);
+  const [availableGroups, setAvailableGroups] = useState([]);
   const [update, setUpdate] = useState(0);
   
 
@@ -27,7 +28,9 @@ export default function Groups() {
   };
   const loadGroups = async () => {
     const array = await getAvailableGroupsOfStudent(currentuser);
+    const arraya = await getGroupsOfStudent(currentuser);
     setGroups(array[1]);
+    setAvailableGroups(arraya[1]);
   };
 
 
@@ -50,6 +53,26 @@ export default function Groups() {
   } catch (error) {
       return error.message;
   }
+} 
+const leaveGroup = async (n) => {
+    
+  try {
+    console.log(n)
+    console.log(currentuser.id)
+    const response = await fetch(`https://alumni-case-database.herokuapp.com/api/v1/student/${currentuser.id}/removeGroupFromStudent`, {
+        method: 'PUT',
+        headers: createHeaders(),
+        body: n
+    });
+    setUpdate(update+1);
+    const data = await response.json();
+    //return user object
+    
+    return data;
+
+} catch (error) {
+    return error.message;
+}
 } 
 
   function members(n){
@@ -118,6 +141,30 @@ export default function Groups() {
             
             </div>
             <button class="btn btn-secondary btn-sml" onClick={() => joinGroup(group.id)}>Join</button>
+            </div>
+        )
+     })}
+     {availableGroups.map((group) => {
+        return(
+            <div className="group" key={group.id}>
+            <h3>{group.name}</h3>
+            <div className="members">
+            <img class="mt-1" src={visibility(group._private)} height="15px" alt="no logo"/>
+            <p>{members(group.students.length)}</p>
+            </div>
+            <p>{group.description}</p>
+            <div className="posts">
+            <img src={getEnvelope(group.posts.length)} class="mt-1" height="15px" alt="no logo"/>
+            <p>{posts(group.posts.length)}</p>
+            </div>
+            <div className="events">
+            <img src={event} class="mt-1" height="15px" alt="no logo"/>
+            <p>{events(group.alumniEvents.length)}</p>
+            
+            </div>
+            <div>
+            <button class="btn btn-danger" onClick={() => leaveGroup(group.id)}>Leave</button>
+            </div>
             </div>
         )
      })}

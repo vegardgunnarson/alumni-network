@@ -7,14 +7,16 @@ import Button from "react-bootstrap/Button";
 const url = "https://alumni-case-database.herokuapp.com/api/v1/";
 
 
-export default function Createpost({setUpdate, type, id}) {
+export default function Createpost({setUpdate, type, id, username}) {
 
 
 
   const [createPost, setCreatePost] = useState({
     title: "",
     content: "",
-    timestamp: Date.now()
+    timestamp: Date.now(),
+    creator_student: username,
+  
   });
   const CreatePostInDB = async () => {
     const response = await axios.post(`${url}post/${id}/${type}`, createPost)
@@ -33,7 +35,8 @@ export default function Createpost({setUpdate, type, id}) {
     setCreatePost({
       title: "",
       content: "",
-      timestamp: ""
+      timestamp: Date.now(),
+      creator_student: username
     });
     await CreatePostInDB();
     handleClose();

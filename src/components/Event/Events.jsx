@@ -97,7 +97,6 @@ export default function Events() {
     <div className="eventspage">
 
      {events.map((event) => {
-      
         return(
             <div className="event" key={event.id}>
             <h3>{event.name}</h3>

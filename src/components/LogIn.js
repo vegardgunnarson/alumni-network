@@ -2,7 +2,6 @@ import keycloak from "../keycloak/keycloak";
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { checkDbForUser } from "../api/user";
-import { useUser } from "../Context/UserContext";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, updateUser } from "../Features/userSlice";
 
@@ -24,7 +23,6 @@ const GetLoggedIn = () => {
             } else {
                 await dispatch(updateUser(loggedInUser[1]))
                 console.log("loggedInUser")
-
                 nav('/timeline')
 
             }

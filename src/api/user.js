@@ -13,7 +13,8 @@ export const createUser = async (username) => {
           headers: createHeaders(),
           body: JSON.stringify({
             id: username,
-            name: keycloak.tokenParsed.name
+            name: keycloak.tokenParsed.name,
+            picture: "https://i.pinimg.com/736x/d7/3b/c1/d73bc1381fb1380112a98266b6f2d27f.jpg"
           })
       });
 
