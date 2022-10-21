@@ -8,9 +8,28 @@ const url = "https://alumni-case-database.herokuapp.com/api/v1/";
 
 
 export default function Createpost({setUpdate, type, id, username}) {
+  const [names, setNames] = useState([]);
+  const [DM, setDM] = useState(false);
 
+  const getAllStudents = async () => {
+    const response = await axios.get(`${url}student`)
+    setNames(response.data)
+    if(response.status !== 200){
+      console.log(response)
+    }
+    return response.data
+  };
 
+  const handleDM =  async () => {
+    if (type == "addDMPost"){
+      setDM(true);
+      await getAllStudents();
+      console.log(names);
+    }
 
+  }
+
+  
   const [createPost, setCreatePost] = useState({
     title: "",
     content: "",
@@ -25,6 +44,7 @@ export default function Createpost({setUpdate, type, id, username}) {
     }
     return response.data
   };
+  
 
   const handleChange = (event) => {
     setCreatePost({ ...createPost, [event.target.name]: event.target.value });
@@ -81,6 +101,13 @@ export default function Createpost({setUpdate, type, id, username}) {
                 name="content"
                 rows={3}
               />
+            </Form.Group >
+            <Form.Group >
+
+            <Form.Label>Contentttttttt</Form.Label>
+            <Button variant="secondary" onClick={handleDM}>
+            Create post
+          </Button>
             </Form.Group>
           </Form>
         </Modal.Body>
