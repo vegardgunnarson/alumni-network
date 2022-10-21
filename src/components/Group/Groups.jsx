@@ -89,7 +89,7 @@ export default function Groups() {
 
 
   return (
-    <div>
+    <div >
     <div className="addgroup">
         <h3>Groups</h3>
         <div className="addbuttoncustom">

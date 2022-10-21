@@ -14,6 +14,12 @@ export default function Events() {
   const [events, setEvents] = useState([]);
   const [update, setUpdate] = useState(0);
 
+  function trimDate(d){
+    const thisdate = new Date(d);
+    return thisdate.toLocaleString('no-GB', {hour12: false});
+}
+
+
   useEffect(() => {
     loadEvents();
   }, [update]);
@@ -98,7 +104,7 @@ export default function Events() {
             <p>{people(event.students.length)}</p>
             </div>
             <div>
-            <p className="eventtime">{event.start_time} &nbsp; {event.start_time} - {event.end_time}</p>
+            <p className="eventtime">{trimDate(event.start_time)} &nbsp; - {trimDate(event.end_time)}</p>
             <p className="eventdescription">{event.description}</p>
             </div>
             <div className="posts">

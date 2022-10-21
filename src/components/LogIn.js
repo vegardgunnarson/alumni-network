@@ -14,6 +14,7 @@ const GetLoggedIn = () => {
         loggIn();
     }, []);
 
+
     const loggIn = async () => {
         if(keycloak.authenticated){
             const loggedInUser = await checkDbForUser();

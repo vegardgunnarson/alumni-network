@@ -80,7 +80,7 @@ export default function Topics() {
 
 
   return (
-    <div>
+    <div className="content">
     <div className="addgroup">
         <h3>Topics</h3>
         <div className="addbuttoncustom">

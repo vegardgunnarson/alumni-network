@@ -7,10 +7,14 @@ import { getEvents } from "./Event/EventHandler";
 import Creategroup from "./Group/CreateGroup";
 import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
-import { currentuser } from '../components/UserHandler';
+//import { currentuser } from '../components/UserHandler';
 import Createpost from "./CreatePost";
+import { selectUser } from "../Features/userSlice";
+import { useSelector } from "react-redux";
+
 
 export default function Timeline() {
+    const currentuser = useSelector(selectUser);
     const home={
         name: "Dashboard",
         description: "Personal dashboard",
@@ -66,7 +70,7 @@ export default function Timeline() {
 
 function trimDate(d){
     const thisdate = new Date(d);
-    return thisdate.toLocaleString('en-GB', {hour12: false});
+    return thisdate.toLocaleString('no-GB', {hour12: false});
 }
 
  
