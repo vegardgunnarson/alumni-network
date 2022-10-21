@@ -66,7 +66,7 @@ export default function Timeline() {
 
 function trimDate(d){
     const thisdate = new Date(d);
-    return thisdate.toLocaleString("no-NO");
+    return thisdate.toLocaleString('en-GB', {hour12: false});
 }
 
  
@@ -148,7 +148,7 @@ function trimDate(d){
             {events.map((event) => {
         return(
             <div className="eventsection" key={event.id}>
-            <p className="eventtime">{event.start_time} &nbsp; {event.start_time}</p>
+            <p className="eventtime">{trimDate(event.start_time)} &nbsp;</p>
             <div className="eventnameandx">
             <p className="eventname" onClick={() => handleDisplay(event,"addEventPost","viewEventPosts")}>{event.name}</p><p className="xevent" onClick={() => handleLeaveEvent(event.id)}>x</p></div><br/>
             <p className="eventdesc">{event.description}</p>
@@ -187,8 +187,10 @@ function trimDate(d){
         return(
             <div className="timelineposts">
                 <div className="posttitle">{post.title}</div>
+                
                 <p>{post.content}</p>
-            <p className="postsinfo">By {post.creator_student} {trimDate(post.timestamp)}</p>
+                <p className="postsinfo">By {post.creator_student} {trimDate(post.timestamp)}</p>
+            
             </div>
         )
      })}
