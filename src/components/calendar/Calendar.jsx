@@ -26,11 +26,9 @@ const locales = {
     "en-US": require("date-fns/locale/en-US")
 }
 
+
 const localizer = momentLocalizer(moment);
 
-const myEventList = [
-    {start_time: new Date(), end_time:new Date(), name:"special event" }
-];
 
 /*
 const events = [
@@ -59,13 +57,27 @@ const events = [
 
 
 function ReactCalendar () {
-    const[date, setDate] = useState(new Date());
+    
+    const [start_time, setStart_time] = useState(new Date());
+const [end_time, setEnd_time] = useState(new Date());
 
-    const onChange = date => {
-        setDate(date)
-    }
+const [events, setEvents] = useState([new Date()]);
+useEffect(() => {
+    loadEvents();
+  }, []);
+  const loadEvents = async () => {
+    const array = await getEvents();
+    setEvents(array[1]);
+  };
+
+ 
+
+const myEventList = [
     
     
+    {start_time: setStart_time, end_time: setEnd_time, title: "check", name:"special event" }
+];
+
 
     
 
@@ -83,7 +95,7 @@ function ReactCalendar () {
             
           <Calendar 
             localizer={localizer} 
-            events={myEventList}
+            events={events}
             startAccessor="start_time"
             endAccessor="end_time"
             style={{height:500, margin: "50px"}} 
