@@ -9,6 +9,7 @@ import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
 import Createpost from "./CreatePost";
 import { selectUser } from "../Features/userSlice";
+import { useNavigate} from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { Calendar, globalizeLocalizer, } from "react-big-calendar";
 
@@ -17,6 +18,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 export default function Timeline() {
   const localizer = globalizeLocalizer(globalize);
+  const navigate = useNavigate();
 
 
     const currentuser = useSelector(selectUser);
@@ -141,7 +143,7 @@ function trimDate(d){
           <h4 class="mt-1" onClick={() => handleDisplay(home,"addDMPost","viewAllPosts")}>{user.name}</h4>
           <br />
           <p className="profilestatus">{user.status}</p>
-          <a className="profilelink" href="/Profile">Show profile</a>
+          <p className="profilelink" onClick={() => navigate('/profile')}>Show profile</p>
         </div>
         
         <div className="post">
@@ -154,8 +156,12 @@ function trimDate(d){
         </div>
         <div className="dashevent">
         <div className="creategroupetimeline">
-        <h5 className="eventtitle">Upcoming events</h5><Createevent />
+        <h5 className="eventtitle">Upcoming events</h5><Createevent /><br/>
+        <div>
+        
         </div>
+        </div>
+        <p className="profilelink" onClick={() => navigate('/Calendar')}>Show calendar</p>
             {events.map((event) => {
         return(
             <div className="eventsection" key={event.id}>
