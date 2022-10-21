@@ -6,7 +6,9 @@ const initialState = {
 }
 
 export const userSlice = createSlice({
+    id: 'id',
     name: 'user',
+    picture: 'https://i.pinimg.com/736x/d7/3b/c1/d73bc1381fb1380112a98266b6f2d27f.jpg',
     initialState,
     reducers: {
       updateUser: (state, action) => {
@@ -15,8 +17,14 @@ export const userSlice = createSlice({
       resetUser: (state) => {
         state.value = {};
       },
-      updateDescription: (state, action) => {
+      updateBio: (state, action) => {
         state.value.description = action.payload;
+      },
+      updateStatus: (state, action) => {
+        state.value.status = action.payload;
+      },
+      updateFunfact: (state, action) => {
+        state.value.funfact = action.payload;
       },
   
     },
