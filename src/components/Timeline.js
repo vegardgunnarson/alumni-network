@@ -7,7 +7,6 @@ import { getEvents } from "./Event/EventHandler";
 import Creategroup from "./Group/CreateGroup";
 import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
-//import { currentuser } from '../components/UserHandler';
 import Createpost from "./CreatePost";
 import { selectUser } from "../Features/userSlice";
 import { useSelector } from "react-redux";
@@ -70,6 +69,7 @@ export default function Timeline() {
         return[error.message, []];
     }
 }
+
 
 function trimDate(d){
     const thisdate = new Date(d);
@@ -142,7 +142,7 @@ function trimDate(d){
             <h3>{display.name}</h3>
             <p className="groupdescription">{display.description}</p>
             <div>
-            <Createpost setUpdate={reload} type={type} id={display.id} username={currentuser.name}/>
+            <Createpost setUpdate={reload} type={type} object={display} id={display.id} location={display.name} username={currentuser.name}/>
             </div>
 
         </div>
@@ -190,7 +190,8 @@ function trimDate(d){
         <div className="timeline">
         {posts.map((post) => {
         return(
-            <div className="timelineposts" key={post.id}>
+            <div className="timelineposts" key={post.id*2}>
+                <p className="postsinfo">{post.post_location}</p>
                 <div>{post.reply}</div>
                 <div className="posttitle">{post.title}</div>
                 <p>{post.content}</p>

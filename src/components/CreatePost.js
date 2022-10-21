@@ -4,12 +4,15 @@ import axios from "../api";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
 const url = "https://alumni-case-database.herokuapp.com/api/v1/";
 
 
-export default function Createpost({setUpdate, type, id, username}) {
+export default function Createpost({setUpdate, type, id, location, username}) {
   const [names, setNames] = useState([]);
   const [DM, setDM] = useState(false);
+  const [reciever, setReciever] = useState([]);
+
 
   const getAllStudents = async () => {
     const response = await axios.get(`${url}student`)
@@ -21,24 +24,34 @@ export default function Createpost({setUpdate, type, id, username}) {
   };
 
   const handleDM =  async () => {
-    if (type == "addDMPost"){
+    if (type === "addDMPost"){
       setDM(true);
       await getAllStudents();
       console.log(names);
     }
-
   }
-
   
   const [createPost, setCreatePost] = useState({
     title: "",
     content: "",
-    timestamp: Date.now(),
-    creator_student: username,
+    timestamp: Date.now()
   
   });
   const CreatePostInDB = async () => {
-    const response = await axios.post(`${url}post/${id}/${type}`, createPost)
+    if (type === "addDMPost"){
+      console.log("ID: "+id);
+      console.log("Reciever: "+reciever);
+      id = reciever;
+      console.log("ID: "+id);
+    }
+    console.log("ID: "+id);
+    const response = await axios.post(`${url}post/${id}/${type}`, {
+      ...createPost,
+    creator_student: username,
+    post_location: location
+     })
+
+    console.log("Brukte "+location+" som location")
     if(response.status !== 201){
       console.log(response)
     }
@@ -55,9 +68,12 @@ export default function Createpost({setUpdate, type, id, username}) {
     setCreatePost({
       title: "",
       content: "",
-      timestamp: Date.now(),
-      creator_student: username
-    });
+      creator_student: "",
+      post_location: "",
+      timestamp: ""
+
+      
+      })
     await CreatePostInDB();
     handleClose();
     setUpdate(1);
@@ -75,7 +91,7 @@ export default function Createpost({setUpdate, type, id, username}) {
       </button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Create new post</Modal.Title>
+          <Modal.Title >Create new post in {location}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -103,11 +119,22 @@ export default function Createpost({setUpdate, type, id, username}) {
               />
             </Form.Group >
             <Form.Group >
-
-            <Form.Label>Contentttttttt</Form.Label>
             <Button variant="secondary" onClick={handleDM}>
-            Create post
+            Choose a specific student
           </Button>
+          <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        Dropdown Button
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+      {names.map((name) => {
+        return(
+          <Dropdown.Item key={name.id} onClick={() => setReciever(name.id)}>{name.name}</Dropdown.Item>
+            
+        )})}
+      </Dropdown.Menu>
+    </Dropdown>
             </Form.Group>
           </Form>
         </Modal.Body>
