@@ -8,12 +8,19 @@ import Form from 'react-bootstrap/Form';
 
 
 const LogOut = () => {
-
   const nav = useNavigate();
   localStorage.clear();
   nav('/')
 }
-
+/*
+<Form className="d-flex m-4">
+            <Form.Control
+            type="Search"
+            className="me-2"
+            placeholder="Search..."
+            aria-label="Search"/>
+        </Form>
+*/
 
 
 export default function Navbar() {
@@ -22,13 +29,7 @@ export default function Navbar() {
     <div className="stickynavbar">
       <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
         <a class="nav-link m-4" href="/timeline"><h2>Alumni Network</h2></a>
-        <Form className="d-flex m-4">
-            <Form.Control
-            type="Search"
-            className="me-2"
-            placeholder="Search..."
-            aria-label="Search"/>
-        </Form>
+        
         <ul class="navbar-nav ms-auto">
           <li class="nav-item active">
             <a class="nav-link m-4" href="/timeline">

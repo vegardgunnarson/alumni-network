@@ -10,7 +10,6 @@ import Createtopic from "./Topic/CreateTopic";
 import { currentuser } from '../components/UserHandler';
 import Createpost from "./CreatePost";
 
-
 export default function Timeline() {
     const home={
         name: "Dashboard",
@@ -182,8 +181,9 @@ export default function Timeline() {
         {posts.map((post) => {
         return(
             <div className="timelineposts">
+                <div className="posttitle">{post.title}</div>
                 <p>{post.content}</p>
-            <p className="postsinfo">By {post.creator_student}</p>
+            <p className="postsinfo">By {post.creator_student} {post.timestamp}</p>
 
             </div>
         )
