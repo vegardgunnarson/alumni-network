@@ -64,6 +64,11 @@ export default function Timeline() {
     }
 }
 
+function trimDate(d){
+    const thisdate = new Date(d);
+    return thisdate.toLocaleString("no-NO");
+}
+
  
   useEffect(() => {
     fetchData();
@@ -101,11 +106,11 @@ export default function Timeline() {
     console.log("leaving group")
   }
   function handleLeaveTopic(id) {
-    console.log("leaving group")
+    console.log("leaving topic")
 
   }
   function handleLeaveEvent(id) {
-    console.log("leaving group")
+    console.log("leaving event")
 
   }
   const reload = (input) => {
@@ -143,7 +148,7 @@ export default function Timeline() {
             {events.map((event) => {
         return(
             <div className="eventsection" key={event.id}>
-            <p className="eventtime">{event.start_time.slice(0,10)} &nbsp; {event.start_time.slice(11,16)}</p>
+            <p className="eventtime">{event.start_time} &nbsp; {event.start_time}</p>
             <div className="eventnameandx">
             <p className="eventname" onClick={() => handleDisplay(event,"addEventPost","viewEventPosts")}>{event.name}</p><p className="xevent" onClick={() => handleLeaveEvent(event.id)}>x</p></div><br/>
             <p className="eventdesc">{event.description}</p>
@@ -183,8 +188,7 @@ export default function Timeline() {
             <div className="timelineposts">
                 <div className="posttitle">{post.title}</div>
                 <p>{post.content}</p>
-            <p className="postsinfo">By {post.creator_student} {post.timestamp}</p>
-
+            <p className="postsinfo">By {post.creator_student} {trimDate(post.timestamp)}</p>
             </div>
         )
      })}

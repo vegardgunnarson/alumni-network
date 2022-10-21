@@ -23,12 +23,14 @@ const CreateEventInDB = async () => {
 /*              start_time: startDate,
               end_time: endDate*/
   try {
-        const response = await fetch(`https://alumni-case-database.herokuapp.com/api/v1/student/${currentuser.id}/addAlumniEvent`, {
+        const response = await fetch(`https://alumni-case-database.herokuapp.com/api/v1/alumniEvent/${currentuser.id}/addAlumniEvent`, {
             method: 'POST',
             headers: createHeaders(),
             body: JSON.stringify({
               name: createEvent.title,
-              description: createEvent.description
+              description: createEvent.description,
+              start_time: startDate,
+              end_time: endDate
             })
         });
   
@@ -50,9 +52,7 @@ const CreateEventInDB = async () => {
     event.preventDefault();
     setCreateEvent({
     title: "",
-    description: "",
-    start: "",
-    end: ""
+    description: ""
 
     })
 

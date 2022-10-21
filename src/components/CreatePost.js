@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import createHeaders from "../api/index";
 import axios from "../api";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -11,9 +10,11 @@ const url = "https://alumni-case-database.herokuapp.com/api/v1/";
 export default function Createpost({setUpdate, type, id}) {
 
 
+
   const [createPost, setCreatePost] = useState({
-    title: "hei",
-    content: "gie"
+    title: "",
+    content: "",
+    timestamp: Date.now()
   });
   const CreatePostInDB = async () => {
     const response = await axios.post(`${url}post/${id}/${type}`, createPost)
@@ -31,7 +32,8 @@ export default function Createpost({setUpdate, type, id}) {
     event.preventDefault();
     setCreatePost({
       title: "",
-      content: ""
+      content: "",
+      timestamp: ""
     });
     await CreatePostInDB();
     handleClose();

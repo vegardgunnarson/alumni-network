@@ -16,7 +16,7 @@ export default function Events() {
 
   useEffect(() => {
     loadEvents();
-  }, []);
+  }, [update]);
   const loadEvents = async () => {
     const array = await getEvents();
     setEvents(array[1]);
@@ -98,7 +98,7 @@ export default function Events() {
             <p>{people(event.students.length)}</p>
             </div>
             <div>
-            <p className="eventtime">{event.start_time.slice(0,10)} &nbsp; {event.start_time.slice(11,16)} - {event.end_time.slice(11,16)}</p>
+            <p className="eventtime">{event.start_time} &nbsp; {event.start_time} - {event.end_time}</p>
             <p className="eventdescription">{event.description}</p>
             </div>
             <div className="posts">
