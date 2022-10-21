@@ -1,78 +1,41 @@
 import keycloak from "../keycloak/keycloak";
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createUser, getId } from "../api/user";
-import UserProvider, { useUser, setUse } from "../Context/UserContext";
-
-
-
-const apiUrl = process.env.REACT_APP_API_URL+"student";
-
-
+import { checkDbForUser } from "../api/user";
+import { useUser } from "../Context/UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser, updateUser } from "../Features/userSlice";
 
 const GetLoggedIn = () => {
     const nav = useNavigate();
-    const [ user, setUser ] = useState([])
-    const [theFetch, setTheFetch] = useState()
-
-
+    const user = useSelector(selectUser)
+    const dispatch = useDispatch()
     useEffect( () => {
-        logginmukk();
-
+        loggIn();
     }, []);
 
-    useEffect(() => {
-        if(theFetch !== ""){
-        }
-        
-    },[theFetch])
-    
-    const logginmukk = async () => {
+
+    const loggIn = async () => {
         if(keycloak.authenticated){
-            const id = await getId();
-            const userUrl = apiUrl+"/"+id;
-            setTheFetch();
-            const user = await fetchData(userUrl);
+            const loggedInUser = await checkDbForUser();
+            console.log(loggedInUser[0])
+            if (loggedInUser[0]){
+                alert("could not get user")
+            } else {
+                await dispatch(updateUser(loggedInUser[1]))
+                console.log("loggedInUser")
 
-            if (user.id !== 0){
-                localStorage.setItem("user_id", user.id)
-                localStorage.setItem("user_username", user.token)
-                localStorage.setItem("user_name", user.name)
-                localStorage.setItem("user_bio", user.bio)
-                localStorage.setItem("user_status", user.status)
-                localStorage.setItem("user_funfact", user.funfact)
-                localStorage.setItem("user_picture", user.picture)
+                nav('/timeline')
+
             }
-
-        console.log(theFetch)
-        createUser(id)
-        console.log(userUrl)
-        nav('/timeline')
 
     }
     else{
-        await goingToLogIn()
+        await keycloak.login()
         nav('/timeline')
 
             }
         }
-
-
-        const fetchData = async (url) => {
-            console.log("the fetch "+url)
-            const theUser = await fetch(`${url}`)
-                .then((response) => response.json())
-                .then((data => {return data}))
-                return theUser;
-        }
-
-    const goingToLogIn = () => {
-        keycloak.login();   
-            
-        
-        }
-
     }
-
 
 export default GetLoggedIn;

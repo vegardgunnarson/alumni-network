@@ -30,8 +30,9 @@ function App() {
   
   return (
     <div>
-      <Navbar />
+      
       <Router >
+      <Navbar />
           <Routes>
           <Route path='/admin' element={
               <RoleCheckRoute role="ADMIN">

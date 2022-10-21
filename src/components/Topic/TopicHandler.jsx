@@ -1,4 +1,4 @@
-import { currentuser } from '../../components/UserHandler';
+
 
 const apiUrl = "https://alumni-case-database.herokuapp.com/api/v1"
 
@@ -16,7 +16,7 @@ export const getTopics = async () => {
     }
 }
 
-export const getTopicsOfStudent = async () => {
+export const getTopicsOfStudent = async (currentuser) => {
     try{
         const response = await fetch(`${apiUrl}/topics/displayJoinedTopics?accessing_student_id=${currentuser.id}`);
         if(!response.ok){
@@ -29,7 +29,7 @@ export const getTopicsOfStudent = async () => {
         return[error.message, []];
     }
 }
-export const getAvailableTopicsOfStudent = async () => {
+export const getAvailableTopicsOfStudent = async (currentuser) => {
     try{
         const response = await fetch(`${apiUrl}/topics/displayAvailableTopics?accessing_student_id=${currentuser.id}`);
         if(!response.ok){

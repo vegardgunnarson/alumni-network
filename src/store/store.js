@@ -16,12 +16,15 @@ import PostReducer from './reducers/PostsSlice';
 import { configureStore } from '@reduxjs/toolkit'
 import postsReducer from '../Features/posts/postsSlice'
 import usersReducer from '../Features/users/usersSlice'
+import userReducer from '../Features/userSlice'
+
 
 export const store = configureStore({
     reducer: {
          // Define a top-level state field named `todos`, handled by `todosReducer`
     posts: postsReducer,
-    users: usersReducer
+    users: usersReducer,
+    user: userReducer
     }
 })
 

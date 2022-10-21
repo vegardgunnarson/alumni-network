@@ -106,7 +106,7 @@
 .sidenav{
     background-color: white;
     width: 250px;
-    min-height: 400px;
+    min-height: fit-content;
     max-height: fit-content;
     border-bottom-left-radius:10px;
     border-bottom-right-radius: 10px;
@@ -145,6 +145,20 @@
     margin-top: 25px;
     width: 250px;
     border-radius: 15px;
+}
+.eventnameandx{
+    display: flex;
+    justify-content: space-between;
+
+}
+.eventnameandx:hover{
+    cursor: pointer;
+}
+.xevent{
+    margin-top: -20px;
+}
+.posttitle{
+    font-weight: bold;
 }
 .groupsection{
     display: flex;

@@ -7,13 +7,14 @@ import event from '../../assets/calendar-event.svg';
 import envelope from '../../assets/envelope.svg';
 import envelopeempty from '../../assets/envelope-empty.svg';
 import Createtopic from "./CreateTopic";
-import { currentuser } from "../UserHandler";
 import { createHeaders } from "../../api/index";
+import { selectUser } from "../../Features/userSlice";
+import { useSelector } from "react-redux";
 
 export default function Topics() {
+  const currentuser = useSelector(selectUser);
   const [groups, setGroups] = useState([]);
   const [update, setUpdate] = useState(0);
-  
 
   useEffect(() => {
     loadGroups();
@@ -23,7 +24,7 @@ export default function Topics() {
     setUpdate(update+input)
   };
   const loadGroups = async () => {
-    const array = await getAvailableTopicsOfStudent();
+    const array = await getAvailableTopicsOfStudent(currentuser);
     setGroups(array[1]);
   };
 
@@ -80,7 +81,7 @@ export default function Topics() {
 
 
   return (
-    <div>
+    <div className="content">
     <div className="addgroup">
         <h3>Topics</h3>
         <div className="addbuttoncustom">

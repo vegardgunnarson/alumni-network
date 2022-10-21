@@ -1,34 +1,27 @@
 import React from "react";
 import { useState } from "react";
-import createHeaders from "../api/index";
+import axios from "../api";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 const url = "https://alumni-case-database.herokuapp.com/api/v1/";
 
-export default function Createpost({ setUpdate, type, id }) {
+
+export default function Createpost({setUpdate, type, id}) {
+
+
+
   const [createPost, setCreatePost] = useState({
     title: "",
     content: "",
+    timestamp: Date.now()
   });
-
   const CreatePostInDB = async () => {
-    try {
-      const response = await fetch(`${url}/post/${id}/${type}`, {
-        method: "POST",
-        headers: createHeaders(),
-        body: JSON.stringify({
-          title: createPost.title,
-          content: createPost.content,
-        }),
-      });
-
-      const data = await response.json();
-      handleClose();
-      return data;
-    } catch (error) {
-      return error.message;
+    const response = await axios.post(`${url}post/${id}/${type}`, createPost)
+    if(response.status !== 201){
+      console.log(response)
     }
+    return response.data
   };
 
   const handleChange = (event) => {
@@ -40,6 +33,7 @@ export default function Createpost({ setUpdate, type, id }) {
     setCreatePost({
       title: "",
       content: "",
+      timestamp: ""
     });
     await CreatePostInDB();
     handleClose();
@@ -97,5 +91,4 @@ export default function Createpost({ setUpdate, type, id }) {
         </Modal.Footer>
       </Modal>
     </div>
-  );
-}
+  );}

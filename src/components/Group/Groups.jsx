@@ -8,10 +8,12 @@ import event from '../../assets/calendar-event.svg';
 import envelope from '../../assets/envelope.svg';
 import envelopeempty from '../../assets/envelope-empty.svg';
 import Creategroup from "./CreateGroup";
-import { currentuser } from "../UserHandler";
+import { selectUser } from "../../Features/userSlice";
+import { useSelector } from "react-redux";
 import axios, { createHeaders } from "../../api/index";
 
 export default function Groups() {
+  const currentuser = useSelector(selectUser);
   const [groups, setGroups] = useState([]);
   const [update, setUpdate] = useState(0);
   
@@ -24,7 +26,7 @@ export default function Groups() {
     setUpdate(update+input)
   };
   const loadGroups = async () => {
-    const array = await getAvailableGroupsOfStudent();
+    const array = await getAvailableGroupsOfStudent(currentuser);
     setGroups(array[1]);
   };
 
@@ -89,7 +91,7 @@ export default function Groups() {
 
 
   return (
-    <div>
+    <div >
     <div className="addgroup">
         <h3>Groups</h3>
         <div className="addbuttoncustom">

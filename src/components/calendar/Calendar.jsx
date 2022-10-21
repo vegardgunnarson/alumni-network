@@ -1,6 +1,7 @@
 
-import { Calendar, momentLocalizer, dateFnsLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer, globalizeLocalizer, dateFnsLocalizer  } from "react-big-calendar";
 import moment from "moment";
+import globalize from 'globalize'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import format from "date-fns/format";
 import parse from "date-fns/parse";
@@ -25,9 +26,17 @@ import Createevent from "../Event/CreateEvent";
 const locales = {
     "en-US": require("date-fns/locale/en-US")
 }
+/*
+const localizer = dateFnsLocalizer ({
+    format,
+    parse,
+    startOfWeek,
+    getDay,
+    locales
+})*/
 
 
-const localizer = momentLocalizer(moment);
+const localizer = globalizeLocalizer(globalize);
 
 
 /*
@@ -58,8 +67,7 @@ const events = [
 
 function ReactCalendar () {
     
-    const [start_time, setStart_time] = useState(new Date());
-const [end_time, setEnd_time] = useState(new Date());
+   
 
 const [events, setEvents] = useState([new Date()]);
 useEffect(() => {
@@ -75,7 +83,7 @@ useEffect(() => {
 const myEventList = [
     
     
-    {start_time: setStart_time, end_time: setEnd_time, title: "check", name:"special event" }
+    {start_time: new Date, end_time: new Date, title: "check", name:"special event" }
 ];
 
 
@@ -96,9 +104,11 @@ const myEventList = [
           <Calendar 
             localizer={localizer} 
             events={events}
-            startAccessor="start_time"
-            endAccessor="end_time"
-            style={{height:500, margin: "50px"}} 
+            startAccessor={(event) => { return new Date(event.start_time) }}
+            endAccessor={(event) => { return new Date(event.end_time) }}
+            titleAccessor="name"
+           
+            style={{height:800, margin: "50px"}} 
           />
         </div>
         

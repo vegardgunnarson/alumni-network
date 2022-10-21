@@ -4,31 +4,34 @@ import { useEffect, useState } from "react";
 import {  getGroupsOfStudent } from "./Group/GroupHandler";
 import {  getTopicsOfStudent} from "./Topic/TopicHandler";
 import { getEvents } from "./Event/EventHandler";
-import { getPosts } from "./Posts/PostHandler";
 import Creategroup from "./Group/CreateGroup";
 import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
-import { currentuser } from '../components/UserHandler';
+//import { currentuser } from '../components/UserHandler';
 import Createpost from "./CreatePost";
+import { selectUser } from "../Features/userSlice";
+import { useSelector } from "react-redux";
 
 
 export default function Timeline() {
+    const currentuser = useSelector(selectUser);
     const home={
         name: "Dashboard",
         description: "Personal dashboard",
-        id: 0
+        id: currentuser.id
     }
 
-
     const [display, setDisplay] = useState(home);
-    const [type, setType] = useState([]);
+    const [type, setType] = useState("addDMPost");
+    const [whichPosts, setWhichPosts] = useState("viewAllPosts");
     const [update, setUpdate] = useState(0);
 
 
 
-    function handleDisplay(newDisplay,type){
+    function handleDisplay(newDisplay,type,posts){
         setDisplay(newDisplay);
         setType(type);
+        setWhichPosts(posts);
     }
   
   const [user, setUser] = useState([]);
@@ -39,20 +42,37 @@ export default function Timeline() {
       .then((data) => setUser(data));
   };
 
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const [posts, setPosts] = useState([]);
+
 
   useEffect(() => {
     loadPosts();
-  }, [update]);
+  }, [update, display]);
+
   const loadPosts = async () => {
     const array = await getPosts();
     setPosts(array[1]);
   };
+  
+  const getPosts = async () => {
+    try{
+        const response = await fetch(`https://alumni-case-database.herokuapp.com/api/v1/post/${display.id}/${whichPosts}`);
+        if(!response.ok){
+            throw new Error("No posts found");
+        }
+        const data = await response.json();
+        return [null,data]
+
+    }catch(error){
+        return[error.message, []];
+    }
+}
+
+function trimDate(d){
+    const thisdate = new Date(d);
+    return thisdate.toLocaleString('no-GB', {hour12: false});
+}
+
  
   useEffect(() => {
     fetchData();
@@ -64,23 +84,23 @@ export default function Timeline() {
     loadGroups();
   }, [update]);
   const loadGroups = async () => {
-    const array = await getGroupsOfStudent();
+    const array = await getGroupsOfStudent(currentuser);
     setGroups(array[1]);
   };
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
     loadTopics();
-  }, []);
+  }, [update]);
   const loadTopics = async () => {
-    const array = await getTopicsOfStudent();
+    const array = await getTopicsOfStudent(currentuser);
     setTopics(array[1]);
   };
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
     loadEvents();
-  }, []);
+  }, [update]);
   const loadEvents = async () => {
     const array = await getEvents();
     setEvents(array[1]);
@@ -88,6 +108,13 @@ export default function Timeline() {
 
   function handleLeaveGroup(id) {
     console.log("leaving group")
+  }
+  function handleLeaveTopic(id) {
+    console.log("leaving topic")
+
+  }
+  function handleLeaveEvent(id) {
+    console.log("leaving event")
 
   }
   const reload = (input) => {
@@ -102,9 +129,9 @@ export default function Timeline() {
             src={user.picture}
             alt="could not be found"
             className="profileimage"
-            onClick={() => handleDisplay(home,"addDMPost")}
+            onClick={() => handleDisplay(home,"addDMPost","viewAllPosts")}
           />
-          <h4 class="mt-1" onClick={() => handleDisplay(home,"addDMPost")}>{user.name}</h4>
+          <h4 class="mt-1" onClick={() => handleDisplay(home,"addDMPost","viewAllPosts")}>{user.name}</h4>
           <br />
           <p className="profilestatus">{user.status}</p>
           <a className="profilelink" href="/Profile">Show profile</a>
@@ -114,7 +141,7 @@ export default function Timeline() {
             <h3>{display.name}</h3>
             <p className="groupdescription">{display.description}</p>
             <div>
-            <Createpost setUpdate={reload} type={type} id={currentuser.id}/>
+            <Createpost setUpdate={reload} type={type} id={display.id}/>
             </div>
 
         </div>
@@ -125,8 +152,9 @@ export default function Timeline() {
             {events.map((event) => {
         return(
             <div className="eventsection" key={event.id}>
-            <p className="eventtime">{event.start_time.slice(0,10)} &nbsp; {event.start_time.slice(11,16)}</p>
-            <p className="eventname">{event.name}</p><br/>
+            <p className="eventtime">{trimDate(event.start_time)} &nbsp;</p>
+            <div className="eventnameandx">
+            <p className="eventname" onClick={() => handleDisplay(event,"addEventPost","viewEventPosts")}>{event.name}</p><p className="xevent" onClick={() => handleLeaveEvent(event.id)}>x</p></div><br/>
             <p className="eventdesc">{event.description}</p>
             </div>
             )
@@ -142,7 +170,7 @@ export default function Timeline() {
             {groups.map((group) => {
         return(
             <div className="groupsection" key={group.id}>
-            <p onClick={() => handleDisplay(group,"addGroupPost")}>{group.name}</p><p onClick={() => handleLeaveGroup(group.id)}>x</p>
+            <p onClick={() => handleDisplay(group,"addGroupPost","viewGroupPosts")}>{group.name}</p><p onClick={() => handleLeaveGroup(group.id)}>x</p>
             </div>
             )
         })}
@@ -153,7 +181,7 @@ export default function Timeline() {
             {topics.map((topic) => {
         return(
             <div className="topicsection" key={topic.id}>
-            <p onClick={() => handleDisplay(topic,"addTopicPost")}>{topic.name}</p>
+            <p onClick={() => handleDisplay(topic,"addTopicPost","viewTopicPosts")}>{topic.name}</p><p onClick={() => handleLeaveTopic(topic.id)}>x</p>
             </div>
             )
         })}
@@ -162,14 +190,14 @@ export default function Timeline() {
         {posts.map((post) => {
         return(
             <div className="timelineposts">
+                <div className="posttitle">{post.title}</div>
+                
                 <p>{post.content}</p>
-            <p className="postsinfo">By {post.sender_student} &nbsp; {post.timestamp.slice(0,10)} &nbsp;{post.timestamp.slice(11,16)}</p>
-             <p>{post.target_alumniEvent}{post.target_topic}{post.target_alumniGroup}</p>
+                <p className="postsinfo">By {post.creator_student} {trimDate(post.timestamp)}</p>
+            
             </div>
         )
      })}
-            
-
         </div>
         <div className="underevent"></div>
       </div>
