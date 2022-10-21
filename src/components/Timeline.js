@@ -84,7 +84,7 @@ function trimDate(d){
     loadGroups();
   }, [update]);
   const loadGroups = async () => {
-    const array = await getGroupsOfStudent();
+    const array = await getGroupsOfStudent(currentuser);
     setGroups(array[1]);
   };
   const [topics, setTopics] = useState([]);
@@ -93,7 +93,7 @@ function trimDate(d){
     loadTopics();
   }, [update]);
   const loadTopics = async () => {
-    const array = await getTopicsOfStudent();
+    const array = await getTopicsOfStudent(currentuser);
     setTopics(array[1]);
   };
   const [events, setEvents] = useState([]);

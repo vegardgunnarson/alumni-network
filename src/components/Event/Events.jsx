@@ -7,10 +7,12 @@ import globe from '../../assets/globe.svg';
 import envelope from '../../assets/envelope.svg';
 import envelopeempty from '../../assets/envelope-empty.svg';
 import Createevent from "./CreateEvent";
-import { currentuser } from "../UserHandler";
 import { createHeaders } from "../../api";
+import { selectUser } from "../../Features/userSlice";
+import { useSelector } from "react-redux";
 
 export default function Events() {
+  const currentuser = useSelector(selectUser);
   const [events, setEvents] = useState([]);
   const [update, setUpdate] = useState(0);
 

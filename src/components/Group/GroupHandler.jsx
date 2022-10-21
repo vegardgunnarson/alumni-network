@@ -1,6 +1,7 @@
 
-import { currentuser } from '../../components/UserHandler';
-const apiUrl = "https://alumni-case-database.herokuapp.com/api/v1"
+
+const apiUrl = "https://alumni-case-database.herokuapp.com/api/v1";
+
 
 export const getGroups = async () => {
 
@@ -16,7 +17,8 @@ export const getGroups = async () => {
         return[error.message, []];
     }
 }
-export const getGroupsOfStudent = async () => {
+export const getGroupsOfStudent = async (currentuser) => {
+    
     try{
         const response = await fetch(`${apiUrl}/alumnigroup/displayJoinedGroups?accessing_student_id=${currentuser.id}`);
         if(!response.ok){
@@ -29,7 +31,7 @@ export const getGroupsOfStudent = async () => {
         return[error.message, []];
     }
 }
-export const getAvailableGroupsOfStudent = async () => {
+export const getAvailableGroupsOfStudent = async (currentuser) => {
     try{
         const response = await fetch(`${apiUrl}/alumnigroup/displayAvailableGroups?accessing_student_id=${currentuser.id}`);
         if(!response.ok){
