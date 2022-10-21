@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { checkDbForUser } from "../api/user";
 import { useUser } from "../Context/UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser, updateUser } from "../Features/userSlice";
 
 const GetLoggedIn = () => {
-    const { user, setUser } = useUser();
-
     const nav = useNavigate();
-
+    const user = useSelector(selectUser)
+    const dispatch = useDispatch()
     useEffect( () => {
         loggIn();
     }, []);
@@ -20,8 +21,9 @@ const GetLoggedIn = () => {
             if (loggedInUser[0]){
                 alert("could not get user")
             } else {
-                setUser(loggedInUser[1])
+                await dispatch(updateUser(loggedInUser[1]))
                 console.log("loggedInUser")
+
                 nav('/timeline')
 
             }
