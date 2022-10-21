@@ -22,7 +22,7 @@ import Events from './components/Event/Events.jsx';
 import PostsList from './Features/posts/PostsList';
 import AddPostForm from './Features/posts/AddPostForm';
 import Topics from './components/Topic/Topics';
-import Calendar from './components/calendar/Calendar'
+import Calendar from './components/calendar/Calendar';
 
 
 
