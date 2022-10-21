@@ -51,6 +51,9 @@ export default function Timeline() {
 
   const loadPosts = async () => {
     const array = await getPosts();
+    if (array[1].length !== 0) {
+        array[1].sort((a,b) => (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0));
+    }
     setPosts(array[1]);
   };
   
@@ -85,6 +88,9 @@ function trimDate(d){
   }, [update]);
   const loadGroups = async () => {
     const array = await getGroupsOfStudent(currentuser);
+    if (array[1].length !== 0) {
+        array[1].sort((a,b) => (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0));
+    }
     setGroups(array[1]);
   };
   const [topics, setTopics] = useState([]);
@@ -94,6 +100,9 @@ function trimDate(d){
   }, [update]);
   const loadTopics = async () => {
     const array = await getTopicsOfStudent(currentuser);
+    if (array[1].length !== 0) {
+        array[1].sort((a,b) => (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0));
+    }
     setTopics(array[1]);
   };
   const [events, setEvents] = useState([]);
@@ -103,20 +112,12 @@ function trimDate(d){
   }, [update]);
   const loadEvents = async () => {
     const array = await getEvents();
+    if (array[1].length !== 0) {
+        array[1].sort((a,b) => (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0));
+    }
     setEvents(array[1]);
   };
 
-  function handleLeaveGroup(id) {
-    console.log("leaving group")
-  }
-  function handleLeaveTopic(id) {
-    console.log("leaving topic")
-
-  }
-  function handleLeaveEvent(id) {
-    console.log("leaving event")
-
-  }
   const reload = (input) => {
     setUpdate(update+input)
   };
@@ -189,9 +190,9 @@ function trimDate(d){
         <div className="timeline">
         {posts.map((post) => {
         return(
-            <div className="timelineposts">
+            <div className="timelineposts" key={post.id}>
+                <div>{post.reply}</div>
                 <div className="posttitle">{post.title}</div>
-                
                 <p>{post.content}</p>
                 <p className="postsinfo">By {post.creator_student} {trimDate(post.timestamp)}</p>
             

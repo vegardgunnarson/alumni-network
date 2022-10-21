@@ -27,6 +27,11 @@ export default function Topics() {
   const loadGroups = async () => {
     const array = await getAvailableTopicsOfStudent(currentuser);
     const arraya = await getTopicsOfStudent(currentuser);
+    if (array[1].length !== 0) {
+      array[1].sort((a,b) => (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0));
+  }    if (arraya[1].length !== 0) {
+    arraya[1].sort((a,b) => (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0));
+}
     setGroups(array[1]);
     setAvailableGroups(arraya[1]);
   };
