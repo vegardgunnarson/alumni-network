@@ -10,9 +10,15 @@ import Createtopic from "./Topic/CreateTopic";
 import Createpost from "./CreatePost";
 import { selectUser } from "../Features/userSlice";
 import { useSelector } from "react-redux";
+import { Calendar, globalizeLocalizer, } from "react-big-calendar";
 
+import globalize from 'globalize'
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 export default function Timeline() {
+  const localizer = globalizeLocalizer(globalize);
+
+
     const currentuser = useSelector(selectUser);
     const home={
         name: "Dashboard",
@@ -168,6 +174,7 @@ function trimDate(d){
             <h5 className="grouptitle">Groups</h5><Creategroup />
             </div>
 
+
             {groups.map((group) => {
         return(
             <div className="groupsection" key={group.id}>
@@ -187,6 +194,7 @@ function trimDate(d){
             )
         })}
         </div>
+
         <div className="timeline">
         {posts.map((post) => {
         return(
