@@ -15,4 +15,6 @@ const updateThisUser = (id, name, picture, status, bio, funfact, createdAlumniEv
     studentMembershipInvites: studentMembershipInvites,
     studentRSVPs:studentRSVP 
 }
+console.log(newUser)
+return newUser
     }
