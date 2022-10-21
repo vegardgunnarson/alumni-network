@@ -33,8 +33,7 @@ export default function Createpost({setUpdate, type, id, location, username}) {
   
   const [createPost, setCreatePost] = useState({
     title: "",
-    content: "",
-    timestamp: Date.now()
+    content: ""
   
   });
   const CreatePostInDB = async () => {
@@ -48,6 +47,7 @@ export default function Createpost({setUpdate, type, id, location, username}) {
     const response = await axios.post(`${url}post/${id}/${type}`, {
       ...createPost,
     creator_student: username,
+    timestamp: Date.now(),
     post_location: location
      })
 
@@ -71,8 +71,6 @@ export default function Createpost({setUpdate, type, id, location, username}) {
       creator_student: "",
       post_location: "",
       timestamp: ""
-
-      
       })
     await CreatePostInDB();
     handleClose();
