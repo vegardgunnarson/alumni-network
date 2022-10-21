@@ -141,7 +141,7 @@ function trimDate(d){
             <h3>{display.name}</h3>
             <p className="groupdescription">{display.description}</p>
             <div>
-            <Createpost setUpdate={reload} type={type} id={display.id}/>
+            <Createpost setUpdate={reload} type={type} id={display.id} username={currentuser.name}/>
             </div>
 
         </div>
@@ -154,7 +154,7 @@ function trimDate(d){
             <div className="eventsection" key={event.id}>
             <p className="eventtime">{trimDate(event.start_time)} &nbsp;</p>
             <div className="eventnameandx">
-            <p className="eventname" onClick={() => handleDisplay(event,"addEventPost","viewEventPosts")}>{event.name}</p><p className="xevent" onClick={() => handleLeaveEvent(event.id)}>x</p></div><br/>
+            <p className="eventname" onClick={() => handleDisplay(event,"addEventPost","viewEventPosts")}>{event.name}</p></div><br/>
             <p className="eventdesc">{event.description}</p>
             </div>
             )
@@ -170,7 +170,7 @@ function trimDate(d){
             {groups.map((group) => {
         return(
             <div className="groupsection" key={group.id}>
-            <p onClick={() => handleDisplay(group,"addGroupPost","viewGroupPosts")}>{group.name}</p><p onClick={() => handleLeaveGroup(group.id)}>x</p>
+            <p onClick={() => handleDisplay(group,"addGroupPost","viewGroupPosts")}>{group.name}</p><p>{group.posts.length}</p>
             </div>
             )
         })}
@@ -181,7 +181,7 @@ function trimDate(d){
             {topics.map((topic) => {
         return(
             <div className="topicsection" key={topic.id}>
-            <p onClick={() => handleDisplay(topic,"addTopicPost","viewTopicPosts")}>{topic.name}</p><p onClick={() => handleLeaveTopic(topic.id)}>x</p>
+            <p onClick={() => handleDisplay(topic,"addTopicPost","viewTopicPosts")}>{topic.name}</p><p>{topic.posts.length}</p>
             </div>
             )
         })}
