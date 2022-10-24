@@ -19,6 +19,7 @@
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+    margin-top: -225px;
     min-height:2000px;
     min-width: 1440px;
     max-width: 1640px;
@@ -84,8 +85,8 @@
     padding-left: 25px;
     padding-right: 25px;
     padding-top: 25px;
-    height: 300px;
-    overflow: scroll;
+    min-height: 300px;
+    max-height: fit-content;
     
 }
 .eventsection{
@@ -97,7 +98,6 @@
 }
 .eventdesc{
     margin-top: -40px;
-
 }
 .eventname{
     margin-top: -15px;
