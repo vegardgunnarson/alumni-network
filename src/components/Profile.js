@@ -18,7 +18,7 @@ export default function Profile() {
     fun_fact: thisUser.fun_fact,
   });
 
-  const [pictureUrl, setPictureUrl] = useState();
+  const [pictureUrl, setPictureUrl] = useState(thisUser.picture);
 
   useEffect(() => {
     fetchUser();
@@ -38,7 +38,7 @@ export default function Profile() {
   };
 
   const changePicture = async () => {
-    setPictureUrl(prompt("imgling"));
+    setPictureUrl(prompt("Enter image link"));
   };
 
   const updateUserInDb = async () => {
