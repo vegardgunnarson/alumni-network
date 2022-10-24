@@ -38,7 +38,8 @@ export default function Profile() {
   };
 
   const changePicture = async () => {
-    setPictureUrl(prompt("Enter image link"));
+    setPictureUrl(prompt("Please add image URL"));
+
   };
 
   const updateUserInDb = async () => {

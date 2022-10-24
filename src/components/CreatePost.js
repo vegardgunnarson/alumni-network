@@ -5,6 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "../styles/Timeline.scss";
+import info from '../assets/info.svg';
 
 const url = "https://alumni-case-database.herokuapp.com/api/v1/";
 
@@ -63,6 +64,10 @@ export default function Createpost({setUpdate, type, id, location, username}) {
     }
     return response.data
   };
+  function getMarkDown() {
+    let s= "Basic MarkDown Syntax\nHeadlines: # H1 ## H2 \nBold Text: **bold text** \nItalicized: *italicized text* \nImage: ![alt text](image.jpg) \nLink: [title](https://www.example.com)";
+    alert(s);
+  }
   
 
   const handleChange = (event) => {
@@ -119,7 +124,7 @@ export default function Createpost({setUpdate, type, id, location, username}) {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Content</Form.Label>
+              <Form.Label>Content <img src={info} onClick={getMarkDown} alt="no info"/></Form.Label>
               <Form.Control
                 as="textarea"
                 value={createPost.content}

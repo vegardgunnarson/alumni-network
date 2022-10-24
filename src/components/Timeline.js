@@ -15,14 +15,13 @@ import { Calendar, globalizeLocalizer, } from "react-big-calendar";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import info from '../assets/info.svg';
-
+import xcircle from '../assets/xcircle.svg';
 import globalize from 'globalize'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 export default function Timeline() {
   const localizer = globalizeLocalizer(globalize);
   const navigate = useNavigate();
-
 
     const currentuser = useSelector(selectUser);
     const home={
@@ -148,6 +147,7 @@ function trimDate(d){
     alert(s);
   }
 
+
   return (
     <div className="dashboard">
       <div className="topdashboard">
@@ -169,6 +169,7 @@ function trimDate(d){
             <p className="groupdescription">{display.description}</p>
             <div>
             <Createpost setUpdate={reload} type={type} object={display} id={display.id} location={display.name} username={currentuser.name}/>
+            <div>{ (type!=="addDMPost") ? <div className="xbutton" onClick={() => handleDisplay(home,"addDMPost","viewAllPosts")}><img src={xcircle}  alt="no info"/></div> : ""}</div>
             </div>
 
         </div>
@@ -226,7 +227,7 @@ function trimDate(d){
                 <p className="postsinfo">{getLocation(post.post_location)}</p>
                 <div>{post.reply}</div>
                 <div className="posttitle">{post.title}</div>
-                <p><ReactMarkdown children={post.content} remarkPlugins={[remarkGfm]}/></p>
+                <p><ReactMarkdown children={post.content} remarkPlugins={[remarkGfm]} className="markDown"/></p>
                 <p className="postsinfo">By {post.creator_student} {trimDate(post.timestamp)}</p>
             
             </div>

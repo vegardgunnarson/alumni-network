@@ -63,7 +63,7 @@ export default function Events() {
   
   function visibility(n){
     if (n===false){
-        return lock;
+        return globe;
     }else{
         return globe;
     }

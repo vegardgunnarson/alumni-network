@@ -8,7 +8,6 @@
 
 }
 .topdashboard{
-    
     display: flex;
     justify-content: space-evenly;
     width: 100%;
@@ -137,6 +136,9 @@
     display: flex;
     flex-direction: column;
 }
+.markDown{
+    max-width: 800px !important;
+}
 .postsinfo{
     font-style: italic;
     font-size: small;
@@ -223,4 +225,21 @@
     display: flex;
     justify-content: space-between;
     margin-right: 25px;
+}
+.xbutton{
+    color:#007bff;
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 20px;
+    background-color: white;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    padding-top: 6px;
+    padding-bottom: 7px;
+    margin-top: -153px;
+    margin-left: -58px;
+}
+.xbutton:hover{
+    cursor: pointer;
+
 }

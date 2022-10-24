@@ -6,7 +6,8 @@ import "../../styles/Groups.scss";
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { currentuser } from "../UserHandler";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../Features/userSlice";
 
 
 const apiUrl = 'https://alumni-case-database.herokuapp.com/api/v1/alumnigroup'
@@ -14,6 +15,7 @@ const apiUrl = 'https://alumni-case-database.herokuapp.com/api/v1/alumnigroup'
 export default function Creategroup({setUpdate}) {
 
 
+  const currentuser = useSelector(selectUser);
 
     const [createGroup, setCreateGroup] = useState({
       title: "",
@@ -23,9 +25,6 @@ export default function Creategroup({setUpdate}) {
     
 
   const CreateGroupInDB = async () => {
-
-
-  
     try {
           const response = await fetch(`${apiUrl}/${currentuser.id}/addAlumniGroup`, {
               method: 'POST',
