@@ -12,6 +12,8 @@ import { selectUser } from "../Features/userSlice";
 import { useNavigate} from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { Calendar, globalizeLocalizer, } from "react-big-calendar";
+import ReactMarkdown from 'https://esm.sh/react-markdown@7';
+import remarkGfm from 'https://cdn.skypack.dev/remark-gfm@3?dts';
 
 import globalize from 'globalize'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -219,7 +221,7 @@ function trimDate(d){
                 <p className="postsinfo">{getLocation(post.post_location)}</p>
                 <div>{post.reply}</div>
                 <div className="posttitle">{post.title}</div>
-                <p>{post.content}</p>
+                <p><ReactMarkdown children={post.content} remarkPlugins={[remarkGfm]}/></p>
                 <p className="postsinfo">By {post.creator_student} {trimDate(post.timestamp)}</p>
             
             </div>
