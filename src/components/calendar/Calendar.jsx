@@ -4,6 +4,7 @@ import "../../styles/Timeline.scss";
 import globalize from 'globalize';
 import {useNavigate} from 'react-router-dom'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import "../../styles/Calendar.scss";
 
 import react, {useState, useEffect} from "react"
 
@@ -28,7 +29,7 @@ useEffect(() => {
   };
 
     return (
-    <div>
+    <div className="container">
         <div className="reactCalendar">
             <h3 class="calenderh3">Calendar</h3> 
             <p className="calenderp" onClick={() => navigate('/timeline')}>Back</p>
