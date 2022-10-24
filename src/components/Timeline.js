@@ -12,8 +12,8 @@ import { selectUser } from "../Features/userSlice";
 import { useNavigate} from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { Calendar, globalizeLocalizer, } from "react-big-calendar";
-import ReactMarkdown from 'https://esm.sh/react-markdown@7';
-import remarkGfm from 'https://cdn.skypack.dev/remark-gfm@3?dts';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'
 
 import globalize from 'globalize'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
