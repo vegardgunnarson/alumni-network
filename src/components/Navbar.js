@@ -32,8 +32,8 @@ export default function Navbar() {
       <div className="navbarSpace"></div>
     <div className="stickynavbar">
       <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light px-4 me-auto">
-        <img src={globe} width="45px" alt="no logo found"/>
-        <a class="nav-link m-4" onClick={() => navigate('/timeline')}><h2>Alumni Network</h2></a>
+        <img src={globe} width="50px" alt="no logo found"/>
+        <a class="nav-link m-4" className="navtitle" onClick={() => navigate('/timeline')}><h2>Alumni Network Solution</h2></a>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item active" className="links">
             <a class="nav-link m-4" onClick={() => navigate('/timeline')}>

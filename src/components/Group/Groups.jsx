@@ -11,12 +11,14 @@ import Creategroup from "./CreateGroup";
 import { selectUser } from "../../Features/userSlice";
 import { useSelector } from "react-redux";
 import axios, { createHeaders } from "../../api/index";
+import { useNavigate} from 'react-router-dom';
 
 export default function Groups() {
   const currentuser = useSelector(selectUser);
   const [groups, setGroups] = useState([]);
   const [availableGroups, setAvailableGroups] = useState([]);
   const [update, setUpdate] = useState(0);
+  const navigate = useNavigate();
   
 
   useEffect(() => {
@@ -39,19 +41,16 @@ export default function Groups() {
   };
 
 
-  const joinGroup = async (n) => {
+  const joinGroup = async (gId) => {
     
     try {
-      console.log(n)
-      console.log(currentuser.id)
       const response = await fetch(`https://alumni-case-database.herokuapp.com/api/v1/student/${currentuser.id}/addGroupToStudent`, {
           method: 'PUT',
           headers: createHeaders(),
-          body: n
+          body: gId
       });
       setUpdate(update+1);
       const data = await response.json();
-      //return user object
       
       return data;
 
@@ -59,15 +58,13 @@ export default function Groups() {
       return error.message;
   }
 } 
-const leaveGroup = async (n) => {
+const leaveGroup = async (gId) => {
     
   try {
-    console.log(n)
-    console.log(currentuser.id)
     const response = await fetch(`https://alumni-case-database.herokuapp.com/api/v1/student/${currentuser.id}/removeGroupFromStudent`, {
         method: 'PUT',
         headers: createHeaders(),
-        body: n
+        body: gId
     });
     setUpdate(update+1);
     const data = await response.json();
@@ -115,7 +112,7 @@ const leaveGroup = async (n) => {
         return envelope;
     }
   }
-  
+  //&& handleDisplay(group,"addGroupPost","viewGroupPosts")}
 
 
   return (
@@ -129,6 +126,7 @@ const leaveGroup = async (n) => {
     <div className="groups">
      {groups.map((group) => {
         return(
+          
             <div className="group" key={group.id}>
             <h3>{group.name}</h3>
             <div className="members">
@@ -152,7 +150,7 @@ const leaveGroup = async (n) => {
      {availableGroups.map((group) => {
         return(
             <div className="group" key={group.id}>
-            <h3>{group.name}</h3>
+            <h3 onClick={() => navigate('/Timeline')}>{group.name}</h3>
             <div className="members">
             <img class="mt-1" src={visibility(group._private)} height="15px" alt="no logo"/>
             <p>{members(group.students.length)}</p>
