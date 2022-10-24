@@ -3,10 +3,7 @@ import keycloak from "../keycloak/keycloak";
 import { useNavigate } from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import "../styles/Navbar.scss";
-
-
-
-
+import globe from '../assets/globe.svg';
 
 /*
 <Form className="d-flex m-4">
@@ -35,6 +32,7 @@ export default function Navbar() {
       <div className="navbarSpace"></div>
     <div className="stickynavbar">
       <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light px-4 me-auto">
+        <img src={globe} width="45px" alt="no logo found"/>
         <a class="nav-link m-4" onClick={() => navigate('/timeline')}><h2>Alumni Network</h2></a>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item active" className="links">

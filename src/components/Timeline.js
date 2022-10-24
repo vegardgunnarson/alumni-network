@@ -122,7 +122,7 @@ function trimDate(d){
   }, [update]);
 
   const loadEvents = async () => {
-    const array = await getEventsOfStudent();
+    const array = await getEventsOfStudent(currentuser);
     if (array[1].length !== 0) {
         array[1].sort((a,b) => (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0));
     }
