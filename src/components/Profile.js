@@ -73,7 +73,7 @@ export default function Profile() {
           className="image"
         />
         <div class="form-control" id="name" className="name">
-          {thisUser.id}
+          {thisUser.name}
         </div>
       </div>
       <input

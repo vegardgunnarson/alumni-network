@@ -20,26 +20,30 @@
     background-color: blue;
 }
 .status{
+    padding-left: 10px;
+    border-radius: 15px;
     resize: none;
     width: 500px;
     height: 30px;
     border: solid 3px #f8f9fa;
-    border-radius: 5px;
     margin-top: 20px;
 }
 
 .status:hover{
+    
     cursor: pointer;
     border: solid 3px white;
     background-color: white;
 }
 .bio{
+    padding-left: 10px;
+    border-radius: 15px;
     margin-top: 30px;
     width: 500px;
     height: 200px;  
     resize: none;
     border: solid 3px #f8f9fa;
-    border-radius: 5px;
+
 }
 .bio:hover{
     cursor: pointer;
@@ -47,11 +51,12 @@
     background-color: white;
 }
 .funfact{
+    padding-left: 10px;
+    border-radius: 15px;
     resize: none;
     width: 500px;
     height: 30px;
     border: solid 3px #f8f9fa;
-    border-radius: 5px;
 }
 .funfact:hover{
     cursor: pointer;
