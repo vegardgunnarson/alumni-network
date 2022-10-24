@@ -13,7 +13,8 @@ import { useNavigate} from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { Calendar, globalizeLocalizer, } from "react-big-calendar";
 import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm'
+import remarkGfm from 'remark-gfm';
+import info from '../assets/info.svg';
 
 import globalize from 'globalize'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -142,6 +143,10 @@ function trimDate(d){
             return ""
         }
   }
+  function getInfo() {
+    let s= "This is your homepage. You can click on any Group/Topic/Event to filter posts and make posts. You are currently viewing "+ display.name +", click on your picture or name to get back to dashboard";
+    alert(s);
+  }
 
   return (
     <div className="dashboard">
@@ -160,7 +165,7 @@ function trimDate(d){
         </div>
         
         <div className="post">
-            <h3>{display.name}</h3>
+            <div className="infoAndDisplay"><h3>{display.name}</h3><img src={info} onClick={getInfo} alt="no info"/></div>
             <p className="groupdescription">{display.description}</p>
             <div>
             <Createpost setUpdate={reload} type={type} object={display} id={display.id} location={display.name} username={currentuser.name}/>
