@@ -3,7 +3,7 @@ import "../styles/Timeline.scss";
 import { useEffect, useState } from "react";
 import {  getGroupsOfStudent } from "./Group/GroupHandler";
 import {  getTopicsOfStudent} from "./Topic/TopicHandler";
-import { getEvents } from "./Event/EventHandler";
+import { getEventsOfStudent } from "./Event/EventHandler";
 import Creategroup from "./Group/CreateGroup";
 import Createevent from "./Event/CreateEvent";
 import Createtopic from "./Topic/CreateTopic";
@@ -120,7 +120,7 @@ function trimDate(d){
   }, [update]);
 
   const loadEvents = async () => {
-    const array = await getEvents();
+    const array = await getEventsOfStudent();
     if (array[1].length !== 0) {
         array[1].sort((a,b) => (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0));
     }

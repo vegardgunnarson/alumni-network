@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/Events.scss";
 import { useState, useEffect } from "react";
-import { getEvents } from "./EventHandler";
+import { getAvailableEventssOfStudent, getEventsOfStudent } from "./EventHandler";
 import lock from '../../assets/lock-fill.svg';
 import globe from '../../assets/globe.svg';
 import envelope from '../../assets/envelope.svg';
@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 export default function Events() {
   const currentuser = useSelector(selectUser);
   const [events, setEvents] = useState([]);
+  const [joinedEvents, setJoinedEvents] = useState([]);
   const [update, setUpdate] = useState(0);
 
   function trimDate(d){
@@ -21,14 +22,25 @@ export default function Events() {
     return thisdate.toLocaleString('no-GB', {hour12: false});
 }
 
-
   useEffect(() => {
     loadEvents();
   }, [update]);
+
+
   const loadEvents = async () => {
-    const array = await getEvents();
+    const array = await getAvailableEventssOfStudent(currentuser);
+    const arraya = await getEventsOfStudent(currentuser);
+    if (array[1].length !== 0) {
+      array[1].sort((a,b) => (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0));
+  }    if (arraya[1].length !== 0) {
+    arraya[1].sort((a,b) => (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0));
+}
     setEvents(array[1]);
+    setJoinedEvents(arraya[1]);
   };
+
+
+
   const reload = (input) => {
     setUpdate(update+input)
   };
@@ -65,7 +77,6 @@ export default function Events() {
   }
 
   const joinEvent = async (n) => {
-    
     try {
       console.log(n)
       console.log(currentuser.id)
@@ -85,7 +96,26 @@ export default function Events() {
   }
 } 
 
+const leaveEvent = async (n) => {
     
+  try {
+    console.log(n)
+    console.log(currentuser.id)
+    const response = await fetch(`https://alumni-case-database.herokuapp.com/api/v1/student/${currentuser.id}/removeEventFromStudent`, {
+        method: 'PUT',
+        headers: createHeaders(),
+        body: n
+    });
+    setUpdate(update+1);
+    const data = await response.json();
+    //return user object
+    
+    return data;
+
+} catch (error) {
+    return error.message;
+}
+} 
   return (
     <div className="eventcontent">
     <div className="addgroup">
@@ -117,6 +147,31 @@ export default function Events() {
             </div>
             <div>
             <button class="btn btn-secondary"  onClick={() => joinEvent(event.id)}>Accept</button>
+            </div>
+            </div> 
+        )
+     })}
+     {joinedEvents.map((event) => {
+        return(
+            <div className="event" key={event.id}>
+            <h3>{event.name}</h3>
+            <div className="eventmembers">
+            <img class="mt-1" src={visibility(event.allow_guests)} height="15px" alt="no logo"/>
+            <p>{people(event.students.length)}</p>
+            </div>
+            <div>
+            <p className="eventtime">{trimDate(event.start_time)} &nbsp; - {trimDate(event.end_time)}</p>
+            <p className="eventdescription">{event.description}</p>
+            </div>
+            <div className="posts">
+            <img src={getEnvelope(event.posts.length)} class="mt-1" height="15px" alt="no logo"/>
+            <p>{posts(event.posts.length)}</p>
+            </div>
+            <div className="events">
+            <p></p>
+            </div>
+            <div>
+            <button class="btn btn-danger" onClick={() => leaveEvent(event.id)}>Leave</button>
             </div>
             </div> 
         )

@@ -17,7 +17,7 @@ export default function Createpost({setUpdate, type, id, location, username}) {
 
   function handleReciever(uid, name){
     setReciever(uid);
-    setRecieverName(name)
+    setRecieverName(name);
     setNames([]);
   }
 

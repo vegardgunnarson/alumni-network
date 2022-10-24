@@ -31,33 +31,34 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   return (
+    <div className="navi">
+      <div className="navbarSpace"></div>
     <div className="stickynavbar">
-      <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-light px-4 me-auto">
+      <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light px-4 me-auto">
         <a class="nav-link m-4" onClick={() => navigate('/timeline')}><h2>Alumni Network</h2></a>
-        
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item active">
+          <li class="nav-item active" className="links">
             <a class="nav-link m-4" onClick={() => navigate('/timeline')}>
               Home
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item active" className="links">
             <a class="nav-link m-4" onClick={() => navigate('/events')}>
               Events
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item active" className="links">
             <p class="nav-link m-4" onClick={() => navigate('/groups')}>
               Groups
             </p>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item active" className="links">
             <a class="nav-link m-4" onClick={() => navigate('/topics')}>
               Topics
             </a>
           </li>
           <li class="m-4">
-            <NavDropdown title={keycloak.authenticated &&keycloak.tokenParsed && <span>{keycloak.tokenParsed.name}</span>}>
+            <NavDropdown className="links" title={keycloak.authenticated &&keycloak.tokenParsed && <span>{keycloak.tokenParsed.name}</span>}>
               <NavDropdown.Item onClick={() => navigate('/profile')}>Profile</NavDropdown.Item>
               <NavDropdown.Item onClick={() => navigate('/admin')}>Admin</NavDropdown.Item>
               <NavDropdown.Item onClick={() => navigate('/token')}>Token</NavDropdown.Item>
@@ -73,6 +74,7 @@ export default function Navbar() {
       </nav>
 
   
+    </div>
     </div>
   );
 }
