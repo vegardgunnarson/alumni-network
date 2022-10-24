@@ -16,9 +16,9 @@ export const createUser = async (username) => {
         name: keycloak.tokenParsed.name,
         picture:
           "https://i.pinimg.com/736x/d7/3b/c1/d73bc1381fb1380112a98266b6f2d27f.jpg",
-        status: "status",
-        bio: "bio",
-        fun_fact: "ffact",
+        status: "Status",
+        bio: "Bio",
+        fun_fact: "Funfact",
       }),
     });
 
