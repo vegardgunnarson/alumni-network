@@ -163,6 +163,7 @@
 }
 .posttitle{
     font-weight: bold;
+    margin-top: -15px;
 }
 .groupsection{
     display: flex;
@@ -204,4 +205,17 @@
     font-size: smaller;
     cursor: pointer;
     color:rgb(110, 156, 110);
+}
+.names{
+    height: px;
+    
+}
+.names:hover{
+    cursor: pointer;
+}
+.namelist{
+    padding-top: 25px;
+    max-height: 300px;
+    overflow: scroll;
+    min-height: fit-content;
 }

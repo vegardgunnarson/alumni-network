@@ -118,6 +118,7 @@ function trimDate(d){
   useEffect(() => {
     loadEvents();
   }, [update]);
+
   const loadEvents = async () => {
     const array = await getEvents();
     if (array[1].length !== 0) {
@@ -126,9 +127,19 @@ function trimDate(d){
     setEvents(array[1]);
   };
 
+
+
   const reload = (input) => {
     setUpdate(update+input)
   };
+
+  function getLocation(l) {
+        if (l !== display.name){
+            return l
+        } else {
+            return ""
+        }
+  }
 
   return (
     <div className="dashboard">
@@ -205,7 +216,7 @@ function trimDate(d){
         {posts.map((post) => {
         return(
             <div className="timelineposts" key={post.id*2}>
-                <p className="postsinfo">{post.post_location}</p>
+                <p className="postsinfo">{getLocation(post.post_location)}</p>
                 <div>{post.reply}</div>
                 <div className="posttitle">{post.title}</div>
                 <p>{post.content}</p>

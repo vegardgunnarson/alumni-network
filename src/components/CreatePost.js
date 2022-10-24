@@ -4,7 +4,8 @@ import axios from "../api";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Dropdown from "react-bootstrap/Dropdown";
+import "../styles/Timeline.scss";
+
 const url = "https://alumni-case-database.herokuapp.com/api/v1/";
 
 
@@ -12,6 +13,13 @@ export default function Createpost({setUpdate, type, id, location, username}) {
   const [names, setNames] = useState([]);
   const [DM, setDM] = useState(false);
   const [reciever, setReciever] = useState([]);
+  const [recieverName, setRecieverName] = useState([]);
+
+  function handleReciever(uid, name){
+    setReciever(uid);
+    setRecieverName(name)
+    setNames([]);
+  }
 
 
   const getAllStudents = async () => {
@@ -27,7 +35,6 @@ export default function Createpost({setUpdate, type, id, location, username}) {
     if (type === "addDMPost"){
       setDM(true);
       await getAllStudents();
-      console.log(names);
     }
   }
   
@@ -51,7 +58,6 @@ export default function Createpost({setUpdate, type, id, location, username}) {
     post_location: location
      })
 
-    console.log("Brukte "+location+" som location")
     if(response.status !== 201){
       console.log(response)
     }
@@ -79,17 +85,23 @@ export default function Createpost({setUpdate, type, id, location, username}) {
 
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    
+    setShow(false);
+    setNames([]);
+    setReciever([]);
+    setRecieverName([]);
+  }
   const handleShow = () => setShow(true);
 
   return (
     <div>
       <button onClick={handleShow} type="button" class="btn btn-light mt-4">
-        Create post...
+      { (type==="addDMPost") ? <div>New DM... </div> : <div >Create new post in {location}...</div>}
       </button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title >Create new post in {location}</Modal.Title>
+          { (type==="addDMPost") ?<Modal.Title >DM {recieverName}</Modal.Title> : <Modal.Title >Create new post in {location}</Modal.Title>}
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -117,22 +129,16 @@ export default function Createpost({setUpdate, type, id, location, username}) {
               />
             </Form.Group >
             <Form.Group >
-            <Button variant="secondary" onClick={handleDM}>
-            Choose a specific student
-          </Button>
-          <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Dropdown Button
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu>
-      {names.map((name) => {
+              { (type==="addDMPost") ? (
+            <Button variant="secondary" onClick={handleDM} >Set reciever</Button>) : (<p></p>)}
+          <div className="namelist">
+          {names.map((name) => {
         return(
-          <Dropdown.Item key={name.id} onClick={() => setReciever(name.id)}>{name.name}</Dropdown.Item>
-            
+          <div className="names">
+              <p key={name.id} onClick={() => handleReciever(name.id, name.name)}>{name.name}</p>
+            </div>
         )})}
-      </Dropdown.Menu>
-    </Dropdown>
+          </div>
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -141,7 +147,7 @@ export default function Createpost({setUpdate, type, id, location, username}) {
             Close
           </Button>
           <Button variant="secondary" onClick={handleSubmit}>
-            Create post
+          { (type==="addDMPost") ? <div> Send </div> : <div >Create post </div>}
           </Button>
         </Modal.Footer>
       </Modal>
