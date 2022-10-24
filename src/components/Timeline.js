@@ -175,7 +175,7 @@ function trimDate(d){
         </div>
         <div className="dashevent">
         <div className="creategroupetimeline">
-        <h5 className="eventtitle">Upcoming events</h5><Createevent /><br/>
+        <h5 className="eventtitle">Upcoming events</h5><Createevent />
         <div>
         
         </div>
