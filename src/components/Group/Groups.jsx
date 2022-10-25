@@ -116,7 +116,7 @@ const leaveGroup = async (gId) => {
 
 
   return (
-    <div >
+    <div className="container" >
     <div className="addgroup">
         <h3>Groups</h3>
         <div className="addbuttoncustom">

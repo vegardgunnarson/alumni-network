@@ -33,7 +33,7 @@ useEffect(() => {
         <div className="reactCalendar">
             <h3 class="calenderh3">Calendar</h3> 
             <p className="calenderp" onClick={() => navigate('/timeline')}>Back</p>
-            
+           <div className="calenderGroup">
           <Calendar 
             localizer={localizer} 
             events={events}
@@ -43,6 +43,7 @@ useEffect(() => {
            
             style={{height:800, margin: "50px"}} 
           />
+          </div> 
         </div>
     
     </div>

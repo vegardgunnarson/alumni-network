@@ -31,31 +31,31 @@ export default function Navbar() {
     <div className="navi">
       <div className="navbarSpace"></div>
     <div className="stickynavbar">
-      <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light px-4 me-auto">
-        <img src={globe} width="50px" alt="no logo found"/>
-        <a class="nav-link m-4" className="navtitle" onClick={() => navigate('/timeline')}><h2>Alumni Network Solution</h2></a>
+      <nav id="navbar_top" class="navbar navbar-expand-lg  me-auto">
+        <img src={globe} width="30px" alt="no logo found"/>
+        <a class="nav-link m-1" className="navtitle" onClick={() => navigate('/timeline')}><h2>Alumni Network Solution</h2></a>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item active" className="links">
-            <a class="nav-link m-4" onClick={() => navigate('/timeline')}>
+            <a class="nav-link m-1" onClick={() => navigate('/timeline')}>
               Home
             </a>
           </li>
           <li class="nav-item active" className="links">
-            <a class="nav-link m-4" onClick={() => navigate('/events')}>
+            <a class="nav-link m-1" onClick={() => navigate('/events')}>
               Events
             </a>
           </li>
           <li class="nav-item active" className="links">
-            <p class="nav-link m-4" onClick={() => navigate('/groups')}>
+            <p class="nav-link m-1" onClick={() => navigate('/groups')}>
               Groups
             </p>
           </li>
           <li class="nav-item active" className="links">
-            <a class="nav-link m-4" onClick={() => navigate('/topics')}>
+            <a class="nav-link m-1" onClick={() => navigate('/topics')}>
               Topics
             </a>
           </li>
-          <li class="m-4">
+          <li class="m-1">
             <NavDropdown className="links" title={keycloak.authenticated &&keycloak.tokenParsed && <span>{keycloak.tokenParsed.name}</span>}>
               <NavDropdown.Item onClick={() => navigate('/profile')}>Profile</NavDropdown.Item>
               <NavDropdown.Item onClick={() => navigate('/admin')}>Admin</NavDropdown.Item>

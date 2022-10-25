@@ -2,23 +2,22 @@
     cursor: pointer !important;
 }
 .navi{
-    background-color:#EFEFEF;
+    background-color:#ffffff;
     font-weight: bold;
     left: 0;
     right: 0;
     top:0;
     position: sticky;
-    border-bottom: solid 2px ;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .stickynavbar{
-    background-color:#EFEFEF;
+    background-color:#ffffff;
 }
 
 .links{
     font-size: larger;
 }
 .navbar{
-    font-size: larger;
     color:rgb(108,108,108);
 }
 .navtitle{
