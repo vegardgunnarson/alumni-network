@@ -8,15 +8,14 @@
     right: 0;
     top:0;
     position: sticky;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+    border-bottom: solid 1px rgb(164, 164, 164);
+
 }
 .stickynavbar{
     background-color:#ffffff;
 }
 
-.links{
-    font-size: larger;
-}
 .navbar{
     color:rgb(108,108,108);
 }
@@ -29,4 +28,8 @@
 .navtitle:hover{
     color:black;
     cursor: pointer;
+}
+.logo{
+    width: 60px;
+    margin-left: 60px;
 }
