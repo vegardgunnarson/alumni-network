@@ -13,14 +13,10 @@ import { TokenPage } from './components/TokenPage';
 import { AdminPage } from './components/AdminPage';
 import KeycloakRoute from "./routes/KeycloakRoute";
 import { ROLES } from "./const/roles";
-import  Posts from './components/Posts/Posts';
 import { LoggedInRoute } from './hoc/LoggedInRoute';
 import { RoleCheckRoute } from './hoc/RoleCheckRoute';
 import CreatePost from './components/CreatePost';
-import { SettingsPage } from "./components/SettingsPage";
 import Events from './components/Event/Events.jsx';
-import PostsList from './Features/posts/PostsList';
-import AddPostForm from './Features/posts/AddPostForm';
 import Topics from './components/Topic/Topics';
 import Calendar from './components/calendar/Calendar';
 
@@ -67,19 +63,7 @@ function App() {
             </KeycloakRoute>
             }/>
 
-            <Route path="/posts" element={
-            <KeycloakRoute role={ ROLES.User }>
-            <Posts /> 
-            
-            </KeycloakRoute>
-            }/>
 
-            <Route path="/postslist" element={
-            <KeycloakRoute role={ ROLES.User }>
-            <AddPostForm />
-            <PostsList /> 
-            </KeycloakRoute>
-            }/>
             
             <Route path="/events" element={
             <KeycloakRoute role={ ROLES.User }>
@@ -98,12 +82,7 @@ function App() {
             <Calendar /> 
             </KeycloakRoute>
             }/>
-           
-            <Route path="/settingspage" element={
-            <KeycloakRoute role={ ROLES.User }>
-            <SettingsPage /> 
-            </KeycloakRoute>
-            }/>
+
             <Route path="/profile" element={
               <KeycloakRoute role={ ROLES.User }>
                 <Profile />

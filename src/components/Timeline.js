@@ -11,16 +11,14 @@ import Createpost from "./CreatePost";
 import { selectUser } from "../Features/userSlice";
 import { useNavigate} from 'react-router-dom';
 import { useSelector } from "react-redux";
-import { Calendar, globalizeLocalizer, } from "react-big-calendar";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import info from '../assets/info.svg';
 import xcircle from '../assets/xcircle.svg';
-import globalize from 'globalize'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 export default function Timeline() {
-  const localizer = globalizeLocalizer(globalize);
+
   const navigate = useNavigate();
 
     const currentuser = useSelector(selectUser);
