@@ -2,7 +2,7 @@
   "realm": "myrealm",
   "auth-server-url": "https://keycloak-alumni-network.herokuapp.com/auth/",
   "ssl-required": "external",
-  "resource": "react-client",
+  "resource": "test-client",
   "public-client": true,
   "verify-token-audience": true,
   "use-resource-role-mappings": true,

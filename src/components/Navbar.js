@@ -3,7 +3,7 @@ import keycloak from "../keycloak/keycloak";
 import { useNavigate } from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import "../styles/Navbar.scss";
-import globe from '../assets/globe.svg';
+import mainlogo from '../assets/mainlogo.png';
 
 /*
 <Form className="d-flex m-4">
@@ -31,36 +31,34 @@ export default function Navbar() {
     <div className="navi">
       <div className="navbarSpace"></div>
     <div className="stickynavbar">
-      <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light px-4 me-auto">
-        <img src={globe} width="50px" alt="no logo found"/>
-        <a class="nav-link m-4" className="navtitle" onClick={() => navigate('/timeline')}><h2>Alumni Network Solution</h2></a>
+      <nav id="navbar_top" class="navbar navbar-expand-lg px-4 me-auto">
+        <img src={mainlogo} className="logo" alt="no logo found"/>
+        <a class="nav-link m-2" className="navtitle" onClick={() => navigate('/timeline')}><h2>Alumni</h2></a>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item active" className="links">
-            <a class="nav-link m-4" onClick={() => navigate('/timeline')}>
+            <a class="nav-link m-2" onClick={() => navigate('/timeline')}>
               Home
             </a>
           </li>
           <li class="nav-item active" className="links">
-            <a class="nav-link m-4" onClick={() => navigate('/events')}>
+            <a class="nav-link m-2" onClick={() => navigate('/events')}>
               Events
             </a>
           </li>
           <li class="nav-item active" className="links">
-            <p class="nav-link m-4" onClick={() => navigate('/groups')}>
+            <p class="nav-link m-2" onClick={() => navigate('/groups')}>
               Groups
             </p>
           </li>
           <li class="nav-item active" className="links">
-            <a class="nav-link m-4" onClick={() => navigate('/topics')}>
+            <a class="nav-link m-2" onClick={() => navigate('/topics')}>
               Topics
             </a>
           </li>
-          <li class="m-4">
+          <li class="m-2">
             <NavDropdown className="links" title={keycloak.authenticated &&keycloak.tokenParsed && <span>{keycloak.tokenParsed.name}</span>}>
               <NavDropdown.Item onClick={() => navigate('/profile')}>Profile</NavDropdown.Item>
               <NavDropdown.Item onClick={() => navigate('/admin')}>Admin</NavDropdown.Item>
-              <NavDropdown.Item onClick={() => navigate('/token')}>Token</NavDropdown.Item>
-              <NavDropdown.Item onClick={() => navigate('/postlist')}>Postslist</NavDropdown.Item>
               <NavDropdown.Item onClick={() => navigate('/Calendar')}>Calendar</NavDropdown.Item>
               <NavDropdown.Item onClick={() => keycloak.logout() && LogOut()}>
                 Log out
@@ -68,10 +66,7 @@ export default function Navbar() {
             </NavDropdown>
           </li>
           </ul>
-       
       </nav>
-
-  
     </div>
     </div>
   );

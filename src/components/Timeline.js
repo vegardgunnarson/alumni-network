@@ -170,7 +170,7 @@ function trimDate(d){
             <div>
             <Createpost setUpdate={reload} type={type} object={display} id={display.id} location={display.name} username={currentuser.name}/>
             <div>{ (type!=="addDMPost") ? <div className="xbutton" onClick={() => handleDisplay(home,"addDMPost","viewAllPosts")}><img src={xcircle}  alt="no info"/></div> : ""}</div>
-            </div>
+        </div>
 
         </div>
         <div className="dashevent">
