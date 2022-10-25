@@ -31,22 +31,28 @@ export default function Navbar() {
     <div className="navi">
       <div className="navbarSpace"></div>
     <div className="stickynavbar">
+
       <nav id="navbar_top" class="navbar navbar-expand-lg px-4 me-auto">
         <img src={mainlogo} className="logo" alt="no logo found"/>
         <a class="nav-link m-2" className="navtitle" onClick={() => navigate('/timeline')}><h2>Alumni</h2></a>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item active" className="links">
             <a class="nav-link m-2" onClick={() => navigate('/timeline')}>
+
               Home
             </a>
           </li>
           <li class="nav-item active" className="links">
+
             <a class="nav-link m-2" onClick={() => navigate('/events')}>
+
               Events
             </a>
           </li>
           <li class="nav-item active" className="links">
+
             <p class="nav-link m-2" onClick={() => navigate('/groups')}>
+
               Groups
             </p>
           </li>
@@ -56,6 +62,7 @@ export default function Navbar() {
             </a>
           </li>
           <li class="m-2">
+
             <NavDropdown className="links" title={keycloak.authenticated &&keycloak.tokenParsed && <span>{keycloak.tokenParsed.name}</span>}>
               <NavDropdown.Item onClick={() => navigate('/profile')}>Profile</NavDropdown.Item>
               <NavDropdown.Item onClick={() => navigate('/admin')}>Admin</NavDropdown.Item>

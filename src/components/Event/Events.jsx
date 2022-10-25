@@ -117,6 +117,7 @@ const leaveEvent = async (n) => {
 }
 } 
   return (
+    <div className="container">
     <div className="eventcontent">
     <div className="addgroup">
         <h3>Events</h3>
@@ -176,6 +177,7 @@ const leaveEvent = async (n) => {
             </div> 
         )
      })}
+    </div>
     </div>
     </div>
   );

@@ -109,6 +109,7 @@ const leaveTopic = async (n) => {
 
 
   return (
+    <div className="container">
     <div className="content">
     <div className="addgroup">
         <h3>Topics</h3>
@@ -164,5 +165,6 @@ const leaveTopic = async (n) => {
         )
      })}
     </div></div>
+    </div>
   );
 }
