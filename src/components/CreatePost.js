@@ -16,6 +16,11 @@ export default function Createpost({setUpdate, type, id, location, username}) {
   const [reciever, setReciever] = useState([]);
   const [recieverName, setRecieverName] = useState([]);
 
+  /**
+   * If you are on the Dashboard this will enable you to load other users for you to make a DM
+   * @param {user id} uid 
+   * @param {user name} name 
+   */
   function handleReciever(uid, name){
     setReciever(uid);
     setRecieverName(name);
@@ -44,6 +49,11 @@ export default function Createpost({setUpdate, type, id, location, username}) {
     content: ""
   
   });
+
+  /**
+   * Uses axios to create post i DB.
+   * @returns response
+   */
   const CreatePostInDB = async () => {
     if (type === "addDMPost"){
       console.log("ID: "+id);
@@ -64,6 +74,7 @@ export default function Createpost({setUpdate, type, id, location, username}) {
     }
     return response.data
   };
+
   function getMarkDown() {
     let s= "Basic MarkDown Syntax\nHeadlines: # H1 ## H2 \nBold Text: **bold text** \nItalicized: *italicized text* \nImage: ![alt text](image.jpg) \nLink: [title](https://www.example.com)";
     alert(s);
@@ -74,6 +85,10 @@ export default function Createpost({setUpdate, type, id, location, username}) {
     setCreatePost({ ...createPost, [event.target.name]: event.target.value });
   };
 
+  /**
+   * Updates the states before posting post in DB
+   * @param {input from user} event 
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
     setCreatePost({
@@ -90,6 +105,9 @@ export default function Createpost({setUpdate, type, id, location, username}) {
 
   const [show, setShow] = useState(false);
 
+  /**
+   * Closing Modal after you have created post or clicked on close
+   */
   const handleClose = () => {
     
     setShow(false);

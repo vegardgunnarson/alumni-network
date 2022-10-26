@@ -2,7 +2,10 @@
 
 const apiUrl = "https://alumni-case-database.herokuapp.com/api/v1";
 
-
+/**
+ * Returns all groups
+ * @returns 
+ */
 export const getGroups = async () => {
 
     try{
@@ -17,6 +20,11 @@ export const getGroups = async () => {
         return[error.message, []];
     }
 }
+/**
+ * Returns all groups a user is part of given user
+ * @param {user} currentuser 
+ * @returns 
+ */
 export const getGroupsOfStudent = async (currentuser) => {
     
     try{
@@ -31,6 +39,11 @@ export const getGroupsOfStudent = async (currentuser) => {
         return[error.message, []];
     }
 }
+/**
+ * Returns all groups a user can be a part of given user
+ * @param {user} currentuser 
+ * @returns 
+ */
 export const getAvailableGroupsOfStudent = async (currentuser) => {
     try{
         const response = await fetch(`${apiUrl}/alumnigroup/displayAvailableGroups?accessing_student_id=${currentuser.id}`);

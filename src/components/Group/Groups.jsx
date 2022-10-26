@@ -41,6 +41,11 @@ export default function Groups() {
   };
 
 
+  /**
+   * Joins group given id, current user is global
+   * @param {group id} gId 
+   * @returns 
+   */
   const joinGroup = async (gId) => {
     
     try {
@@ -58,6 +63,11 @@ export default function Groups() {
       return error.message;
   }
 } 
+  /**
+   * Leavs group given id, current user is global
+   * @param {group id} gId 
+   * @returns 
+   */
 const leaveGroup = async (gId) => {
     
   try {
@@ -112,8 +122,6 @@ const leaveGroup = async (gId) => {
         return envelope;
     }
   }
-  //&& handleDisplay(group,"addGroupPost","viewGroupPosts")}
-
 
   return (
     <div className="container" >

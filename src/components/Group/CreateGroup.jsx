@@ -24,6 +24,10 @@ export default function Creategroup({setUpdate}) {
     });
     
 
+    /**
+     * Using fetct to post new group in DB. 
+     * @returns 
+     */
   const CreateGroupInDB = async () => {
     try {
           const response = await fetch(`${apiUrl}/${currentuser.id}/addAlumniGroup`, {

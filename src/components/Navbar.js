@@ -22,8 +22,6 @@ const LogOut = () => {
   nav('/')
 }
 
-
-
 export default function Navbar() {
   const navigate = useNavigate();
 

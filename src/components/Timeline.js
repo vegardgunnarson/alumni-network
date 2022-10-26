@@ -34,7 +34,12 @@ export default function Timeline() {
     const [update, setUpdate] = useState(0);
 
 
-
+/**
+ * Depending on what the user have clicked on several things on the timeline change. 
+ * @param {dashboard/a group/a topic/an event} newDisplay 
+ * @param {url specified for what data you want} type 
+ * @param {url for posting posts the right place} posts 
+ */
     function handleDisplay(newDisplay,type,posts){
         setDisplay(newDisplay);
         setType(type);
@@ -78,7 +83,11 @@ export default function Timeline() {
     }
 }
 
-
+/**
+ * Returns formated date
+ * @param {java Date object} d 
+ * @returns 
+ */
 function trimDate(d){
     const thisdate = new Date(d);
     return thisdate.toLocaleString('no-GB', {hour12: false});
@@ -129,10 +138,19 @@ function trimDate(d){
 
 
 
+  /**
+   * Reloads posts if you have posted something
+   * @param {any} input 
+   */
   const reload = (input) => {
     setUpdate(update+input)
   };
 
+  /**
+   * Sets location on posts if neccesary
+   * @param {*} l 
+   * @returns 
+   */
   function getLocation(l) {
         if (l !== display.name){
             return l
